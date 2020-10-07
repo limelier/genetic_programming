@@ -4,8 +4,8 @@ pub type Reg = u8;
 pub type Ins = u8;
 pub type Val = i8;
 
-const RESULT_REGISTER: u8 = 200;
-const COMPARE_REGISTER: u8 = 201;
+pub const RESULT_REGISTER: u8 = 200;
+pub const COMPARE_REGISTER: u8 = 201;
 
 #[derive(Copy, Clone)]
 pub enum Source {
