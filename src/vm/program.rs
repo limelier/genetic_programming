@@ -1,5 +1,4 @@
 use crate::vm::structures::*;
-use std::intrinsics::add_with_overflow;
 use std::cmp::Ordering;
 
 pub struct Program {
@@ -36,63 +35,99 @@ impl Program {
             self.step();
         }
     }
+    fn get_reg(&self, reg: Reg) -> Val {
+        self.registers[reg as usize]
+    }
+    fn set_reg(&mut self, reg: Reg, val: Val) {
+        self.registers[reg as usize] = val;
+    }
     fn step(&mut self) {
         let mut jumped = false;
 
-        match self.instructions[self.instruction_pointer] {
+        match self.instructions[self.instruction_pointer as usize] {
             Instruction::Unary(reg, op) => {
-                let old = self.registers[reg];
-                self.registers[reg] = match op {
+                let old = self.get_reg(reg);
+                let new =match op {
                     UnaryOperation::Not => !old,
                     UnaryOperation::ShiftLeft => {
                         let lost_bit = old & (1 << 7);
-                        self.registers[RESULT_REGISTER] = lost_bit;
+                        self.set_reg(RESULT_REGISTER, lost_bit);
                         old << 1
                     },
                     UnaryOperation::ShiftRight => {
                         let lost_bit = old & 1;
-                        self.registers[RESULT_REGISTER] = lost_bit;
+                        self.set_reg(RESULT_REGISTER, lost_bit);
                         old >> 1
                     },
                     UnaryOperation::RotateLeft => i8::rotate_left(old, 1),
                     UnaryOperation::RotateRight => i8::rotate_right(old, 1),
-                    UnaryOperation::Increment => i8::overflowing_add(old, 1),
-                    UnaryOperation::Decrement => i8::overflowing_sub(old, 1),
-                }
+                    UnaryOperation::Increment => i8::overflowing_add(old, 1).0,
+                    UnaryOperation::Decrement => i8::overflowing_sub(old, 1).0,
+                };
+                self.set_reg(reg, new);
             },
             Instruction::Binary(reg, src, op) => {
                 let other = self.get_source(src);
-                let old = self.registers[reg];
-                self.registers[reg] = match op {
+                let old = self.get_reg(reg);
+                let new = match op {
                     BinaryOperation::Set => other,
-                    BinaryOperation::Add => old + other,
-                    BinaryOperation::Subtract => old - other,
-                    BinaryOperation::Multiply => old * other,
-                    BinaryOperation::Divide => old / other,
+                    BinaryOperation::Add => i8::overflowing_add(old, other).0,
+                    BinaryOperation::Subtract => i8::overflowing_sub(old, other).0,
+                    BinaryOperation::Multiply => i8::overflowing_mul(old, other).0,
+                    BinaryOperation::Divide => i8::overflowing_div(old, other).0,
                     BinaryOperation::Modulo => old % other,
                     BinaryOperation::And => old & other,
                     BinaryOperation::Or => old | other,
-                }
+                };
+                self.set_reg(reg, new);
             },
             Instruction::Compare(reg, src) => {
                 let other = self.get_source(src);
-                let this = self.registers[reg];
-                self.registers[COMPARE_REGISTER] = match i8::cmp(this, &other) {
+                let this = self.get_reg(reg);
+                self.set_reg(COMPARE_REGISTER, match i8::cmp(&this, &other) {
                     Ordering::Less => -1,
                     Ordering::Equal => 0,
                     Ordering::Greater => 1,
-                }
+                });
             },
             Instruction::Jump(ins, condition) => {
-                // todo
+                    let do_jump = match condition {
+                        JumpCondition::None => true,
+                        JumpCondition::Zero(src) => self.get_source(src) == 0,
+                        JumpCondition::NotZero(src) => self.get_source(src) != 0,
+                        JumpCondition::Compare(ord) =>
+                            ord_to_num(ord) == self.get_reg(COMPARE_REGISTER),
+                        JumpCondition::NotCompare(ord) =>
+                            ord_to_num(ord) != self.get_reg(COMPARE_REGISTER),
+                    };
+                    if do_jump {
+                        self.instruction_pointer = ins;
+                        jumped = true;
+                    }
             },
-            Instruction::Pass => { /* do nothing */ }
+            Instruction::Pass => { /* do nothing */ },
+            Instruction::Print(src) => println!("{}", self.get_source(src))
+        }
+        if !jumped {
+            if self.instruction_pointer == 0xFF {
+                self.halted = true;
+            } else {
+                self.instruction_pointer += 1;
+            }
         }
     }
     fn get_source(&self, src: Source) -> i8 {
         match src {
-            Source::Register(reg2) => self.registers[reg2],
+            Source::Register(reg) => self.get_reg(reg),
             Source::Value(val) => val
         }
+    }
+}
+
+fn ord_to_num(ord: Ordering) -> Val {
+    match ord {
+        Ordering::Less => -1,
+        Ordering::Equal => 0,
+        Ordering::Greater => 1,
     }
 }
