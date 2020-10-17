@@ -39,8 +39,8 @@ pub enum BinaryOperation {
 #[derive(Copy, Clone)]
 pub enum JumpCondition {
     None,
-    Zero(Source),
-    NotZero(Source),
+    Zero(Reg),
+    NotZero(Reg),
     Compare(Ordering),
     NotCompare(Ordering)
 }

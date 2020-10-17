@@ -93,8 +93,8 @@ impl Program {
             Instruction::Jump(ins, condition) => {
                     let do_jump = match condition {
                         JumpCondition::None => true,
-                        JumpCondition::Zero(src) => self.get_source(src) == 0,
-                        JumpCondition::NotZero(src) => self.get_source(src) != 0,
+                        JumpCondition::Zero(reg) => self.get_reg(reg) == 0,
+                        JumpCondition::NotZero(reg) => self.get_reg(reg) != 0,
                         JumpCondition::Compare(ord) =>
                             ord_to_num(ord) == self.get_reg(COMPARE_REGISTER),
                         JumpCondition::NotCompare(ord) =>

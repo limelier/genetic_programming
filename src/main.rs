@@ -1,8 +1,5 @@
-use std::cmp::Ordering;
 use genetic_programming::vm::program::Program;
-use genetic_programming::vm::structures::{
-    Instruction, BinaryOperation, JumpCondition, Source
-};
+use genetic_programming::binary::{parse_bytes, Instr};
 
 fn main() {
     /*
@@ -12,15 +9,16 @@ fn main() {
             r0 += 10;
         }
      */
-    let mut program = Program::from_instructions(&vec!{
-        Instruction::Binary(0, Source::Value(1), BinaryOperation::Set), // 0
-        Instruction::Compare(0, Source::Value(100)), // 1
-        Instruction::Jump(6, JumpCondition::NotCompare(Ordering::Less)), // 2
-        Instruction::Print(Source::Register(0)), // 3
-        Instruction::Binary(0, Source::Value(10), BinaryOperation::Add), // 4
-        Instruction::Jump(1, JumpCondition::None), // 5
-        Instruction::Pass, // 6
-    });
+    let instr = parse_bytes(vec![
+        Instr::SetValue as u8, 0, 1,
+        Instr::CompareValue as u8, 0, 100,
+        Instr::JumpNotLess as u8, 6,
+        Instr::PrintRegister as u8, 0,
+        Instr::AddValue as u8, 0, 10,
+        Instr::Jump as u8, 1,
+        Instr::Pass as u8,
+    ]);
+    let mut program = Program::from_instructions(&instr);
 
     program.execute();
 }
