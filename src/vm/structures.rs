@@ -46,6 +46,29 @@ pub enum JumpCondition {
 }
 
 #[derive(Copy, Clone)]
+pub enum Direction {
+    Up,
+    Down,
+    Forward,
+    Back
+}
+
+#[derive(Copy, Clone)]
+pub enum Side {
+    Left,
+    Right
+}
+
+#[derive(Copy, Clone)]
+pub enum TurtleOperation {
+    Move(Direction),
+    Turn(Side),
+    Place(Direction), // back illegal
+    Break(Direction), // back illegal
+    Detect(Direction), // back illegal
+}
+
+#[derive(Copy, Clone)]
 pub enum Instruction {
     /// Do operation on register alone
     Unary(Reg, UnaryOperation),
