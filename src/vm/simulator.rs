@@ -109,8 +109,13 @@ impl Simulator {
     pub(crate) fn try_move(&mut self, dir: Direction) -> bool {
         let pos = self.turtle.get_adjacent(dir);
         if Self::pos_in_bounds(pos) {
-            self.turtle.shift(pos);
-            true
+            let Vector3(x, y, z) = pos;
+            if self.blocks[x as usize][y as usize][z as usize] == 0 {
+                self.turtle.shift(pos);
+                true
+            } else {
+                false
+            }
         } else {
             false
         }
@@ -140,7 +145,7 @@ impl Simulator {
         self.try_change(dir, 1)
     }
 
-    pub(crate) fn try_break(&mut self, dir: Direction) -> bool {
+    pub(crate) fn try_dig(&mut self, dir: Direction) -> bool {
         self.try_change(dir, 0)
     }
 
@@ -169,7 +174,16 @@ mod tests {
     }
 
     #[test]
-    fn movement_invalid() {
+    fn movement_block() {
+        let mut sim = Simulator::new();
+        sim.blocks[1][0][0] = 1;
+        let res = sim.try_move(Direction::Forward);
+        assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
+        assert!(!res);
+    }
+
+    #[test]
+    fn movement_boundary() {
         let mut sim = Simulator::new();
         let res = sim.try_move(Direction::Back);
         assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
@@ -195,7 +209,7 @@ mod tests {
     }
 
     #[test]
-    fn place_out_of_bounds() {
+    fn place_boundary() {
         let mut sim = Simulator::new();
         let res = sim.try_place(Direction::Down);
         // operation is invalid, should produce no change
@@ -204,27 +218,27 @@ mod tests {
     }
 
     #[test]
-    fn break_block() {
+    fn dig_block() {
         let mut sim = Simulator::new();
         sim.blocks[1][0][0] = 1;
-        let res = sim.try_break(Direction::Forward);
+        let res = sim.try_dig(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 0);
         assert!(res);
     }
 
     #[test]
-    fn break_air() {
+    fn dig_air() {
         let mut sim = Simulator::new();
-        let res = sim.try_break(Direction::Forward);
+        let res = sim.try_dig(Direction::Forward);
         // operation is idempotent, should produce no change
         assert_eq!(sim.blocks[1][0][0], 0);
         assert!(!res);
     }
 
     #[test]
-    fn break_out_of_bounds() {
+    fn dig_boundary() {
         let mut sim = Simulator::new();
-        let res = sim.try_break(Direction::Down);
+        let res = sim.try_dig(Direction::Down);
         // operation is invalid, should produce no change
         assert_eq!(sim, Simulator::new());
         assert!(!res);
