@@ -63,9 +63,9 @@ pub enum Side {
 pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
-    Place(Direction), // back illegal
-    Dig(Direction), // back illegal
-    Detect(Direction), // back illegal
+    Place(Direction),
+    Dig(Direction),
+    Detect(Direction),
 }
 
 #[derive(Copy, Clone)]
