@@ -2,7 +2,7 @@ use crate::vm::structures::{Direction, Side};
 
 const BLOCK_SPACE_SIZE: usize = 16;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
 enum Orientation {
     /// Z+ goes south, X+ goes east
     ///    Z-
@@ -49,6 +49,7 @@ fn delta(dir: Direction, facing: Orientation) -> Vector3 {
     }
 }
 
+#[derive (Eq, PartialEq, Debug)]
 struct Turtle {
     pos: Vector3,
     facing: Orientation
@@ -82,6 +83,7 @@ impl Turtle {
     }
 }
 
+#[derive (Eq, PartialEq, Debug)]
 struct Simulator {
     blocks: [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE], // 3D array of bytes
     turtle: Turtle
@@ -156,5 +158,63 @@ mod tests {
         assert_eq!(sim.turtle.pos, Vector3(1, 1, 0));
         sim.try_move(Direction::Down);
         assert_eq!(sim.turtle.pos, Vector3(1, 0, 0));
+        sim.try_move(Direction::Back);
+        assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
+    }
+
+    #[test]
+    fn movement_invalid() {
+        let mut sim = Simulator::new();
+        sim.try_move(Direction::Back);
+        sim.try_move(Direction::Down);
+        assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
+    }
+
+    #[test]
+    fn place_block() {
+        let mut sim = Simulator::new();
+        sim.try_place(Direction::Forward);
+        assert_eq!(sim.blocks[1][0][0], 1);
+
+        // idempotent: placing over another block does nothing
+        sim.try_place(Direction::Forward);
+        assert_eq!(sim.blocks[1][0][0], 1);
+    }
+
+    #[test]
+    fn place_out_of_bounds() {
+        let mut sim = Simulator::new();
+        sim.try_place(Direction::Down);
+        assert_eq!(sim, Simulator::new());
+    }
+
+    #[test]
+    fn break_block() {
+        let mut sim = Simulator::new();
+        sim.blocks[1][0][0] = 1;
+        sim.try_break(Direction::Forward);
+        assert_eq!(sim.blocks[1][0][0], 0);
+
+        // idempotent: breaking air does nothing
+        sim.try_break(Direction::Forward);
+        assert_eq!(sim.blocks[1][0][0], 0);
+    }
+
+    #[test]
+    fn detect_air() {
+        let sim = Simulator::new();
+        assert!(!sim.detect(Direction::Forward));
+    }
+
+    #[test]
+    fn detect_block() {
+        let mut sim = Simulator::new();
+        sim.blocks[1][0][0] = 1;
+        assert!(sim.detect(Direction::Forward));
+    }
+    #[test]
+    fn detect_out_of_bounds() {
+        let sim = Simulator::new();
+        assert!(sim.detect(Direction::Down));
     }
 }
