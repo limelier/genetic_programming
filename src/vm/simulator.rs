@@ -124,7 +124,7 @@ impl Simulator {
         let pos = self.turtle.get_adjacent(dir);
         if Self::pos_in_bounds(pos) {
             let Vector3(x, y, z) = pos;
-            let mut block = &mut (self.blocks[x as usize][y as usize][z as usize]);
+            let block = &mut (self.blocks[x as usize][y as usize][z as usize]);
             if *block != to {
                 *block = to;
                 true
