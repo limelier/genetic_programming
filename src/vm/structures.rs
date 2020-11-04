@@ -64,7 +64,7 @@ pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
     Place(Direction), // back illegal
-    Break(Direction), // back illegal
+    Dig(Direction), // back illegal
     Detect(Direction), // back illegal
 }
 

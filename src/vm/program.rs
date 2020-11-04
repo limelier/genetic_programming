@@ -119,8 +119,8 @@ impl Program {
                         let res = self.simulator.try_place(dir) as i8;
                         self.set_reg(RESULT_REGISTER, res);
                     },
-                    TurtleOperation::Break(dir) => {
-                        let res = self.simulator.try_break(dir) as i8;
+                    TurtleOperation::Dig(dir) => {
+                        let res = self.simulator.try_dig(dir) as i8;
                         self.set_reg(RESULT_REGISTER, res);
                     },
                     TurtleOperation::Detect(dir) => {
