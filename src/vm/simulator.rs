@@ -63,13 +63,13 @@ impl Turtle {
 
     fn turn(&mut self, side: Side) {
         self.facing = match side {
-            Side::Left => match self.facing {
+            Side::Right => match self.facing {
                 Orientation::XPos => Orientation::ZPos,
                 Orientation::XNeg => Orientation::ZNeg,
                 Orientation::ZPos => Orientation::XNeg,
                 Orientation::ZNeg => Orientation::XPos,
             }
-            Side::Right => match self.facing {
+            Side::Left => match self.facing {
                 Orientation::XPos => Orientation::ZNeg,
                 Orientation::XNeg => Orientation::ZPos,
                 Orientation::ZPos => Orientation::XPos,
@@ -216,5 +216,13 @@ mod tests {
     fn detect_out_of_bounds() {
         let sim = Simulator::new();
         assert!(sim.detect(Direction::Down));
+    }
+    #[test]
+    fn turn() {
+        let mut sim = Simulator::new();
+        sim.turn(Side::Left);
+        assert_eq!(sim.turtle.facing, Orientation::ZNeg);
+        sim.turn(Side::Right);
+        assert_eq!(sim.turtle.facing, Orientation::XPos);
     }
 }
