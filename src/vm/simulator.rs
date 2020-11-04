@@ -125,7 +125,7 @@ impl Simulator {
         if Self::pos_in_bounds(pos) {
             let Vector3(x, y, z) = pos;
             let mut block = &mut (self.blocks[x as usize][y as usize][z as usize]);
-            if block != to {
+            if *block != to {
                 *block = to;
                 true
             } else {
