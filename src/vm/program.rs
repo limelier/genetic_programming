@@ -1,4 +1,5 @@
 use crate::vm::structures::*;
+use crate::vm::simulator::Simulator;
 use std::cmp::Ordering;
 
 pub struct Program {
@@ -6,6 +7,7 @@ pub struct Program {
     registers: [Val; 256],
     instruction_pointer: Ins,
     halted: bool,
+    simulator: Simulator,
 }
 
 impl Program {
@@ -15,6 +17,7 @@ impl Program {
             registers: [0; 256],
             instruction_pointer: 0,
             halted: false,
+            simulator: Simulator::new(),
         }
     }
     pub fn from_instructions(instructions: &Vec<Instruction>) -> Self {
@@ -105,8 +108,29 @@ impl Program {
                         jumped = true;
                     }
             },
+            Instruction::Turtle(op) => {
+                match op {
+                    TurtleOperation::Move(dir) => {
+                        let res = self.simulator.try_move(dir) as i8;
+                        self.set_reg(RESULT_REGISTER, res);
+                    },
+                    TurtleOperation::Turn(side) => self.simulator.turn(side),
+                    TurtleOperation::Place(dir) => {
+                        let res = self.simulator.try_place(dir) as i8;
+                        self.set_reg(RESULT_REGISTER, res);
+                    },
+                    TurtleOperation::Break(dir) => {
+                        let res = self.simulator.try_break(dir) as i8;
+                        self.set_reg(RESULT_REGISTER, res);
+                    },
+                    TurtleOperation::Detect(dir) => {
+                        let res = self.simulator.detect(dir) as i8;
+                        self.set_reg(RESULT_REGISTER, res);
+                    },
+                }
+            }
+            Instruction::Print(src) => println!("{}", self.get_source(src)),
             Instruction::Pass => { /* do nothing */ },
-            Instruction::Print(src) => println!("{}", self.get_source(src))
         }
         if !jumped {
             if self.instruction_pointer == 0xFF {
