@@ -163,52 +163,71 @@ mod tests {
     #[test]
     fn movement_valid() {
         let mut sim = Simulator::new();
-        sim.try_move(Direction::Forward);
+        let res = sim.try_move(Direction::Forward);
         assert_eq!(sim.turtle.pos, Vector3(1, 0, 0));
-        sim.try_move(Direction::Up);
-        assert_eq!(sim.turtle.pos, Vector3(1, 1, 0));
-        sim.try_move(Direction::Down);
-        assert_eq!(sim.turtle.pos, Vector3(1, 0, 0));
-        sim.try_move(Direction::Back);
-        assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
+        assert!(res);
     }
 
     #[test]
     fn movement_invalid() {
         let mut sim = Simulator::new();
-        sim.try_move(Direction::Back);
-        sim.try_move(Direction::Down);
+        let res = sim.try_move(Direction::Back);
         assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
+        assert!(!res);
     }
 
     #[test]
     fn place_block() {
         let mut sim = Simulator::new();
-        sim.try_place(Direction::Forward);
+        let res = sim.try_place(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 1);
+        assert!(res);
+    }
 
-        // idempotent: placing over another block does nothing
-        sim.try_place(Direction::Forward);
+    #[test]
+    fn place_overlap() {
+        let mut sim = Simulator::new();
+        sim.blocks[1][0][0] = 1;
+        let res = sim.try_place(Direction::Forward);
+        // operation is idempotent, should produce no change
         assert_eq!(sim.blocks[1][0][0], 1);
+        assert!(!res);
     }
 
     #[test]
     fn place_out_of_bounds() {
         let mut sim = Simulator::new();
-        sim.try_place(Direction::Down);
+        let res = sim.try_place(Direction::Down);
+        // operation is invalid, should produce no change
         assert_eq!(sim, Simulator::new());
+        assert!(!res);
     }
 
     #[test]
     fn break_block() {
         let mut sim = Simulator::new();
         sim.blocks[1][0][0] = 1;
-        sim.try_break(Direction::Forward);
+        let res = sim.try_break(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 0);
+        assert!(res);
+    }
 
-        // idempotent: breaking air does nothing
-        sim.try_break(Direction::Forward);
+    #[test]
+    fn break_air() {
+        let mut sim = Simulator::new();
+        let res = sim.try_break(Direction::Forward);
+        // operation is idempotent, should produce no change
         assert_eq!(sim.blocks[1][0][0], 0);
+        assert!(!res);
+    }
+
+    #[test]
+    fn break_out_of_bounds() {
+        let mut sim = Simulator::new();
+        let res = sim.try_break(Direction::Down);
+        // operation is invalid, should produce no change
+        assert_eq!(sim, Simulator::new());
+        assert!(!res);
     }
 
     #[test]
@@ -223,11 +242,13 @@ mod tests {
         sim.blocks[1][0][0] = 1;
         assert!(sim.detect(Direction::Forward));
     }
+
     #[test]
     fn detect_out_of_bounds() {
         let sim = Simulator::new();
         assert!(sim.detect(Direction::Down));
     }
+
     #[test]
     fn turn() {
         let mut sim = Simulator::new();
