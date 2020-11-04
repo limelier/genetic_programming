@@ -1,4 +1,4 @@
-use crate::vm::structures::{Instruction, Source, BinaryOperation, UnaryOperation, JumpCondition};
+use crate::vm::structures::{Instruction, Source, BinaryOperation, UnaryOperation, JumpCondition, TurtleOperation, Direction, Side};
 use num_enum::TryFromPrimitive;
 use std::convert::TryFrom;
 use std::cmp::Ordering;
@@ -43,6 +43,22 @@ pub enum Instr {
     JumpNotGreater,
     JumpEqual,
     JumpNotEqual,
+    // turtle-specific operations:
+    Forward,
+    Back,
+    Up,
+    Down,
+    TurnLeft,
+    TurnRight,
+    Dig,
+    DigUp,
+    DigDown,
+    Place,
+    PlaceUp,
+    PlaceDown,
+    Detect,
+    DetectUp,
+    DetectDown
 }
 
 fn extract_instruction<'a, I>(i: &mut I) -> Option<Instruction>
@@ -146,6 +162,21 @@ fn extract_instruction<'a, I>(i: &mut I) -> Option<Instruction>
                 Instruction::Jump(*i.next()?, JumpCondition::Compare(Ordering::Equal)),
             Instr::JumpNotEqual =>
                 Instruction::Jump(*i.next()?, JumpCondition::NotCompare(Ordering::Equal)),
+            Instr::Forward => Instruction::Turtle(TurtleOperation::Move(Direction::Forward)),
+            Instr::Back => Instruction::Turtle(TurtleOperation::Move(Direction::Back)),
+            Instr::Up => Instruction::Turtle(TurtleOperation::Move(Direction::Up)),
+            Instr::Down => Instruction::Turtle(TurtleOperation::Move(Direction::Down)),
+            Instr::TurnLeft => Instruction::Turtle(TurtleOperation::Turn(Side::Left)),
+            Instr::TurnRight => Instruction::Turtle(TurtleOperation::Turn(Side::Right)),
+            Instr::Dig => Instruction::Turtle(TurtleOperation::Dig(Direction::Forward)),
+            Instr::DigUp => Instruction::Turtle(TurtleOperation::Dig(Direction::Up)),
+            Instr::DigDown => Instruction::Turtle(TurtleOperation::Dig(Direction::Down)),
+            Instr::Place => Instruction::Turtle(TurtleOperation::Place(Direction::Forward)),
+            Instr::PlaceUp => Instruction::Turtle(TurtleOperation::Place(Direction::Up)),
+            Instr::PlaceDown => Instruction::Turtle(TurtleOperation::Place(Direction::Down)),
+            Instr::Detect => Instruction::Turtle(TurtleOperation::Detect(Direction::Forward)),
+            Instr::DetectUp => Instruction::Turtle(TurtleOperation::Detect(Direction::Up)),
+            Instr::DetectDown => Instruction::Turtle(TurtleOperation::Detect(Direction::Down)),
         })
     } else {
         None
