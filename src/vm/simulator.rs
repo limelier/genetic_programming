@@ -106,7 +106,7 @@ impl Simulator {
         pos.2 >= 0 && pos.2 < BLOCK_SPACE_SIZE as isize
     }
 
-    pub(crate) fn shift(&mut self, dir: Direction) -> bool {
+    pub(crate) fn try_move(&mut self, dir: Direction) -> bool {
         let pos = self.turtle.get_adjacent(dir);
         if Self::pos_in_bounds(pos) {
             self.turtle.shift(pos);
@@ -136,11 +136,11 @@ impl Simulator {
         }
     }
 
-    pub(crate) fn place(&mut self, dir: Direction) -> bool {
+    pub(crate) fn try_place(&mut self, dir: Direction) -> bool {
         self.try_change(dir, 1)
     }
 
-    pub(crate) fn destroy(&mut self, dir: Direction) -> bool {
+    pub(crate) fn try_break(&mut self, dir: Direction) -> bool {
         self.try_change(dir, 0)
     }
 
@@ -163,39 +163,39 @@ mod tests {
     #[test]
     fn movement_valid() {
         let mut sim = Simulator::new();
-        sim.shift(Direction::Forward);
+        sim.try_move(Direction::Forward);
         assert_eq!(sim.turtle.pos, Vector3(1, 0, 0));
-        sim.shift(Direction::Up);
+        sim.try_move(Direction::Up);
         assert_eq!(sim.turtle.pos, Vector3(1, 1, 0));
-        sim.shift(Direction::Down);
+        sim.try_move(Direction::Down);
         assert_eq!(sim.turtle.pos, Vector3(1, 0, 0));
-        sim.shift(Direction::Back);
+        sim.try_move(Direction::Back);
         assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
     }
 
     #[test]
     fn movement_invalid() {
         let mut sim = Simulator::new();
-        sim.shift(Direction::Back);
-        sim.shift(Direction::Down);
+        sim.try_move(Direction::Back);
+        sim.try_move(Direction::Down);
         assert_eq!(sim.turtle.pos, Vector3(0, 0, 0));
     }
 
     #[test]
     fn place_block() {
         let mut sim = Simulator::new();
-        sim.place(Direction::Forward);
+        sim.try_place(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 1);
 
         // idempotent: placing over another block does nothing
-        sim.place(Direction::Forward);
+        sim.try_place(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 1);
     }
 
     #[test]
     fn place_out_of_bounds() {
         let mut sim = Simulator::new();
-        sim.place(Direction::Down);
+        sim.try_place(Direction::Down);
         assert_eq!(sim, Simulator::new());
     }
 
@@ -203,11 +203,11 @@ mod tests {
     fn break_block() {
         let mut sim = Simulator::new();
         sim.blocks[1][0][0] = 1;
-        sim.destroy(Direction::Forward);
+        sim.try_break(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 0);
 
         // idempotent: breaking air does nothing
-        sim.destroy(Direction::Forward);
+        sim.try_break(Direction::Forward);
         assert_eq!(sim.blocks[1][0][0], 0);
     }
 
