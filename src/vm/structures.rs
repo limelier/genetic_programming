@@ -80,6 +80,8 @@ pub enum Instruction {
     Compare (Reg, Source),
     /// Print the source value
     Print (Source),
+    /// Execute turtle operations in the simulator
+    Turtle (TurtleOperation),
     /// Do nothing
     Pass
 }
