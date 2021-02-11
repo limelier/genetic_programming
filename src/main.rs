@@ -1,6 +1,6 @@
-use genetic_programming::vm::program::Program;
 use genetic_programming::binary::{parse_bytes, Instr};
-use genetic_programming::vm::structures::RESULT_REGISTER;
+use genetic_programming::vm::structures::{RESULT_REGISTER, BlockSpace};
+use genetic_programming::genetic::evaluation::evaluate_instructions;
 
 fn main() {
     /*
@@ -24,7 +24,15 @@ fn main() {
         Instr::JumpNotZero as u8, 1, RESULT_REGISTER,
         Instr::PrintRegister as u8, 0,
     ]);
-    let mut program = Program::from_instructions(&instr);
 
-    program.execute();
+    /*
+        Evaluation target: only the first half of the line built above should have been filled.
+        The other half should have been empty (air).
+     */
+    let mut target = BlockSpace::default();
+    for i in 0..8 {
+        target[i][1][0] = 1;
+    }
+
+    println!("Evaluation score: {}", evaluate_instructions(&instr, &target));
 }

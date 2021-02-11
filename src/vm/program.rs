@@ -20,6 +20,7 @@ impl Program {
             simulator: Simulator::new(),
         }
     }
+
     pub fn from_instructions(instructions: &Vec<Instruction>) -> Self {
         if instructions.len() > 256 {
             panic!("Instruction vector too big! Only 256 allowed.")
@@ -33,17 +34,21 @@ impl Program {
 
         program
     }
+
     pub fn execute(&mut self) {
         while !self.halted {
             self.step();
         }
     }
+
     fn get_reg(&self, reg: Reg) -> Val {
         self.registers[reg as usize]
     }
+
     fn set_reg(&mut self, reg: Reg, val: Val) {
         self.registers[reg as usize] = val;
     }
+
     fn step(&mut self) {
         let mut jumped = false;
 
@@ -140,11 +145,16 @@ impl Program {
             }
         }
     }
+
     fn get_source(&self, src: Source) -> i8 {
         match src {
             Source::Register(reg) => self.get_reg(reg),
             Source::Value(val) => val
         }
+    }
+
+    pub(crate) fn get_simulator_state(&self) -> BlockSpace {
+        self.simulator.get_state_copy()
     }
 }
 

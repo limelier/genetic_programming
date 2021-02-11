@@ -1,6 +1,4 @@
-use crate::vm::structures::{Direction, Side};
-
-const BLOCK_SPACE_SIZE: usize = 16;
+use crate::vm::structures::{Direction, Side, BlockSpace, BLOCK_SPACE_SIZE};
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 enum Orientation {
@@ -13,8 +11,6 @@ enum Orientation {
     ZPos,
     ZNeg
 }
-
-
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 struct Vector3(isize, isize, isize);
@@ -85,14 +81,14 @@ impl Turtle {
 
 #[derive (Eq, PartialEq, Debug)]
 pub(crate) struct Simulator {
-    blocks: [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE], // 3D array of bytes
+    blocks: BlockSpace, // 3D array of bytes
     turtle: Turtle
 }
 
 impl Simulator {
     pub(crate) fn new() -> Self {
         Simulator {
-            blocks: [[[0; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE],
+            blocks: BlockSpace::default(),
             turtle: Turtle {
                 pos: Vector3(0, 0, 0),
                 facing: Orientation::XPos,
@@ -158,6 +154,10 @@ impl Simulator {
         } else {
             true
         }
+    }
+
+    pub(crate) fn get_state_copy(&self) -> BlockSpace {
+        self.blocks.clone()
     }
 }
 
