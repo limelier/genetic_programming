@@ -1,6 +1,6 @@
-use genetic_programming::binary::{parse_bytes, Instr};
+use genetic_programming::binary::Instr;
 use genetic_programming::vm::structures::{RESULT_REGISTER, BlockSpace};
-use genetic_programming::genetic::evaluation::evaluate_instructions;
+use genetic_programming::genetic::evaluation::evaluate_individual;
 
 fn main() {
     /*
@@ -15,15 +15,19 @@ fn main() {
             num += 1;
             res = forward();
         print(num);
-     */
-    let instr = parse_bytes(vec![
+    */
+    let mut individual = [Instr::Pass as u8; 256];
+    let instr = vec![
         Instr::SetValue as u8, 0, 0,
         Instr::PlaceUp as u8,
         Instr::Increment as u8, 0,
         Instr::Forward as u8,
         Instr::JumpNotZero as u8, 1, RESULT_REGISTER,
         Instr::PrintRegister as u8, 0,
-    ]);
+    ];
+    for (i, byte) in instr.iter().enumerate() {
+        individual[i] = *byte
+    }
 
     /*
         Evaluation target: only the first half of the line built above should have been filled.
@@ -34,5 +38,5 @@ fn main() {
         target[i][1][0] = 1;
     }
 
-    println!("Evaluation score: {}", evaluate_instructions(&instr, &target));
+    println!("Evaluation score: {}", evaluate_individual(&individual, &target));
 }

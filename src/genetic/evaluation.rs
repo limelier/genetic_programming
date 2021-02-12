@@ -1,10 +1,7 @@
 use crate::vm::program::Program;
-use crate::vm::structures::{Instruction, BlockSpace};
-
-const SCORE_PRESENT_AIR: f64 = 0.0;
-const SCORE_ABSENT_AIR: f64 = -0.5;
-const SCORE_PRESENT_BLOCK: f64 = 1.0;
-const SCORE_ABSENT_BLOCK: f64 = 0.0;
+use crate::vm::structures::BlockSpace;
+use crate::genetic::definitions::*;
+use crate::binary::parse_bytes;
 
 fn evaluate_state(expected: &BlockSpace, actual: &BlockSpace) -> f64 {
     let mut score = 0.0;
@@ -25,8 +22,8 @@ fn evaluate_state(expected: &BlockSpace, actual: &BlockSpace) -> f64 {
     score
 }
 
-pub fn evaluate_instructions(instructions: &Vec<Instruction>, target: &BlockSpace) -> f64 {
-    let mut program = Program::from_instructions(&instructions);
+pub fn evaluate_individual(individual: &Individual, target: &BlockSpace) -> f64 {
+    let mut program = Program::from_instructions(&parse_bytes(individual));
     program.execute();
 
     evaluate_state(target, &program.get_simulator_state())

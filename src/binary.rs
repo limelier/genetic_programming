@@ -183,7 +183,7 @@ fn extract_instruction<'a, I>(i: &mut I) -> Option<Instruction>
     }
 }
 
-pub fn parse_bytes(bytes: Vec<u8>) -> Vec<Instruction> {
+pub fn parse_bytes(bytes: &[u8]) -> Vec<Instruction> {
     let mut iter = bytes.iter();
     let mut instructions = vec!();
     loop {
