@@ -24,9 +24,12 @@ fn evaluate_state(expected: &BlockSpace, actual: &BlockSpace) -> f64 {
 
 pub fn evaluate_individual(individual: &Individual, target: &BlockSpace) -> f64 {
     let mut program = Program::from_instructions(&parse_bytes(individual));
-    program.execute();
+    let result = program.execute();
 
-    evaluate_state(target, &program.get_simulator_state())
+    match result {
+        Ok(()) => evaluate_state(target, &program.get_simulator_state()),
+        Err(_) => SCORE_PROGRAM_ERROR
+    }
 }
 
 

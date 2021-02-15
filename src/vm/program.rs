@@ -1,6 +1,8 @@
 use crate::vm::structures::*;
 use crate::vm::simulator::Simulator;
 use std::cmp::Ordering;
+use std::time::Instant;
+use crate::genetic::definitions::MAX_PROGRAM_RUNTIME_MILLIS;
 
 pub struct Program {
     instructions: [Instruction; 256],
@@ -35,10 +37,16 @@ impl Program {
         program
     }
 
-    pub fn execute(&mut self) {
+    pub fn execute(&mut self) -> Result<(), &'static str> {
+        let start = Instant::now();
         while !self.halted {
             self.step();
+            if start.elapsed().as_millis() > MAX_PROGRAM_RUNTIME_MILLIS {
+                return Err("Timeout reached!")
+            }
         }
+
+        Ok(())
     }
 
     fn get_reg(&self, reg: Reg) -> Val {
