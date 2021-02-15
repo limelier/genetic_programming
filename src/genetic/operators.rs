@@ -53,8 +53,9 @@ pub(crate) fn crossover_population(population: &mut Population) {
 
 pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population, Individual, f64) {
     // evaluate
-    let mut score_lower_bound = evaluate_individual(&population[0], target);
-    let mut score_upper_bound = score_lower_bound;
+    let mut score_lower_bound = 0.0;
+
+    let mut score_upper_bound = evaluate_individual(&population[0], target);
     let mut best_individual = &population[0];
     let mut scores = [score_lower_bound; POPULATION_SIZE];
 
@@ -67,7 +68,7 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
 
         if score > score_upper_bound {
             score_upper_bound = score;
-            best_individual = &population[i];
+            best_individual = &individual;
         }
 
         scores[i] = score;
@@ -82,12 +83,15 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
             0.0
         };
     }
-    let wheel_size = segment_length.iter().sum();
+    let wheel_size: f64 = segment_length.iter().sum();
 
     // spin the wheel to build the new population
     let mut new_population = [[0; INDIVIDUAL_SIZE]; POPULATION_SIZE];
     let mut rng = rand::thread_rng();
     for i in 0..POPULATION_SIZE {
+        if wheel_size.is_infinite() {
+            println!("whoops {:?}", segment_length);
+        }
         let mut needle = rng.gen_range(0.0..wheel_size);
         let mut chosen = 0;
 

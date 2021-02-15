@@ -7,8 +7,10 @@ fn main() {
     for i in 0..8 {
         target[i][1][0] = 1;
     }
+    let target = target;  // remove mutability
 
     let individual = train(&target);
 
+    println!("Final individual: \n{:?}", individual);
     println!("Evaluation score: {}", evaluate_individual(&individual, &target));
 }

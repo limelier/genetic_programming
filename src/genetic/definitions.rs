@@ -10,7 +10,7 @@ pub type Individual = [u8; INDIVIDUAL_SIZE];
 pub(crate) const POPULATION_SIZE: usize = 100;
 pub(crate) type Population = [Individual; POPULATION_SIZE];
 
-pub(crate) const MUTATION_CHANCE: f64 = 0.05;
+pub(crate) const MUTATION_CHANCE: f64 = 0.1;
 
 pub(crate) const MIN_SEGMENT_LENGTH: f64 = 1.0;
 

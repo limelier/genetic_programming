@@ -12,8 +12,11 @@ pub fn train(target: &BlockSpace) -> Individual {
         mutate_population(&mut population);
         crossover_population(&mut population);
         let (new_population, generation_best_individual, generation_best_score) = select(population, &target);
+        println!("For epoch {}, we have a best score of {}", epoch, generation_best_score);
         population = new_population;
         if generation_best_score > best_score {
+            println!("  Replacing best individual with:");
+            println!("  {:?}", generation_best_individual);
             best_score = generation_best_score;
             best_individual = generation_best_individual;
         }
