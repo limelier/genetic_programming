@@ -40,7 +40,7 @@ impl Program {
     pub fn execute(&mut self) -> Result<(), &'static str> {
         let start = Instant::now();
         while !self.halted {
-            self.step();
+            self.step()?;
             if start.elapsed().as_millis() > MAX_PROGRAM_RUNTIME_MILLIS {
                 return Err("Timeout reached!")
             }
@@ -57,7 +57,7 @@ impl Program {
         self.registers[reg as usize] = val;
     }
 
-    fn step(&mut self) {
+    fn step(&mut self) -> Result<(), &'static str> {
         let mut jumped = false;
 
         match self.instructions[self.instruction_pointer as usize] {
@@ -90,8 +90,18 @@ impl Program {
                     BinaryOperation::Add => i8::overflowing_add(old, other).0,
                     BinaryOperation::Subtract => i8::overflowing_sub(old, other).0,
                     BinaryOperation::Multiply => i8::overflowing_mul(old, other).0,
-                    BinaryOperation::Divide => i8::overflowing_div(old, other).0,
-                    BinaryOperation::Modulo => old % other,
+                    BinaryOperation::Divide => {
+                        if other == 0 {
+                            return Err("Divide by zero!")
+                        }
+                        i8::overflowing_div(old, other).0
+                    },
+                    BinaryOperation::Modulo => {
+                        if other == 0 {
+                            return Err("Modulo by zero!")
+                        }
+                        old % other
+                    },
                     BinaryOperation::And => old & other,
                     BinaryOperation::Or => old | other,
                 };
@@ -156,6 +166,8 @@ impl Program {
                 self.instruction_pointer += 1;
             }
         }
+
+        Ok(())
     }
 
     fn get_source(&self, src: Source) -> i8 {
