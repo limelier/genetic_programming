@@ -17,3 +17,5 @@ pub(crate) const MIN_SEGMENT_LENGTH: f64 = 1.0;
 pub(crate) const TRAINING_EPOCHS: usize = 100;
 
 pub const MAX_PROGRAM_RUNTIME_MILLIS: u128 = 1000;
+
+pub const DEBUG_DO_PRINTS: bool = false;

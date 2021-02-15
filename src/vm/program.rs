@@ -2,7 +2,7 @@ use crate::vm::structures::*;
 use crate::vm::simulator::Simulator;
 use std::cmp::Ordering;
 use std::time::Instant;
-use crate::genetic::definitions::MAX_PROGRAM_RUNTIME_MILLIS;
+use crate::genetic::definitions::{MAX_PROGRAM_RUNTIME_MILLIS, DEBUG_DO_PRINTS};
 
 pub struct Program {
     instructions: [Instruction; 256],
@@ -142,7 +142,11 @@ impl Program {
                     },
                 }
             }
-            Instruction::Print(src) => println!("{}", self.get_source(src)),
+            Instruction::Print(src) => {
+                if DEBUG_DO_PRINTS {
+                    println!("{}", self.get_source(src))
+                }
+            },
             Instruction::Pass => { /* do nothing */ },
         }
         if !jumped {

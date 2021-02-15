@@ -61,7 +61,7 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
     for (i, individual) in population[1..].iter().enumerate() {
         let score = evaluate_individual(individual, target);
 
-        if score < score_lower_bound {
+        if score < score_lower_bound && score.is_finite() {
             score_lower_bound = score;
         }
 
@@ -76,7 +76,11 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
     // construct the "wheel of fortune"
     let mut segment_length = [0.0; POPULATION_SIZE];
     for (i, score) in scores.iter().enumerate() {
-        segment_length[i] = MIN_SEGMENT_LENGTH + score;
+        segment_length[i] = if score.is_finite() {
+            MIN_SEGMENT_LENGTH + (score - score_lower_bound)
+        } else {
+            0.0
+        };
     }
     let wheel_size = segment_length.iter().sum();
 
