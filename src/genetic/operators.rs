@@ -1,10 +1,9 @@
-use crate::genetic::definitions::{Individual, MUTATION_CHANCE, INDIVIDUAL_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT};
+use crate::genetic::definitions::{Chromosome, MUTATION_CHANCE, CHROMOSOME_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT, Individual};
 use rand::Rng;
-use crate::genetic::evaluation::evaluate_individual;
+use crate::genetic::evaluation::evaluate_population;
 use crate::vm::structures::BlockSpace;
-use crate::genetic::generation::generate_individual;
 
-pub(crate) fn mutate(individual: &mut Individual) {
+pub(crate) fn mutate(individual: &mut Chromosome) {
     let mut rng = rand::thread_rng();
 
     for byte in individual {
@@ -20,19 +19,19 @@ pub(crate) fn mutate(individual: &mut Individual) {
 
 pub(crate) fn mutate_population(population: &mut Population) {
     for individual in population {
-        mutate(individual);
+        mutate(&mut individual.chromosome);
     }
 }
 
-pub(crate) fn crossover(first: &mut Individual, second: &mut Individual) {
+pub(crate) fn crossover(first: &mut Chromosome, second: &mut Chromosome) {
     let mut rng = rand::thread_rng();
-    let cut_point = rng.gen_range(1..INDIVIDUAL_SIZE - 1);
+    let cut_point = rng.gen_range(1..CHROMOSOME_SIZE - 1);
     let swap_before: bool = rng.gen();
 
     let swap_range = if swap_before {
         0..cut_point
     } else {
-        cut_point..INDIVIDUAL_SIZE
+        cut_point..CHROMOSOME_SIZE
     };
 
     for i in swap_range {
@@ -44,40 +43,32 @@ pub(crate) fn crossover(first: &mut Individual, second: &mut Individual) {
 
 pub(crate) fn crossover_population(population: &mut Population) {
     for i in 0..POPULATION_SIZE / 2 {
-        let mut first = population[i];
-        let mut second = population[i + POPULATION_SIZE / 2];
+        let mut first = population[i].chromosome;
+        let mut second = population[i + POPULATION_SIZE / 2].chromosome;
         crossover(&mut first, &mut second);
-        population[i] = first;
-        population[i + POPULATION_SIZE / 2] = second;
+        population[i].chromosome = first;
+        population[i + POPULATION_SIZE / 2].chromosome = second;
     }
 }
 
-pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population, Individual, f64) {
-    // evaluate
-    let mut score_lower_bound = 0.0;
-
-    let mut score_upper_bound = evaluate_individual(&population[0], target);
-    let mut best_individual = &population[0];
-    let mut scores = [score_lower_bound; POPULATION_SIZE];
-
-    for (i, individual) in population[1..].iter().enumerate() {
-        let score = evaluate_individual(individual, target);
-
-        if score < score_lower_bound && score.is_finite() {
-            score_lower_bound = score;
-        }
-
-        if score > score_upper_bound {
-            score_upper_bound = score;
-            best_individual = &individual;
-        }
-
-        scores[i] = score;
-    }
+pub(crate) fn select(population: &mut Population, target: &BlockSpace) -> (Population, Individual) {
+    // evaluate and sort by score
+    evaluate_population(population, target);
 
     // construct the "wheel of fortune"
     let mut segment_length = [0.0; POPULATION_SIZE];
-    for (i, score) in scores.iter().enumerate() {
+    let score_lower_bound = {
+        let lowest_score = population[0].score.unwrap();
+
+        if lowest_score.is_infinite() {
+            0.0
+        } else {
+            lowest_score
+        }
+    };
+
+    for (i, individual) in population.iter().enumerate() {
+        let score = individual.score.unwrap();
         segment_length[i] = if score.is_finite() {
             MIN_SEGMENT_LENGTH + (score - score_lower_bound)
         } else {
@@ -87,12 +78,9 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
     let wheel_size: f64 = segment_length.iter().sum();
 
     // spin the wheel to build the new population
-    let mut new_population = [[0; INDIVIDUAL_SIZE]; POPULATION_SIZE];
+    let mut new_population = [Individual::new(); 256];
     let mut rng = rand::thread_rng();
     for i in 0..POPULATION_SIZE - RANDOM_COUNT {
-        if wheel_size.is_infinite() {
-            println!("whoops {:?}", segment_length);
-        }
         let mut needle = rng.gen_range(0.0..wheel_size);
         let mut chosen = 0;
 
@@ -101,14 +89,17 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
             chosen += 1;
         }
 
-        new_population[i] = population[chosen].clone();
+        new_population[i] = Individual {
+            chromosome: population[chosen].chromosome,
+            score: None
+        };
     }
 
     for i in POPULATION_SIZE - RANDOM_COUNT..POPULATION_SIZE {
-        new_population[i] = generate_individual();
+        new_population[i] = Individual::random();
     }
 
-    (new_population, best_individual.clone(), score_upper_bound)
+    (new_population, population[POPULATION_SIZE - 1].clone())
 }
 
 #[cfg(test)]

@@ -22,14 +22,22 @@ fn evaluate_state(expected: &BlockSpace, actual: &BlockSpace) -> f64 {
     score
 }
 
-pub fn evaluate_individual(individual: &Individual, target: &BlockSpace) -> f64 {
-    let mut program = Program::from_instructions(&parse_bytes(individual));
+pub fn evaluate_individual(individual: &mut Individual, target: &BlockSpace) {
+    let mut program = Program::from_instructions(&parse_bytes(&individual.chromosome));
     let result = program.execute();
 
-    match result {
+    individual.score = Some(match result {
         Ok(()) => evaluate_state(target, &program.get_simulator_state()),
         Err(_) => SCORE_PROGRAM_ERROR
+    });
+}
+
+pub fn evaluate_population(population: &mut Population, target: &BlockSpace) {
+    for individual in population.iter_mut() {
+        evaluate_individual(individual, target);
     }
+
+    population.sort_unstable_by(|i1, i2| i1.score.unwrap().partial_cmp(&i2.score.unwrap()).unwrap())
 }
 
 

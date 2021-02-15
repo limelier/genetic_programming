@@ -1,5 +1,4 @@
 use genetic_programming::vm::structures::BlockSpace;
-use genetic_programming::genetic::evaluation::evaluate_individual;
 use genetic_programming::genetic::train::train;
 
 fn main() {
@@ -12,5 +11,4 @@ fn main() {
     let individual = train(&target);
 
     println!("Final individual: \n{:?}", individual);
-    println!("Evaluation score: {}", evaluate_individual(&individual, &target));
 }

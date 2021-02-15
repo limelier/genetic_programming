@@ -1,14 +1,45 @@
+use std::option::Option;
+use rand::Rng;
+
 pub(crate) const SCORE_PRESENT_AIR: f64 = 0.0;
 pub(crate) const SCORE_ABSENT_AIR: f64 = -0.5;
 pub(crate) const SCORE_PRESENT_BLOCK: f64 = 1.0;
 pub(crate) const SCORE_ABSENT_BLOCK: f64 = 0.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 
-pub(crate) const INDIVIDUAL_SIZE: usize = 256;
-pub type Individual = [u8; INDIVIDUAL_SIZE];
+pub(crate) const CHROMOSOME_SIZE: usize = 256;
+pub type Chromosome = [u8; CHROMOSOME_SIZE];
 
 pub(crate) const POPULATION_SIZE: usize = 256;
 pub(crate) type Population = [Individual; POPULATION_SIZE];
+
+#[derive(Debug, Copy, Clone)]
+pub struct Individual {
+    pub(crate) chromosome: Chromosome,
+    pub(crate) score: Option<f64>,
+}
+impl Individual {
+    pub(crate) fn new() -> Self {
+        Self {
+            chromosome: [0; CHROMOSOME_SIZE],
+            score: None,
+        }
+    }
+
+    pub(crate) fn random() -> Self {
+        let mut chromosome = [0; CHROMOSOME_SIZE];
+        let mut rng = rand::thread_rng();
+
+        for byte in chromosome.iter_mut() {
+            *byte = rng.gen_range(0..=255);
+        }
+
+        Self {
+            chromosome,
+            score: None,
+        }
+    }
+}
 
 pub(crate) const MUTATION_CHANCE: f64 = 0.05;
 
@@ -16,7 +47,7 @@ pub(crate) const MIN_SEGMENT_LENGTH: f64 = 1.0;
 // pub(crate) const ELITE_COUNT: usize = 10;
 pub(crate) const RANDOM_COUNT: usize = 10;
 
-pub(crate) const TRAINING_EPOCHS: usize = 1000;
+pub(crate) const TRAINING_GENERATIONS: usize = 1000;
 
 pub const MAX_PROGRAM_RUNTIME_MILLIS: u128 = 1000;
 
