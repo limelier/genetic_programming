@@ -1,10 +1,10 @@
-use crate::genetic::definitions::{Chromosome, MUTATION_CHANCE, CHROMOSOME_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT, Individual};
+use crate::genetic::definitions::{Chromosome, MUTATION_CHANCE, CHROMOSOME_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT, Individual, ELITE_COUNT};
 use rand::Rng;
 
-pub(crate) fn mutate(individual: &mut Chromosome) {
+pub(crate) fn mutate(chromosome: &mut Chromosome) {
     let mut rng = rand::thread_rng();
 
-    for byte in individual {
+    for byte in chromosome {
         let roll: f64 = rng.gen();
 
         *byte = if roll <= MUTATION_CHANCE {
@@ -75,7 +75,7 @@ pub(crate) fn select(population: &mut Population) -> Population {
     // spin the wheel to build the new population
     let mut new_population = [Individual::new(); 256];
     let mut rng = rand::thread_rng();
-    for i in 0..POPULATION_SIZE - RANDOM_COUNT {
+    for i in ELITE_COUNT..POPULATION_SIZE - RANDOM_COUNT {
         let mut needle = rng.gen_range(0.0..wheel_size);
         let mut chosen = 0;
 
@@ -88,6 +88,11 @@ pub(crate) fn select(population: &mut Population) -> Population {
             chromosome: population[chosen].chromosome,
             score: None
         };
+    }
+
+    // add elites
+    for i in 0..ELITE_COUNT {
+        new_population[i] = population[POPULATION_SIZE - 1 - i];
     }
 
     // add completely random individuals

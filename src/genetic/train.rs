@@ -11,6 +11,7 @@ pub fn train(target: &BlockSpace) -> Individual {
         println!("Gen. {}:", generation);
         mutate_population(&mut population);
         crossover_population(&mut population);
+
         evaluate_population(&mut population, target);
         let generation_best = &population[POPULATION_SIZE - 1];
         println!("  best: {}", generation_best.score.unwrap());
@@ -18,6 +19,7 @@ pub fn train(target: &BlockSpace) -> Individual {
             best_individual = generation_best.clone();
             println!("  this is better than current best, replacing with: \n   {:?}", generation_best);
         }
+
         population = select(&mut population);
     }
 

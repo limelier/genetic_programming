@@ -58,7 +58,7 @@ impl PartialOrd for Individual {
 pub(crate) const MUTATION_CHANCE: f64 = 0.05;
 
 pub(crate) const MIN_SEGMENT_LENGTH: f64 = 1.0;
-// pub(crate) const ELITE_COUNT: usize = 10;
+pub(crate) const ELITE_COUNT: usize = 10;
 pub(crate) const RANDOM_COUNT: usize = 10;
 
 pub(crate) const TRAINING_GENERATIONS: usize = 1000;
