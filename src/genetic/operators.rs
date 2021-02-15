@@ -1,7 +1,5 @@
 use crate::genetic::definitions::{Chromosome, MUTATION_CHANCE, CHROMOSOME_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT, Individual};
 use rand::Rng;
-use crate::genetic::evaluation::evaluate_population;
-use crate::vm::structures::BlockSpace;
 
 pub(crate) fn mutate(individual: &mut Chromosome) {
     let mut rng = rand::thread_rng();
@@ -51,10 +49,7 @@ pub(crate) fn crossover_population(population: &mut Population) {
     }
 }
 
-pub(crate) fn select(population: &mut Population, target: &BlockSpace) -> (Population, Individual) {
-    // evaluate and sort by score
-    evaluate_population(population, target);
-
+pub(crate) fn select(population: &mut Population) -> Population {
     // construct the "wheel of fortune"
     let mut segment_length = [0.0; POPULATION_SIZE];
     let score_lower_bound = {
@@ -95,11 +90,12 @@ pub(crate) fn select(population: &mut Population, target: &BlockSpace) -> (Popul
         };
     }
 
+    // add completely random individuals
     for i in POPULATION_SIZE - RANDOM_COUNT..POPULATION_SIZE {
         new_population[i] = Individual::random();
     }
 
-    (new_population, population[POPULATION_SIZE - 1].clone())
+    new_population
 }
 
 #[cfg(test)]

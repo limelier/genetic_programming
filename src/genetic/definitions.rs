@@ -1,5 +1,6 @@
 use std::option::Option;
 use rand::Rng;
+use std::cmp::Ordering;
 
 pub(crate) const SCORE_PRESENT_AIR: f64 = 0.0;
 pub(crate) const SCORE_ABSENT_AIR: f64 = -0.5;
@@ -37,6 +38,19 @@ impl Individual {
         Self {
             chromosome,
             score: None,
+        }
+    }
+}
+impl PartialEq for Individual {
+    fn eq(&self, other: &Self) -> bool {
+        self.score == other.score
+    }
+}
+impl PartialOrd for Individual {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        match other.score {
+            None => Some(Ordering::Greater),
+            Some(score) => self.score.unwrap().partial_cmp(&score),
         }
     }
 }

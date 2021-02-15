@@ -37,7 +37,7 @@ pub fn evaluate_population(population: &mut Population, target: &BlockSpace) {
         evaluate_individual(individual, target);
     }
 
-    population.sort_unstable_by(|i1, i2| i1.score.unwrap().partial_cmp(&i2.score.unwrap()).unwrap())
+    population.sort_unstable_by(|i1, i2| i1.partial_cmp(i2).unwrap());
 }
 
 
