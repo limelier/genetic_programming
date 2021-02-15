@@ -73,7 +73,7 @@ pub(crate) fn select(population: &mut Population) -> Population {
     let wheel_size: f64 = segment_length.iter().sum();
 
     // spin the wheel to build the new population
-    let mut new_population = [Individual::new(); 256];
+    let mut new_population = [Individual::new(); POPULATION_SIZE];
     let mut rng = rand::thread_rng();
     for i in ELITE_COUNT..POPULATION_SIZE - RANDOM_COUNT {
         let mut needle = rng.gen_range(0.0..wheel_size);
@@ -99,7 +99,6 @@ pub(crate) fn select(population: &mut Population) -> Population {
     for i in POPULATION_SIZE - RANDOM_COUNT..POPULATION_SIZE {
         new_population[i] = Individual::random();
     }
-
     new_population
 }
 
