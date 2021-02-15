@@ -1,7 +1,8 @@
-use crate::genetic::definitions::{Individual, MUTATION_CHANCE, INDIVIDUAL_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH};
+use crate::genetic::definitions::{Individual, MUTATION_CHANCE, INDIVIDUAL_SIZE, Population, POPULATION_SIZE, MIN_SEGMENT_LENGTH, RANDOM_COUNT};
 use rand::Rng;
 use crate::genetic::evaluation::evaluate_individual;
 use crate::vm::structures::BlockSpace;
+use crate::genetic::generation::generate_individual;
 
 pub(crate) fn mutate(individual: &mut Individual) {
     let mut rng = rand::thread_rng();
@@ -88,7 +89,7 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
     // spin the wheel to build the new population
     let mut new_population = [[0; INDIVIDUAL_SIZE]; POPULATION_SIZE];
     let mut rng = rand::thread_rng();
-    for i in 0..POPULATION_SIZE {
+    for i in 0..POPULATION_SIZE - RANDOM_COUNT {
         if wheel_size.is_infinite() {
             println!("whoops {:?}", segment_length);
         }
@@ -101,6 +102,10 @@ pub(crate) fn select(population: Population, target: &BlockSpace) -> (Population
         }
 
         new_population[i] = population[chosen].clone();
+    }
+
+    for i in POPULATION_SIZE - RANDOM_COUNT..POPULATION_SIZE {
+        new_population[i] = generate_individual();
     }
 
     (new_population, best_individual.clone(), score_upper_bound)
