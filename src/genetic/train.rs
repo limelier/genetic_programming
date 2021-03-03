@@ -1,4 +1,4 @@
-use crate::vm::structures::BlockSpace;
+use crate::simulator::definitions::BlockSpace;
 use crate::genetic::definitions::{TRAINING_GENERATIONS, POPULATION_SIZE, Individual};
 use crate::genetic::operators::{mutate_population, crossover_population, select};
 use crate::genetic::evaluation::evaluate_population;

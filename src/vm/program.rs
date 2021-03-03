@@ -1,8 +1,10 @@
-use crate::vm::structures::*;
-use crate::vm::simulator::Simulator;
 use std::cmp::Ordering;
 use std::time::Instant;
-use crate::genetic::definitions::{MAX_PROGRAM_RUNTIME_MILLIS, DEBUG_DO_PRINTS};
+
+use crate::genetic::definitions::{DEBUG_DO_PRINTS, MAX_PROGRAM_RUNTIME_MILLIS};
+use crate::simulator::definitions::BlockSpace;
+use crate::vm::structures::*;
+use crate::simulator::simulator::Simulator;
 
 pub struct Program {
     instructions: [Instruction; 256],
@@ -92,15 +94,17 @@ impl Program {
                     BinaryOperation::Multiply => i8::overflowing_mul(old, other).0,
                     BinaryOperation::Divide => {
                         if other == 0 {
-                            return Err("Divide by zero!")
+                            1
+                        } else {
+                            i8::overflowing_div(old, other).0
                         }
-                        i8::overflowing_div(old, other).0
                     },
                     BinaryOperation::Modulo => {
                         if other == 0 {
-                            return Err("Modulo by zero!")
+                            1
+                        } else {
+                            old % other
                         }
-                        old % other
                     },
                     BinaryOperation::And => old & other,
                     BinaryOperation::Or => old | other,

@@ -1,5 +1,7 @@
 use std::cmp::Ordering;
 
+use crate::simulator::definitions::{Direction, Side};
+
 pub type Reg = u8;
 pub type Ins = u8;
 pub type Val = i8;
@@ -46,20 +48,6 @@ pub enum JumpCondition {
 }
 
 #[derive(Copy, Clone)]
-pub enum Direction {
-    Up,
-    Down,
-    Forward,
-    Back
-}
-
-#[derive(Copy, Clone)]
-pub enum Side {
-    Left,
-    Right
-}
-
-#[derive(Copy, Clone)]
 pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
@@ -85,6 +73,3 @@ pub enum Instruction {
     /// Do nothing
     Pass
 }
-
-pub(crate) const BLOCK_SPACE_SIZE: usize = 16;
-pub type BlockSpace = [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE];

@@ -1,5 +1,5 @@
 use crate::vm::program::Program;
-use crate::vm::structures::BlockSpace;
+use crate::simulator::definitions::BlockSpace;
 use crate::genetic::definitions::*;
 use crate::binary::parse_bytes;
 

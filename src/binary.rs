@@ -1,7 +1,10 @@
-use crate::vm::structures::{Instruction, Source, BinaryOperation, UnaryOperation, JumpCondition, TurtleOperation, Direction, Side};
-use num_enum::TryFromPrimitive;
-use std::convert::TryFrom;
 use std::cmp::Ordering;
+use std::convert::TryFrom;
+
+use num_enum::TryFromPrimitive;
+
+use crate::simulator::definitions::{Direction, Side};
+use crate::vm::structures::{BinaryOperation, Instruction, JumpCondition, Source, TurtleOperation, UnaryOperation};
 
 #[derive(TryFromPrimitive)]
 #[repr(u8)]

@@ -1,4 +1,4 @@
-use genetic_programming::vm::structures::BlockSpace;
+use genetic_programming::simulator::definitions::BlockSpace;
 use genetic_programming::genetic::train::train;
 
 fn main() {

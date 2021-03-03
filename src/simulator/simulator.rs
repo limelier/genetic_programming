@@ -1,4 +1,4 @@
-use crate::vm::structures::{Direction, Side, BlockSpace, BLOCK_SPACE_SIZE};
+use crate::simulator::definitions::*;
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 enum Orientation {
@@ -80,13 +80,13 @@ impl Turtle {
 }
 
 #[derive (Eq, PartialEq, Debug)]
-pub(crate) struct Simulator {
+pub struct Simulator {
     blocks: BlockSpace, // 3D array of bytes
     turtle: Turtle
 }
 
 impl Simulator {
-    pub(crate) fn new() -> Self {
+    pub fn new() -> Self {
         Simulator {
             blocks: BlockSpace::default(),
             turtle: Turtle {
@@ -102,7 +102,7 @@ impl Simulator {
         pos.2 >= 0 && pos.2 < BLOCK_SPACE_SIZE as isize
     }
 
-    pub(crate) fn try_move(&mut self, dir: Direction) -> bool {
+    pub fn try_move(&mut self, dir: Direction) -> bool {
         let pos = self.turtle.get_adjacent(dir);
         if Self::pos_in_bounds(pos) {
             let Vector3(x, y, z) = pos;
@@ -117,7 +117,7 @@ impl Simulator {
         }
     }
 
-    pub(crate) fn turn(&mut self, side: Side) {
+    pub fn turn(&mut self, side: Side) {
         self.turtle.turn(side);
     }
 
@@ -137,16 +137,16 @@ impl Simulator {
         }
     }
 
-    pub(crate) fn try_place(&mut self, dir: Direction) -> bool {
+    pub fn try_place(&mut self, dir: Direction) -> bool {
         self.try_change(dir, 1)
     }
 
-    pub(crate) fn try_dig(&mut self, dir: Direction) -> bool {
+    pub fn try_dig(&mut self, dir: Direction) -> bool {
         self.try_change(dir, 0)
     }
 
     /// Check if the given direction is blocked. Out-of-bounds is considered blocked.
-    pub(crate) fn detect(&self, dir: Direction) -> bool {
+    pub fn detect(&self, dir: Direction) -> bool {
         let pos = self.turtle.get_adjacent(dir);
         if Self::pos_in_bounds(pos) {
             let Vector3(x, y, z) = pos;
@@ -156,7 +156,7 @@ impl Simulator {
         }
     }
 
-    pub(crate) fn get_state_copy(&self) -> BlockSpace {
+    pub fn get_state_copy(&self) -> BlockSpace {
         self.blocks.clone()
     }
 }
