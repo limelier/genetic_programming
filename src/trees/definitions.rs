@@ -8,7 +8,7 @@ pub enum Node {
     Then(Box<Node>, Box<Node>),
     Print(Box<Node>),
     Store(Reg, Box<Node>),
-    // If(Node, Node, Node),
+    If(Box<Node>, Box<Node>, Box<Node>),
     // Loop(Source, Node, Node),
 }
 

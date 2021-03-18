@@ -1,15 +1,21 @@
-use genetic_programming::vm::definitions::{BinaryOperation, Instruction, JumpCondition};
 use genetic_programming::vm::definitions::Source;
 use genetic_programming::vm::program::Program;
+use genetic_programming::trees::definitions::Node;
+use genetic_programming::trees::translate::translate_tree;
 
 fn main() {
-    let instr = vec!(
-        Instruction::Binary(0, Source::Value(1), BinaryOperation::Set),
-        Instruction::Jump(0, JumpCondition::Zero(1)),
-        Instruction::Print(Source::Register(1)),
-        Instruction::Label(0),
-        Instruction::Print(Source::Register(0)),
+    // if 1 { 10 } else { 20 }
+    let tree = Node::Print(
+        Box::from(Node::If(
+            Box::from(Node::Val(Source::Value(1))),
+            Box::from(Node::Val(Source::Value(10))),
+            Box::from(Node::Val(Source::Value(20))),
+        ))
     );
+    let instr = translate_tree(tree);
+    for ins in &instr {
+        println!("{:?}", ins);
+    }
     println!("========== v");
     let mut program = Program::from_instructions(&instr);
     let result = program.execute(None);
