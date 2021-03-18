@@ -3,7 +3,7 @@ use std::time::Instant;
 
 use crate::genetic::definitions::{DEBUG_DO_PRINTS, MAX_PROGRAM_RUNTIME_MILLIS};
 use crate::simulator::definitions::BlockSpace;
-use crate::vm::structures::*;
+use crate::vm::definitions::*;
 use crate::simulator::simulator::Simulator;
 
 pub struct Program {

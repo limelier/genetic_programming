@@ -4,7 +4,7 @@ use std::convert::TryFrom;
 use num_enum::TryFromPrimitive;
 
 use crate::simulator::definitions::{Direction, Side};
-use crate::vm::structures::{BinaryOperation, Instruction, JumpCondition, Source, TurtleOperation, UnaryOperation};
+use crate::vm::definitions::{BinaryOperation, Instruction, JumpCondition, Source, TurtleOperation, UnaryOperation};
 
 #[derive(TryFromPrimitive)]
 #[repr(u8)]

@@ -9,13 +9,13 @@ pub type Val = i8;
 pub const RESULT_REGISTER: u8 = 200;
 pub const COMPARE_REGISTER: u8 = 201;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum Source {
     Register(Reg),
     Value(Val),
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum UnaryOperation {
     Not,
     ShiftLeft,
@@ -26,7 +26,7 @@ pub enum UnaryOperation {
     Decrement
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum BinaryOperation {
     Set,
     Add,
@@ -38,7 +38,7 @@ pub enum BinaryOperation {
     Or,
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum JumpCondition {
     None,
     Zero(Reg),
@@ -47,7 +47,7 @@ pub enum JumpCondition {
     NotCompare(Ordering)
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
@@ -56,7 +56,7 @@ pub enum TurtleOperation {
     Detect(Direction),
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum Instruction {
     /// Do operation on register alone
     Unary(Reg, UnaryOperation),
