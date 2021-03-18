@@ -1,14 +1,14 @@
 use std::cmp::Ordering;
 use std::time::Instant;
 
-use crate::genetic::definitions::{DEBUG_DO_PRINTS, MAX_PROGRAM_RUNTIME_MILLIS};
 use crate::simulator::definitions::BlockSpace;
 use crate::vm::definitions::*;
 use crate::simulator::simulator::Simulator;
+use std::collections::HashMap;
 
 pub struct Program {
     instructions: Vec<Instruction>,
-    labels: Vec<Ins>,
+    labels: HashMap<Label, Ins>,
     registers: [Val; 256],
     instruction_pointer: Ins,
     halted: bool,
@@ -19,7 +19,7 @@ impl Program {
     fn new() -> Self {
         Program {
             instructions: vec!(Instruction::Pass),
-            labels: vec!(),
+            labels: HashMap::new(),
             registers: [0; 256],
             instruction_pointer: 0,
             halted: false,
@@ -31,16 +31,27 @@ impl Program {
         let mut program = Program::new();
 
         program.instructions = instructions.clone();
+        program.process_labels();
 
         program
     }
 
-    pub fn execute(&mut self) -> Result<(), &'static str> {
+    fn process_labels(&mut self) {
+        for (idx, instr) in self.instructions.iter().enumerate() {
+            if let Instruction::Label(label) = instr {
+                self.labels.insert(*label, idx);
+            }
+        }
+    }
+
+    pub fn execute(&mut self, max_millis: Option<u128>) -> Result<(), &'static str> {
         let start = Instant::now();
         while !self.halted {
             self.step()?;
-            if start.elapsed().as_millis() > MAX_PROGRAM_RUNTIME_MILLIS {
-                return Err("Timeout reached!")
+            if let Some(max_millis) = max_millis {
+                if start.elapsed().as_millis() > max_millis {
+                    return Err("Timeout reached!")
+                }
             }
         }
 
@@ -116,7 +127,7 @@ impl Program {
                     Ordering::Greater => 1,
                 });
             },
-            Instruction::Jump(ins, condition) => {
+            Instruction::Jump(label, condition) => {
                     let do_jump = match condition {
                         JumpCondition::None => true,
                         JumpCondition::Zero(reg) => self.get_reg(reg) == 0,
@@ -127,10 +138,12 @@ impl Program {
                             ord_to_num(ord) != self.get_reg(COMPARE_REGISTER),
                     };
                     if do_jump {
-                        if ins >= self.instructions.len() {
-                            return Err("Jumped past end of instructions!");
+                        let destination = self.labels.get(&label);
+                        if destination == None {
+                            return Err("Attempted to jump to missing label");
                         }
-                        self.instruction_pointer = ins;
+                        let destination = destination.unwrap();
+                        self.instruction_pointer = *destination;
                         jumped = true;
                     }
             },
@@ -156,11 +169,10 @@ impl Program {
                 }
             }
             Instruction::Print(src) => {
-                if DEBUG_DO_PRINTS {
-                    println!("{}", self.get_source(src))
-                }
+                println!("{}", self.get_source(src))
             },
             Instruction::Pass => { /* do nothing */ },
+            Instruction::Label(_) => { /* do nothing */ }
         }
         if !jumped {
             if self.instruction_pointer >= self.instructions.len() - 1 {

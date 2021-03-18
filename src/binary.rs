@@ -150,21 +150,21 @@ fn extract_instruction<'a, I>(i: &mut I) -> Option<Instruction>
                 Instruction::Compare(*i.next()?, Source::Value(*i.next()? as i8)),
             Instr::CompareRegister =>
                 Instruction::Compare(*i.next()?, Source::Register(*i.next()?)),
-            Instr::Jump => Instruction::Jump(*i.next()? as usize, JumpCondition::None),
-            Instr::JumpZero => Instruction::Jump(*i.next()? as usize, JumpCondition::Zero(*i.next()?)),
-            Instr::JumpNotZero => Instruction::Jump(*i.next()?  as usize, JumpCondition::NotZero(*i.next()?)),
+            Instr::Jump => Instruction::Jump(*i.next()?, JumpCondition::None),
+            Instr::JumpZero => Instruction::Jump(*i.next()?, JumpCondition::Zero(*i.next()?)),
+            Instr::JumpNotZero => Instruction::Jump(*i.next()?, JumpCondition::NotZero(*i.next()?)),
             Instr::JumpLess =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::Compare(Ordering::Less)),
+                Instruction::Jump(*i.next()?, JumpCondition::Compare(Ordering::Less)),
             Instr::JumpNotLess =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::NotCompare(Ordering::Less)),
+                Instruction::Jump(*i.next()?, JumpCondition::NotCompare(Ordering::Less)),
             Instr::JumpGreater =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::Compare(Ordering::Greater)),
+                Instruction::Jump(*i.next()?, JumpCondition::Compare(Ordering::Greater)),
             Instr::JumpNotGreater =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::NotCompare(Ordering::Greater)),
+                Instruction::Jump(*i.next()?, JumpCondition::NotCompare(Ordering::Greater)),
             Instr::JumpEqual =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::Compare(Ordering::Equal)),
+                Instruction::Jump(*i.next()?, JumpCondition::Compare(Ordering::Equal)),
             Instr::JumpNotEqual =>
-                Instruction::Jump(*i.next()?  as usize, JumpCondition::NotCompare(Ordering::Equal)),
+                Instruction::Jump(*i.next()?, JumpCondition::NotCompare(Ordering::Equal)),
             Instr::Forward => Instruction::Turtle(TurtleOperation::Move(Direction::Forward)),
             Instr::Back => Instruction::Turtle(TurtleOperation::Move(Direction::Back)),
             Instr::Up => Instruction::Turtle(TurtleOperation::Move(Direction::Up)),
