@@ -3,7 +3,7 @@ use std::cmp::Ordering;
 use crate::simulator::definitions::{Direction, Side};
 
 pub type Reg = u8;
-pub type Ins = u8;
+pub type Ins = usize;
 pub type Val = i8;
 
 pub const RESULT_REGISTER: u8 = 200;

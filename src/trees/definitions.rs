@@ -7,8 +7,8 @@ pub enum Node {
     Binary(BinaryOperation, Box<Node>, Box<Node>),
     Then(Box<Node>, Box<Node>),
     Print(Box<Node>),
-    Store(Reg, Box<Node>)
-    // If(Source, Node, Node),
+    Store(Reg, Box<Node>),
+    // If(Node, Node, Node),
     // Loop(Source, Node, Node),
 }
 

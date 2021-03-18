@@ -7,7 +7,8 @@ use crate::vm::definitions::*;
 use crate::simulator::simulator::Simulator;
 
 pub struct Program {
-    instructions: [Instruction; 256],
+    instructions: Vec<Instruction>,
+    labels: Vec<Ins>,
     registers: [Val; 256],
     instruction_pointer: Ins,
     halted: bool,
@@ -17,7 +18,8 @@ pub struct Program {
 impl Program {
     fn new() -> Self {
         Program {
-            instructions: [Instruction::Pass; 256],
+            instructions: vec!(Instruction::Pass),
+            labels: vec!(),
             registers: [0; 256],
             instruction_pointer: 0,
             halted: false,
@@ -26,15 +28,9 @@ impl Program {
     }
 
     pub fn from_instructions(instructions: &Vec<Instruction>) -> Self {
-        if instructions.len() > 256 {
-            panic!("Instruction vector too big! Only 256 allowed.")
-        }
-
         let mut program = Program::new();
 
-        for (i, instruction) in instructions.iter().enumerate() {
-            program.instructions[i] = instruction.clone();
-        }
+        program.instructions = instructions.clone();
 
         program
     }
@@ -131,6 +127,9 @@ impl Program {
                             ord_to_num(ord) != self.get_reg(COMPARE_REGISTER),
                     };
                     if do_jump {
+                        if ins >= self.instructions.len() {
+                            return Err("Jumped past end of instructions!");
+                        }
                         self.instruction_pointer = ins;
                         jumped = true;
                     }
@@ -164,7 +163,7 @@ impl Program {
             Instruction::Pass => { /* do nothing */ },
         }
         if !jumped {
-            if self.instruction_pointer == 0xFF {
+            if self.instruction_pointer >= self.instructions.len() - 1 {
                 self.halted = true;
             } else {
                 self.instruction_pointer += 1;
