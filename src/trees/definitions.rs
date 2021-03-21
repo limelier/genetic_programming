@@ -1,4 +1,4 @@
-use crate::vm::definitions::{Source, UnaryOperation, BinaryOperation, Reg};
+use crate::vm::definitions::{Source, UnaryOperation, BinaryOperation, Reg, TurtleOperation};
 
 pub enum Node {
     Null,
@@ -12,6 +12,7 @@ pub enum Node {
     If(Box<Node>, Box<Node>, Box<Node>),
     /// condition, block
     While(Box<Node>, Box<Node>),
+    Turtle(TurtleOperation)
 }
 
 // usable registers up until STACK_START, then stack after

@@ -1,5 +1,5 @@
 use crate::trees::definitions::{Node, STACK_START};
-use crate::vm::definitions::{Instruction, BinaryOperation, Source, JumpCondition};
+use crate::vm::definitions::{Instruction, BinaryOperation, Source, JumpCondition, RESULT_REGISTER};
 
 pub fn translate_tree(tree: Node) -> Vec<Instruction> {
     let mut next_label = 0u8;
@@ -96,6 +96,14 @@ fn translate_subtree(tree: Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Inst
             instr.push(Instruction::Label(label_after));
 
             instr
+        }
+        Node::Turtle(operation) => {
+            vec!(
+                // do the operation, storing result in r[RESULT_REGISTER]
+                Instruction::Turtle(operation),
+                // copy r[RESULT_REGISTER] into r[stack_ptr] to move it up the tree
+                Instruction::Binary(stack_ptr, Source::Register(RESULT_REGISTER), BinaryOperation::Set),
+            )
         }
     }
 }
