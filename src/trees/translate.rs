@@ -78,5 +78,24 @@ fn translate_subtree(tree: Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Inst
 
             instr
         }
+        Node::While(condition, body) => {
+            let label_before = *next_label;
+            let label_after = label_before + 1;
+            *next_label += 2;
+
+
+            let mut instr = vec!(Instruction::Label(label_before));
+            // calculate condition value into r[stack_ptr + 1] - don't overwrite last iteration result
+            instr.append(&mut translate_subtree(*condition, stack_ptr + 1, next_label));
+            // evaluate condition, skip loop body if null
+            instr.push(Instruction::Jump(label_after, JumpCondition::Zero(stack_ptr + 1)));
+            // execute loop body once, storing result in stack_ptr
+            instr.append(&mut translate_subtree(*body, stack_ptr, next_label));
+            // jump back to condition
+            instr.push(Instruction::Jump(label_before, JumpCondition::None));
+            instr.push(Instruction::Label(label_after));
+
+            instr
+        }
     }
 }

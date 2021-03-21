@@ -8,8 +8,10 @@ pub enum Node {
     Then(Box<Node>, Box<Node>),
     Print(Box<Node>),
     Store(Reg, Box<Node>),
+    /// condition, if_not_zero, if_zero
     If(Box<Node>, Box<Node>, Box<Node>),
-    // Loop(Source, Node, Node),
+    /// condition, block
+    While(Box<Node>, Box<Node>),
 }
 
 // usable registers up until STACK_START, then stack after
