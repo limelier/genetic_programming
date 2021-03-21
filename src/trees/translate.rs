@@ -1,5 +1,6 @@
 use crate::trees::definitions::{Node, STACK_START};
-use crate::vm::definitions::{Instruction, BinaryOperation, Source, JumpCondition, RESULT_REGISTER};
+use crate::vm::definitions::{Instruction, Source, JumpCondition, RESULT_REGISTER, COMPARE_REGISTER};
+use crate::vm::definitions::BinaryOperation::Set;
 
 pub fn translate_tree(tree: Node) -> Vec<Instruction> {
     let mut next_label = 0u8;
@@ -15,7 +16,7 @@ fn translate_subtree(tree: Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Inst
         Node::Val(src) => {
             // r[stack_ptr] = src
             vec!(
-                Instruction::Binary(stack_ptr, src, BinaryOperation::Set)
+                Instruction::Binary(stack_ptr, src, Set)
             )
         }
         Node::Unary(op, child) => {
@@ -56,7 +57,7 @@ fn translate_subtree(tree: Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Inst
             // execute child code, storing result in r[stack_ptr]
             let mut instr = translate_subtree(*child, stack_ptr, next_label);
             // r[reg] = r[stack_ptr]
-            instr.push(Instruction::Binary(reg, Source::Register(stack_ptr), BinaryOperation::Set));
+            instr.push(Instruction::Binary(reg, Source::Register(stack_ptr), Set));
 
             instr
         }
@@ -102,8 +103,20 @@ fn translate_subtree(tree: Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Inst
                 // do the operation, storing result in r[RESULT_REGISTER]
                 Instruction::Turtle(operation),
                 // copy r[RESULT_REGISTER] into r[stack_ptr] to move it up the tree
-                Instruction::Binary(stack_ptr, Source::Register(RESULT_REGISTER), BinaryOperation::Set),
+                Instruction::Binary(stack_ptr, Source::Register(RESULT_REGISTER), Set),
             )
+        }
+        Node::Compare(left, right) => {
+            // do left subtree, which stores result in r[stack_ptr]
+            let mut instr = translate_subtree(*left, stack_ptr, next_label);
+            // do right subtree, which stores result in r[stack_ptr + 1]
+            instr.append(&mut translate_subtree(*right, stack_ptr + 1, next_label));
+            // compare r[stack_ptr] with r[stack_ptr + 1]
+            instr.push(Instruction::Compare(stack_ptr, Source::Register(stack_ptr + 1)));
+            // copy comparison result to r[stack_ptr]
+            instr.push(Instruction::Binary(stack_ptr, Source::Register(COMPARE_REGISTER), Set));
+
+            instr
         }
     }
 }

@@ -1,4 +1,4 @@
-use genetic_programming::vm::definitions::{TurtleOperation, UnaryOperation};
+use genetic_programming::vm::definitions::{TurtleOperation, UnaryOperation, Source};
 use genetic_programming::vm::program::Program;
 use genetic_programming::trees::definitions::Node;
 use genetic_programming::trees::translate::translate_tree;
@@ -8,19 +8,11 @@ fn main() {
     /*
 
      */
-    let tree = Node::Then(
-        Box::from(Node::While(
-            Box::from(Node::Turtle(
-                TurtleOperation::Move(Direction::Forward),
-            )),
-            Box::from(Node::Unary(
-                UnaryOperation::Increment,
-                Box::from(Node::Null))
-            ),
-        )),
-        Box::from(Node::Print(
-            Box::from(Node::Null)
-        )),
+    let tree = Node::Print(
+        Box::from(Node::Compare(
+            Box::from(Node::Val(Source::Value(10))),
+            Box::from(Node::Val(Source::Value(20)))
+        ))
     );
     let instr = translate_tree(tree);
     for ins in &instr {
