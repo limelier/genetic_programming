@@ -1,6 +1,8 @@
 use std::cmp::Ordering;
 
 use crate::simulator::definitions::{Direction, Side};
+use rand::distributions::{Distribution, Standard};
+use rand::Rng;
 
 pub type Reg = u8;
 pub type Ins = usize;
@@ -27,6 +29,20 @@ pub enum UnaryOperation {
     Decrement
 }
 
+impl Distribution<UnaryOperation> for Standard {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> UnaryOperation {
+        match rng.gen_range(0..=6) {
+            0 => UnaryOperation::Not,
+            1 => UnaryOperation::ShiftLeft,
+            2 => UnaryOperation::ShiftRight,
+            3 => UnaryOperation::RotateLeft,
+            4 => UnaryOperation::RotateRight,
+            5 => UnaryOperation::Increment,
+            _ => UnaryOperation::Decrement,
+        }
+    }
+}
+
 #[derive(Copy, Clone, Debug)]
 pub enum BinaryOperation {
     Set,
@@ -37,6 +53,21 @@ pub enum BinaryOperation {
     Modulo,
     And,
     Or,
+}
+
+impl Distribution<BinaryOperation> for Standard {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> BinaryOperation {
+        match rng.gen_range(0..=7) {
+            0 => BinaryOperation::Set,
+            1 => BinaryOperation::Add,
+            2 => BinaryOperation::Subtract,
+            3 => BinaryOperation::Multiply,
+            4 => BinaryOperation::Divide,
+            5 => BinaryOperation::Modulo,
+            6 => BinaryOperation::And,
+            _ => BinaryOperation::Or,
+        }
+    }
 }
 
 #[derive(Copy, Clone, Debug)]
