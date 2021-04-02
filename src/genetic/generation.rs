@@ -2,11 +2,38 @@ use crate::trees::definitions::Node;
 use crate::vm::definitions::{BinaryOperation, Source, TurtleOperation, UnaryOperation};
 use rand::Rng;
 use crate::simulator::definitions::{Direction, Side};
+use crate::genetic::definitions::{Generation, Individual, MAX_DEPTH, MIN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE};
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Method {
     Full,
     Grow,
+}
+
+impl Generation {
+    /// Generate a generation from scratch, using ramped half-and-half
+    /// Creates individuals with a max depth from MIN_DEPTH to MAX_DEPTH,
+    /// generating INDIVIDUALS_PER_METHOD_AND_DEPTH of them with each method per depth.
+    pub fn generate() -> Self {
+        let mut population = Vec::with_capacity(POPULATION_SIZE);
+        for depth in MIN_DEPTH..=MAX_DEPTH {
+            for _ in 0..INDIVIDUALS_PER_METHOD_AND_DEPTH {
+                population.push(Individual {
+                    tree: generate(Method::Grow, depth),
+                    result: None,
+                });
+                population.push(Individual {
+                    tree: generate(Method::Full, depth),
+                    result: None,
+                });
+            }
+        }
+
+        Generation {
+            population,
+            best: None,
+        }
+    }
 }
 
 pub fn generate(method: Method, max_depth: usize) -> Node {
@@ -26,7 +53,7 @@ fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
 fn random_terminal() -> Node {
     let mut rng = rand::thread_rng();
 
-    if rng.gen::<bool>(){
+    if rng.gen::<bool>() {
         Node::Val(
             if rng.gen::<bool>() {
                 Source::Value(rng.gen::<i8>())
