@@ -1,17 +1,16 @@
 use genetic_programming::genetic::definitions::Generation;
-use genetic_programming::trees::translate::translate_tree;
-use genetic_programming::vm::program::Program;
+use genetic_programming::simulator::definitions::BlockSpace;
 
 fn main() {
-    let generation = Generation::generate();
-    let individual = &generation.population[0];
-    let instr = translate_tree(&individual.tree);
-    for ins in &instr {
-        println!("{:?}", ins);
+    let mut target = BlockSpace::default();
+    for i in 0..8 {
+        target[i][1][0] = 1;
     }
-    println!("========== v");
-    let mut program = Program::from_instructions(&instr);
-    let result = program.execute(Some(2000));
-    println!("========== ^");
-    println!("{:?}", result);
+    let target = target;  // remove mutability
+
+    let mut generation = Generation::generate();
+    generation.evaluate(&target);
+
+    let best_index = generation.best_index.unwrap();
+    println!("{} {:?}", best_index, generation.population[best_index].result.unwrap());
 }

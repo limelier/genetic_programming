@@ -31,7 +31,7 @@ impl Generation {
 
         Generation {
             population,
-            best: None,
+            best_index: None,
         }
     }
 }
