@@ -10,7 +10,9 @@ fn main() {
 
     let mut generation = Generation::generate();
     generation.evaluate(&target);
+    let parents = generation.select();
 
-    let best_index = generation.best_index.unwrap();
-    println!("{} {:?}", best_index, generation.population[best_index].result.unwrap());
+    for parent in parents {
+        println!("{} {}", parent.stock, parent.scion);
+    }
 }

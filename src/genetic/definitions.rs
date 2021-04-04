@@ -16,6 +16,13 @@ pub struct Generation {
     pub best_index: Option<usize>,
 }
 
+pub struct Parents {
+    /// The index of the tree that'll act as the base during the crossover
+    pub stock: usize,
+    /// The index of the tree that'll provide the subtree during the crossover
+    pub scion: usize,
+}
+
 pub(crate) const INDIVIDUALS_PER_METHOD_AND_DEPTH: usize = 10;
 pub(crate) const MIN_DEPTH: usize = 2;
 pub(crate) const MAX_DEPTH: usize = 6;
@@ -27,3 +34,6 @@ pub(crate) const SCORE_ABSENT_AIR: f64 = -0.5;
 pub(crate) const SCORE_PRESENT_BLOCK: f64 = 1.0;
 pub(crate) const SCORE_ABSENT_BLOCK: f64 = 0.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
+
+pub(crate) const TOURNAMENT_SIZE: usize = 2;
+pub(crate) const TOURNAMENT_P: f64 = 1.0;
