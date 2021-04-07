@@ -12,7 +12,7 @@ fn main() {
     generation.evaluate(&target);
     let parents = generation.select();
 
-    for parent in parents {
-        println!("{} {}", parent.stock, parent.scion);
-    }
+    let new_generation = generation.crossover(&parents);
+
+    dbg!(&new_generation.population[0].tree);
 }

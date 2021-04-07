@@ -3,7 +3,7 @@ use rand::{Rng, thread_rng};
 use crate::trees::definitions::Node;
 
 impl Node {
-    fn get_weighted_node(&self) -> &Node {
+    pub(crate) fn get_weighted_node(&self) -> &Node {
         let nodes: Vec<&Node> = self.nodes().collect();
         let wheel_size = nodes.iter().map(weight).sum();
         let mut needle = thread_rng().gen_range(0..wheel_size);
@@ -19,7 +19,7 @@ impl Node {
         nodes[index]
     }
 
-    fn get_weighted_node_mut(&mut self) -> &mut Node {
+    pub(crate) fn get_weighted_node_mut(&mut self) -> &mut Node {
         let nodes: Vec<&Node> = self.nodes().collect();
         let wheel_size = nodes.iter().map(weight).sum();
         let mut needle = thread_rng().gen_range(0..wheel_size);
@@ -61,13 +61,13 @@ mod test {
         )
     }
 
-    #[test]
+    #[test] #[ignore]
     fn get_weighted_node() {
         let tree = big_tree();
         dbg!(tree.get_weighted_node());
     }
 
-    #[test]
+    #[test] #[ignore]
     fn get_weighted_node_mut() {
         let mut tree = big_tree();
         dbg!(tree.get_weighted_node_mut());

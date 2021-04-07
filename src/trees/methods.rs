@@ -69,22 +69,6 @@ impl Node {
         SearchResult::Count(checked_nodes)
     }
 
-    /// Get an immutable reference to the nth node in a tree, in preorder
-    pub(crate) fn get_nth_node(&self, n: usize) -> Option<&Node> {
-        let result = self.search_nth_node(n);
-
-        match result {
-            SearchResult::Directions(vec) => {
-                let mut reference = self;
-                for idx in vec {
-                    reference = reference.children()[idx as usize];
-                }
-                Some(reference)
-            }
-            _ => None,
-        }
-    }
-
     /// Get a mutable reference to the nth child of a node, if it exists
     fn get_nth_child_mut(&mut self, n: u8) -> Option<&mut Node> {
         match self {
@@ -240,28 +224,6 @@ mod tests {
             return;
         }
         panic!("returned directions instead");
-    }
-
-    #[test]
-    fn test_get_nth_node_hit() {
-        let tree = big_tree();
-
-        let result = tree.get_nth_node(3);
-        if let Some(&Val(Source::Value(2))) = result {
-            return;
-        }
-        panic!("node not found");
-    }
-
-    #[test]
-    fn test_get_nth_node_miss() {
-        let tree = big_tree();
-
-        let result = tree.get_nth_node(10);
-        if let None = result {
-            return;
-        }
-        panic!("some node found");
     }
 
     #[test]
