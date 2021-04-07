@@ -1,5 +1,6 @@
 use crate::vm::definitions::{Source, UnaryOperation, BinaryOperation, Reg, TurtleOperation};
 
+#[derive(Debug)]
 pub enum Node {
     Null,
     Val(Source),
