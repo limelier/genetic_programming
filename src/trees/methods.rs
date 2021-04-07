@@ -70,7 +70,7 @@ impl Node {
     }
 
     /// Get an immutable reference to the nth node in a tree, in preorder
-    fn get_nth_node(&self, n: usize) -> Option<&Node> {
+    pub(crate) fn get_nth_node(&self, n: usize) -> Option<&Node> {
         let result = self.search_nth_node(n);
 
         match result {
@@ -122,7 +122,7 @@ impl Node {
     }
 
     /// Get an immutable reference to the nth node of a tree, in preorder
-    fn get_nth_node_mut(&mut self, n: usize) -> Option<&mut Node> {
+    pub(crate) fn get_nth_node_mut(&mut self, n: usize) -> Option<&mut Node> {
         let result = self.search_nth_node(n);
 
         match result {
@@ -135,6 +135,11 @@ impl Node {
             }
             _ => None,
         }
+    }
+
+    /// Get the number of nodes in the tree
+    pub(crate) fn node_count(&self) -> usize {
+        1 + self.children().iter().map(|child| child.node_count() ).sum::<usize>()
     }
 }
 
@@ -301,5 +306,11 @@ mod tests {
             return;
         }
         panic!("some node found");
+    }
+
+    #[test]
+    fn test_node_count() {
+        let tree = big_tree();
+        assert_eq!(tree.node_count(), 7);
     }
 }
