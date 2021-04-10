@@ -3,21 +3,25 @@ use std::cmp::Ordering;
 use rand::distributions::Uniform;
 use rand::Rng;
 
-use crate::genetic::definitions::{Generation, Parents, POPULATION_SIZE, TOURNAMENT_P, TOURNAMENT_SIZE};
+use crate::genetic::definitions::*;
 
 impl Generation {
     /// Select POPULATION_SIZE pairs of parents for crossover
     ///
     /// Each parent is selected through a tournament
-    pub fn select(&self) -> Vec<Parents> {
-        let mut parents = Vec::with_capacity(POPULATION_SIZE);
-        for _ in 0..POPULATION_SIZE {
+    pub fn select(&self) -> (Vec<usize>, Vec<Parents>) {
+        let mut parents = Vec::with_capacity(CROSSOVER_SIZE);
+        let mut kept = Vec::with_capacity(POPULATION_SIZE - CROSSOVER_SIZE);
+        for _ in 0..CROSSOVER_SIZE {
             let stock = self.tournament();
             let scion = self.tournament();
             parents.push(Parents { stock, scion });
         }
+        for _ in CROSSOVER_SIZE..POPULATION_SIZE {
+            kept.push(self.tournament())
+        }
 
-        parents
+        (kept, parents)
     }
 
     /// Pick a handful of individuals from the population, and pick one based on its result

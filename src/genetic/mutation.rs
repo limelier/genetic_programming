@@ -4,7 +4,7 @@ use crate::genetic::definitions::{Generation, MUTATION_CHANCE};
 use rand::{thread_rng, Rng};
 
 impl Generation {
-    fn mutate(&mut self) {
+    pub(crate) fn mutate(&mut self) {
         let mut rng = thread_rng();
         for individual in &mut self.population {
             if rng.gen_bool(MUTATION_CHANCE) {
@@ -28,7 +28,7 @@ mod test {
 
     #[test] #[ignore]
     fn test_mutate() {
-        let mut gen = Generation::generate();
+        let mut gen = Generation::random();
         gen.mutate();
     }
 }

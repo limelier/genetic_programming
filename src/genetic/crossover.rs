@@ -2,21 +2,18 @@ use crate::genetic::definitions::{Generation, Parents, POPULATION_SIZE, Individu
 use crate::trees::definitions::Node;
 
 impl Generation {
-    pub fn crossover(&self, parent_pairs: &Vec<Parents>) -> Generation {
-        let mut population = Vec::with_capacity(POPULATION_SIZE);
+    pub fn crossover(&self, parent_pairs: &Vec<Parents>) -> Vec<Individual> {
+        let mut new_individuals = Vec::with_capacity(POPULATION_SIZE);
 
         for &Parents { stock, scion } in parent_pairs {
             let stock = &self.population[stock].tree;
             let scion = &self.population[scion].tree;
 
             let tree = crossover(stock, scion);
-            population.push(Individual { tree, result: None })
+            new_individuals.push(Individual { tree, result: None })
         }
 
-        Generation {
-            population,
-            best_index: None,
-        }
+        new_individuals
     }
 }
 

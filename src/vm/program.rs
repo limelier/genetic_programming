@@ -110,7 +110,7 @@ impl Program {
                         if other == 0 {
                             1
                         } else {
-                            old % other
+                            i8::overflowing_rem(old, other).0
                         }
                     },
                     BinaryOperation::And => old & other,

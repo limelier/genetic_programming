@@ -18,6 +18,13 @@ impl Generation {
 }
 
 fn evaluate(individual: &mut Individual, target: &BlockSpace) {
+    if individual.tree.get_max_depth() > MAX_DEPTH {
+        individual.result = Some(Result {
+            score: SCORE_DEPTH_LIMIT_EXCEEDED,
+            perfect: false,
+        });
+        return;
+    }
     let instructions = translate_tree(&individual.tree);
     let mut program = Program::from_instructions(&instructions);
     let result = program.execute(Some(MAX_PROGRAM_RUNTIME_MS));

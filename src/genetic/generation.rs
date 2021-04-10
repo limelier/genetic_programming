@@ -2,7 +2,7 @@ use crate::trees::definitions::Node;
 use crate::vm::definitions::{BinaryOperation, Source, TurtleOperation, UnaryOperation};
 use rand::Rng;
 use crate::simulator::definitions::{Direction, Side};
-use crate::genetic::definitions::{Generation, Individual, MAX_DEPTH, MIN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE};
+use crate::genetic::definitions::{Generation, Individual, MAX_GEN_DEPTH, MIN_GEN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE, Parents};
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Method {
@@ -14,9 +14,9 @@ impl Generation {
     /// Generate a generation from scratch, using ramped half-and-half
     /// Creates individuals with a max depth from MIN_DEPTH to MAX_DEPTH,
     /// generating INDIVIDUALS_PER_METHOD_AND_DEPTH of them with each method per depth.
-    pub fn generate() -> Self {
+    pub fn random() -> Self {
         let mut population = Vec::with_capacity(POPULATION_SIZE);
-        for depth in MIN_DEPTH..=MAX_DEPTH {
+        for depth in MIN_GEN_DEPTH..=MAX_GEN_DEPTH {
             for _ in 0..INDIVIDUALS_PER_METHOD_AND_DEPTH {
                 population.push(Individual {
                     tree: generate(Method::Grow, depth),
@@ -28,6 +28,23 @@ impl Generation {
                 });
             }
         }
+
+        Generation {
+            population,
+            best_index: None,
+        }
+    }
+
+    /// Create a generation by keeping some individuals and crossing over others to create new ones
+    pub fn from_old(generation: &Generation, kept_indices: &Vec<usize>, parent_pairs: &Vec<Parents>) -> Generation {
+        let mut population = Vec::with_capacity(POPULATION_SIZE);
+        for idx in kept_indices {
+            population.push(Individual {
+                tree: generation.population[*idx].tree.clone(),
+                result: None,
+            });
+        }
+        population.append(&mut generation.crossover(parent_pairs));
 
         Generation {
             population,

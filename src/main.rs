@@ -1,5 +1,7 @@
-use genetic_programming::genetic::definitions::Generation;
 use genetic_programming::simulator::definitions::BlockSpace;
+use genetic_programming::genetic::train;
+use genetic_programming::vm::program::Program;
+use genetic_programming::trees::translate::translate_tree;
 
 fn main() {
     let mut target = BlockSpace::default();
@@ -7,12 +9,7 @@ fn main() {
         target[i][1][0] = 1;
     }
     let target = target;  // remove mutability
-
-    let mut generation = Generation::generate();
-    generation.evaluate(&target);
-    let parents = generation.select();
-
-    let new_generation = generation.crossover(&parents);
-
-    dbg!(&new_generation.population[0].tree);
+    let individual = train(&target);
+    let mut program = Program::from_instructions(&translate_tree(&individual.tree));
+    program.execute(None);
 }
