@@ -1,6 +1,6 @@
 use crate::trees::definitions::Node;
 use crate::genetic::generation::{Method, generate};
-use crate::genetic::definitions::{Generation, MUTATION_CHANCE};
+use crate::genetic::definitions::{Generation, MUTATION_CHANCE, MAX_DEPTH};
 use rand::{thread_rng, Rng};
 
 impl Generation {
