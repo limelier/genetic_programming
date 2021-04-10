@@ -90,6 +90,14 @@ impl Node {
 
         SearchResult::Count(checked_nodes)
     }
+
+    pub(crate) fn get_max_depth(&self) -> usize {
+        if self.is_leaf() {
+            1
+        } else {
+            1 + self.children().iter().map(|child| child.get_max_depth() ).max().unwrap()
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -188,11 +196,5 @@ mod tests {
             return;
         }
         panic!("some node found");
-    }
-
-    #[test]
-    fn test_node_count() {
-        let tree = big_tree();
-        assert_eq!(tree.node_count(), 7);
     }
 }

@@ -37,3 +37,5 @@ pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 
 pub(crate) const TOURNAMENT_SIZE: usize = 2;
 pub(crate) const TOURNAMENT_P: f64 = 1.0;
+
+pub(crate) const MUTATION_CHANCE: f64 = 0.01;
