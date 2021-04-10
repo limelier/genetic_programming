@@ -33,6 +33,8 @@ pub(crate) const GEN_COUNT: usize = 1000;
 pub(crate) const CROSSOVER_SIZE: usize = POPULATION_SIZE * 3 / 4;
 
 pub(crate) const MAX_DEPTH: usize = 12;
+/// The bigger, the less important tree depth is in individual evaluation
+pub(crate) const DEPTH_SOFTENER: f64 = 6.0;
 pub(crate) const SCORE_PRESENT_AIR: f64 = 0.0;
 pub(crate) const SCORE_ABSENT_AIR: f64 = -0.1;
 pub(crate) const SCORE_PRESENT_BLOCK: f64 = 1.0;
@@ -40,7 +42,7 @@ pub(crate) const SCORE_ABSENT_BLOCK: f64 = 0.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
-pub(crate) const TOURNAMENT_SIZE: usize = 7;
+pub(crate) const TOURNAMENT_SIZE: usize = 4;
 pub(crate) const TOURNAMENT_P: f64 = 0.8;
 
-pub(crate) const MUTATION_CHANCE: f64 = 0.05;
+pub(crate) const MUTATION_CHANCE: f64 = 0.1;

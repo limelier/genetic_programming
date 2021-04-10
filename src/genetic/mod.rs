@@ -12,8 +12,8 @@ mod mutation;
 pub fn train(target: &BlockSpace) -> definitions::Individual {
     let mut generation = Generation::random();
 
+    generation.evaluate(target);
     for gen in 0..GEN_COUNT {
-        generation.evaluate(target);
         let best_individual = &generation.population[generation.best_index.unwrap()];
         let best_result = &best_individual.result.unwrap();
         println!(
@@ -26,6 +26,7 @@ pub fn train(target: &BlockSpace) -> definitions::Individual {
         let (kept_over, parent_pairs) = generation.select();
         generation = Generation::from_old(&generation, &kept_over, &parent_pairs);
         generation.mutate();
+        generation.evaluate(target);
     }
 
     generation.population[generation.best_index.unwrap()].clone()

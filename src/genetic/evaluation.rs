@@ -40,7 +40,7 @@ fn evaluate(individual: &mut Individual, target: &BlockSpace) {
                 res.blocks_present as f64 * SCORE_PRESENT_BLOCK;
 
             Result {
-                score: score * (MAX_DEPTH as f64 - depth as f64) / MAX_DEPTH as f64,
+                score: score * (DEPTH_SOFTENER + MAX_DEPTH as f64 - depth as f64) / (DEPTH_SOFTENER + MAX_DEPTH as f64),
                 perfect: res.perfect,
             }
         },
