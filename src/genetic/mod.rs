@@ -14,7 +14,6 @@ pub fn train(target: &BlockSpace) -> definitions::Individual {
 
     for gen in 0..GEN_COUNT {
         generation.evaluate(target);
-        dbg!(generation.population.iter().map(|ind| ind.tree.get_max_depth()).sum::<usize>() / POPULATION_SIZE);
         let best_individual = &generation.population[generation.best_index.unwrap()];
         let best_result = &best_individual.result.unwrap();
         println!(

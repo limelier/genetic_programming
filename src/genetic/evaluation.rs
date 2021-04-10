@@ -18,7 +18,8 @@ impl Generation {
 }
 
 fn evaluate(individual: &mut Individual, target: &BlockSpace) {
-    if individual.tree.get_max_depth() > MAX_DEPTH {
+    let depth = individual.tree.get_max_depth();
+    if depth > MAX_DEPTH {
         individual.result = Some(Result {
             score: SCORE_DEPTH_LIMIT_EXCEEDED,
             perfect: false,
@@ -38,9 +39,8 @@ fn evaluate(individual: &mut Individual, target: &BlockSpace) {
                 res.blocks_absent as f64 * SCORE_ABSENT_BLOCK +
                 res.blocks_present as f64 * SCORE_PRESENT_BLOCK;
 
-
             Result {
-                score,
+                score: score * (MAX_DEPTH as f64 - depth as f64) / MAX_DEPTH as f64,
                 perfect: res.perfect,
             }
         },

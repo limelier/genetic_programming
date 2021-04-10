@@ -64,27 +64,27 @@ impl Node {
     }
 
     /// Get a mutable reference to the nth node of a tree, in preorder
-    pub(crate) fn get_nth_node_mut(&mut self, n: usize) -> Option<&mut Node> {
-        match self.search_nth_node_mut(n) {
+    pub(crate) fn get_nth_node_mut(&mut self, n: usize) -> Option<(&mut Node, usize)> {
+        match self.search_nth_node_mut(n, 0) {
             SearchResult::Count(_) => None,
-            SearchResult::Reference(reference) => Some(reference),
+            SearchResult::Hit(reference, depth) => Some((reference, depth)),
         }
     }
 
     /// Search for the nth child (in preorder) of a tree, returning:
-    /// - a mutable reference to the node, if the node was found
+    /// - node (&mut ref, depth), if the node was found
     /// - the count of the tree's nodes, otherwise
-    fn search_nth_node_mut(&mut self, n: usize) -> SearchResult {
+    fn search_nth_node_mut(&mut self, n: usize, depth: usize) -> SearchResult {
         if n == 0 {
-            return SearchResult::Reference(self);
+            return SearchResult::Hit(self, depth);
         }
         let mut checked_nodes = 1;
         for child in self.children_mut() {
-            let res = (*child).search_nth_node_mut(n - checked_nodes);
+            let res = (*child).search_nth_node_mut(n - checked_nodes, depth + 1);
 
             match res {
                 SearchResult::Count(count) => { checked_nodes += count; }
-                SearchResult::Reference(_) => { return res; }
+                SearchResult::Hit(_, _) => { return res; }
             }
         }
 
@@ -103,7 +103,7 @@ impl Node {
 #[derive(Debug)]
 enum SearchResult<'a> {
     Count(usize),
-    Reference(&'a mut Node)
+    Hit(&'a mut Node, usize)
 }
 
 #[cfg(test)]

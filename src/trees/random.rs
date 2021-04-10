@@ -1,6 +1,7 @@
 use rand::{Rng, thread_rng};
 
 use crate::trees::definitions::Node;
+use rand::prelude::SliceRandom;
 
 impl Node {
     pub(crate) fn get_weighted_node(&self) -> &Node {
@@ -19,7 +20,8 @@ impl Node {
         nodes[index]
     }
 
-    pub(crate) fn get_weighted_node_mut(&mut self) -> &mut Node {
+    /// Get a weighted-random node from the tree and its depth
+    pub(crate) fn get_weighted_node_mut(&mut self) -> (&mut Node, usize) {
         let nodes: Vec<&Node> = self.nodes().collect();
         let wheel_size = nodes.iter().map(weight).sum();
         let mut needle = thread_rng().gen_range(0..wheel_size);
@@ -33,6 +35,15 @@ impl Node {
             index += 1;
         }
         self.get_nth_node_mut(index).unwrap()
+    }
+
+    /// Move down randomly to a certain depth; stop if a leaf occurs before then
+    pub(crate) fn randomly_descend(&self, depth: usize) -> &Node {
+        if depth == 0 || self.is_leaf() {
+            self
+        } else {
+            self.children().choose(&mut thread_rng()).unwrap().randomly_descend(depth - 1)
+        }
     }
 }
 

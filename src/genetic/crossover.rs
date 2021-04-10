@@ -19,8 +19,12 @@ impl Generation {
 
 fn crossover(stock: &Node, scion: &Node) -> Node {
     let mut stock = stock.clone();
-    let stock_point = stock.get_weighted_node_mut();
-    let scion_point = scion.get_weighted_node();
+    let (stock_point, stock_point_depth) = stock.get_weighted_node_mut();
+
+    // randomly descend as many levels as the stock point is deep, *then* choose a random node
+    let scion_point = scion
+        .randomly_descend(stock_point_depth)
+        .get_weighted_node();
 
     let mut new_branch = scion_point.clone();
     std::mem::swap(stock_point, &mut new_branch);
