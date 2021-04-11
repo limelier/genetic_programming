@@ -8,5 +8,5 @@ fn main() {
     }
     let target = target;  // remove mutability
     let individual = train(&target);
-    dbg!(individual.result);
+    dbg!(individual);
 }

@@ -6,7 +6,7 @@ pub struct Result {
     pub(crate) perfect: bool,
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Individual {
     pub tree: Node,
     pub result: Option<Result>,
@@ -43,6 +43,6 @@ pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
 pub(crate) const TOURNAMENT_SIZE: usize = 4;
-pub(crate) const TOURNAMENT_P: f64 = 0.8;
+pub(crate) const TOURNAMENT_P: f64 = 0.5;
 
-pub(crate) const MUTATION_CHANCE: f64 = 0.1;
+pub(crate) const MUTATION_CHANCE: f64 = 0.05;
