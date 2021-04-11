@@ -180,8 +180,7 @@ mod tests {
         let mut tree = big_tree();
 
         let result = tree.get_nth_node_mut(3);
-        dbg!(&result);
-        if let Some(&mut Val(Source::Value(2))) = result {
+        if let Some((&mut Val(Source::Value(2)), 2)) = result {
             return;
         }
         panic!("node not found");
