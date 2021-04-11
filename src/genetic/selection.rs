@@ -45,14 +45,14 @@ impl Generation {
             self.population[a].result.partial_cmp(&self.population[b].result).unwrap()
         });
 
-        let mut idx = 0;
-        while idx < members.len() - 1 {
+        let mut idx = members.len() - 1;
+        while idx > 0 {
             let choose = rng.gen_bool(TOURNAMENT_P);
 
             if choose {
                 return members[idx];
             } else {
-                idx += 1;
+                idx -= 1;
             }
         }
 
