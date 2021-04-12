@@ -1,5 +1,5 @@
 use crate::trees::definitions::{Node, STACK_START};
-use crate::vm::definitions::{Instruction, Source, JumpCondition, RESULT_REGISTER, COMPARE_REGISTER};
+use crate::vm::definitions::{Instruction, Source, JumpCondition, RESULT_REGISTER, COMPARE_REGISTER, UnaryOperation};
 use crate::vm::definitions::BinaryOperation::Set;
 
 pub fn translate_tree(tree: &Node) -> Vec<Instruction> {
@@ -118,5 +118,44 @@ fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Ins
 
             instr
         }
+        Node::Repeat(count, body) => {
+            let label_before = *next_label;
+            let label_after = label_before + 1;
+            *next_label += 2;
+
+
+            // calculate count value into r[stack_ptr + 1] - don't overwrite last iteration result
+            let mut instr = translate_subtree(count, stack_ptr + 1, next_label);
+            instr.push(Instruction::Label(label_before));
+            // while counter not zero
+            instr.push(Instruction::Jump(label_after, JumpCondition::Zero(stack_ptr + 1)));
+            // execute loop body once, storing result in stack_ptr
+            instr.append(&mut translate_subtree(body, stack_ptr, next_label));
+            // decrement counter
+            instr.push(Instruction::Unary(stack_ptr + 1, UnaryOperation::Decrement));
+            // jump back to condition
+            instr.push(Instruction::Jump(label_before, JumpCondition::None));
+            instr.push(Instruction::Label(label_after));
+
+            instr
+        }
+    }
+}
+
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::vm::definitions::TurtleOperation;
+    use crate::simulator::definitions::Direction;
+
+    #[test] #[ignore]
+    fn test_repeat() {
+        let tree = Node::Repeat(
+            Box::from(Node::Val(Source::Value(8))),
+            Box::from(Node::Turtle(TurtleOperation::Move(Direction::Forward)))
+        );
+        let instr = translate_tree(&tree);
+        dbg!(instr);
     }
 }

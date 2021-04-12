@@ -177,4 +177,21 @@ mod test {
 
         assert!(individual.result.unwrap().perfect);
     }
+
+    #[test]
+    fn test_eval_perfect_simpler() {
+        // repeat (8) { place.up(); move.forward(); }
+        let tree = Node::Repeat(
+            Box::from(Node::Val(Source::Value(8))),
+            Box::from(Node::Then(
+                Box::from(Node::Turtle(TurtleOperation::Place(Direction::Up))),
+                Box::from(Node::Turtle(TurtleOperation::Move(Direction::Forward))),
+            ))
+        );
+
+        let mut individual = Individual { tree, result: None };
+        evaluate(&mut individual, &target_line_of_eight());
+
+        assert!(individual.result.unwrap().perfect);
+    }
 }

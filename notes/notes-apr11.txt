@@ -1,0 +1,10 @@
+things to keep in mind:
+
+- trees have a non-constant ramification factor because the set of instructions have different numbers of parameters;
+additionally, some nodes like While or If are meta-constructs that get translated automatically to more nodes
+
+- haha its funny because i was actually picking the worst individual in each tournament
+
+- the problem structure greatly influences the performance of the genetic algorithm
+
+- maybe add a "For" or "Repeat" node that repeats x times?

@@ -11,8 +11,10 @@ pub enum Node {
     Store(Reg, Box<Node>),
     /// condition, if_not_zero, if_zero
     If(Box<Node>, Box<Node>, Box<Node>),
-    /// condition, block
+    /// condition, block; repeat block until condition equals zero
     While(Box<Node>, Box<Node>),
+    /// count, block; repeat block count times
+    Repeat(Box<Node>, Box<Node>),
     Compare(Box<Node>, Box<Node>),
     Turtle(TurtleOperation),
 }

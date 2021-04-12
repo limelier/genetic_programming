@@ -20,13 +20,14 @@ impl Node {
             Binary(_, c1, c2) |
             While(c1, c2) |
             Compare(c1, c2) |
+            Repeat(c1, c2) |
             Then(c1, c2)
                 => vec!(c1, c2),
 
             If(c1, c2, c3)
                 => vec!(c1, c2, c3),
 
-            _ => vec!(),
+            Null | Val(_) | Turtle(_) => vec!(),
         }
     }
 
@@ -41,13 +42,14 @@ impl Node {
             Binary(_, c1, c2) |
             While(c1, c2) |
             Compare(c1, c2) |
+            Repeat(c1, c2) |
             Then(c1, c2)
             => vec!(c1, c2),
 
             If(c1, c2, c3)
             => vec!(c1, c2, c3),
 
-            _ => vec!(),
+            Null | Val(_) | Turtle(_) => vec!(),
         }
     }
 

@@ -94,7 +94,7 @@ fn random_terminal() -> Node {
 fn random_function(method: Method, max_depth: usize, current_depth: usize) -> Node {
     let mut rng = rand::thread_rng();
 
-    match rng.gen_range(0..=20) {
+    match rng.gen_range(0..=21) {
         0..=6 => Node::Unary(
             rng.gen::<UnaryOperation>(),
             Box::from(recurse(method, max_depth, current_depth + 1)),
@@ -121,9 +121,14 @@ fn random_function(method: Method, max_depth: usize, current_depth: usize) -> No
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        _ => Node::Then(
+        20 => Node::Then(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
+        21 => Node::Repeat(
+            Box::from(recurse(method, max_depth, current_depth + 1)),
+            Box::from(recurse(method, max_depth, current_depth + 1)),
+        ),
+        _ => unreachable!()
     }
 }
