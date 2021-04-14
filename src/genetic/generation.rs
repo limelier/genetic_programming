@@ -2,7 +2,7 @@ use crate::trees::definitions::Node;
 use crate::vm::definitions::{BinaryOperation, Source, TurtleOperation, UnaryOperation};
 use rand::Rng;
 use crate::simulator::definitions::{Direction, Side};
-use crate::genetic::definitions::{Generation, Individual, MAX_GEN_DEPTH, MIN_GEN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE, Parents};
+use crate::genetic::definitions::{Generation, Individual, MAX_GEN_DEPTH, MIN_GEN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE, Parents, P_GROW_LEAF};
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Method {
@@ -60,7 +60,7 @@ pub fn generate(method: Method, max_depth: usize) -> Node {
 fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
     let mut rng = rand::thread_rng();
 
-    if current_depth == max_depth || (method == Method::Grow && rng.gen_bool(0.1)) {
+    if current_depth == max_depth || (method == Method::Grow && rng.gen_bool(P_GROW_LEAF)) {
         random_terminal()
     } else {
         random_function(method, max_depth, current_depth)

@@ -1,5 +1,5 @@
 use genetic_programming::simulator::definitions::BlockSpace;
-use genetic_programming::genetic::train;
+use genetic_programming::meta::train::train_many;
 
 fn main() {
     let mut target = BlockSpace::default();
@@ -7,6 +7,6 @@ fn main() {
         target[i][1][0] = 1;
     }
     let target = target;  // remove mutability
-    let individual = train(&target);
-    dbg!(individual);
+    let individuals = train_many(&target, 30);
+    dbg!(individuals);
 }
