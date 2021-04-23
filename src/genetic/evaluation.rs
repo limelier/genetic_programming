@@ -14,7 +14,8 @@ impl Generation {
                 self.best_index = Some(index);
             }
 
-            if self.worst_index == None || result < self.population[self.worst_index.unwrap()].result.unwrap() {
+            // only store finite worst scores, not -inf
+            if result.score.is_finite() && (self.worst_index == None || result < self.population[self.worst_index.unwrap()].result.unwrap()) {
                 self.worst_index = Some(index)
             }
         }
@@ -94,7 +95,7 @@ fn compare_state(expected: &BlockSpace, actual: &BlockSpace) -> ComparisonResult
 mod test {
     use crate::simulator::definitions::Direction;
     use crate::trees::definitions::Node;
-    use crate::vm::definitions::{TurtleOperation, Source, UnaryOperation};
+    use crate::vm::definitions::{Source, TurtleOperation, UnaryOperation};
 
     use super::*;
 
@@ -154,7 +155,7 @@ mod test {
                 0,
                 Box::from(Node::Val(
                     Source::Value(8)
-                ))
+                )),
             )),
             Box::from(Node::While(
                 Box::from(Node::Val(
@@ -168,12 +169,12 @@ mod test {
                             0,
                             Box::from(Node::Unary(
                                 UnaryOperation::Decrement,
-                                Box::from(Node::Val(Source::Register(0)))
-                            ))
-                        ))
-                    ))
-                ))
-            ))
+                                Box::from(Node::Val(Source::Register(0))),
+                            )),
+                        )),
+                    )),
+                )),
+            )),
         );
 
         let mut individual = Individual { tree, result: None };
@@ -190,7 +191,7 @@ mod test {
             Box::from(Node::Then(
                 Box::from(Node::Turtle(TurtleOperation::Place(Direction::Up))),
                 Box::from(Node::Turtle(TurtleOperation::Move(Direction::Forward))),
-            ))
+            )),
         );
 
         let mut individual = Individual { tree, result: None };

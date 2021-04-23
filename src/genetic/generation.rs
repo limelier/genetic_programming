@@ -45,6 +45,7 @@ impl Generation {
                 result: None,
             });
         }
+
         population.append(&mut generation.crossover(parent_pairs));
 
         Generation {

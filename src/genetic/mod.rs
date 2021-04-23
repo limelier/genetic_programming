@@ -26,7 +26,7 @@ pub fn train(target: &BlockSpace) -> definitions::Individual {
         if best_result.perfect {
             break;
         }
-        let (kept_over, parent_pairs) = generation.select();
+        let (kept_over, parent_pairs) = generation.select_weighted_by_fitness();
         generation = Generation::from_old(&generation, &kept_over, &parent_pairs);
         generation.mutate();
         generation.evaluate(target);

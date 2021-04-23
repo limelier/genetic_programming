@@ -49,3 +49,5 @@ pub(crate) const TOURNAMENT_P: f64 = 1.0;
 pub(crate) const MUTATION_CHANCE: f64 = 0.05;
 
 pub(crate) const P_GROW_LEAF: f64 = 0.1;
+
+pub(crate) const SELECTION_PRESSURE: f64 = 1.0;

@@ -14,6 +14,8 @@ additionally, some nodes like While or If are meta-constructs that get translate
 - best individual may ditch perfect individuals
 - wheel of fortune selection
 - fitness function ((score - min) / (max - min) + 1) ^ pressure
+    => problem: min can be -inf
+    => possible solution: take min only of finite scores, grade -inf as 0 fitness
 - grid search to find best parameters / operators
 - 16 run sample size
 - thread pool?

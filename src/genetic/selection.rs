@@ -1,15 +1,12 @@
 use std::cmp::Ordering;
 
-use rand::distributions::Uniform;
-use rand::Rng;
+use rand::distributions::{Uniform, WeightedIndex};
+use rand::{Rng, thread_rng};
 
 use crate::genetic::definitions::*;
 
 impl Generation {
-    /// Select POPULATION_SIZE pairs of parents for crossover
-    ///
-    /// Each parent is selected through a tournament
-    pub fn select(&self) -> (Vec<usize>, Vec<Parents>) {
+    pub fn select_by_tournament(&self) -> (Vec<usize>, Vec<Parents>) {
         let mut parents = Vec::with_capacity(CROSSOVER_SIZE);
         let mut kept = Vec::with_capacity(POPULATION_SIZE - CROSSOVER_SIZE);
         for _ in 0..CROSSOVER_SIZE {
@@ -24,16 +21,40 @@ impl Generation {
         (kept, parents)
     }
 
-    /// Pick a handful of individuals from the population, and pick one based on its result
-    ///
-    /// More specifically, pick out n = TOURNAMENT_SIZE members of the population, then:
-    /// - choose the best with probability p = TOURNAMENT_P
-    /// - choose the 2nd best with probability (1-p) * p
-    /// - choose the 3rd best with probability (1-p)^2 * p
-    /// - ...
-    /// - choose the worst with probability (1-p)^n
-    ///
-    /// Return the index of the chosen individual in the population
+    pub fn select_weighted_by_fitness(&self) -> (Vec<usize>, Vec<Parents>) {
+        let mut best_score = self.population[self.best_index.unwrap()].result.unwrap().score;
+        let worst_score = self.population[self.worst_index.unwrap()].result.unwrap().score;
+
+        if best_score == worst_score {
+            best_score += 0.1;
+        }
+
+        // calculate fitness values
+        let mut fits = Vec::with_capacity(POPULATION_SIZE);
+        for i in 0..POPULATION_SIZE {
+            let score = self.population[i].result.unwrap().score;
+            fits.push(if score.is_finite() {
+                ((score - worst_score)/(best_score - worst_score) + 1.0).powf(SELECTION_PRESSURE)
+            } else {
+                0.0
+            })
+        }
+
+        let mut rng = thread_rng();
+        let dist = WeightedIndex::new(&fits).unwrap();
+        let chosen: Vec<usize> = (&mut rng)
+            .sample_iter(dist)
+            .take(POPULATION_SIZE + CROSSOVER_SIZE)
+            .collect();
+        // chosen: stocks + scions + kept
+        let mut parents = Vec::with_capacity(CROSSOVER_SIZE);
+        for i in 0..CROSSOVER_SIZE {
+            parents.push(Parents { stock: chosen[i], scion: chosen[CROSSOVER_SIZE + i]});
+        }
+
+        (Vec::from(&chosen[2*CROSSOVER_SIZE..]), parents)
+    }
+
     fn tournament(&self) -> usize {
         let mut rng = rand::thread_rng();
 
