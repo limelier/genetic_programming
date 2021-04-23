@@ -1,8 +1,9 @@
 use crate::trees::definitions::Node;
 use crate::genetic::generation::{Method, generate};
-use crate::genetic::definitions::{Generation, MUTATION_CHANCE};
+use crate::genetic::definitions::{Generation, MUTATION_CHANCE, MUTATION_SINGLE_CHANCE};
 use rand::{thread_rng, Rng};
 use crate::vm::definitions::*;
+use crate::trees::random::random_useful_leaf;
 
 impl Generation {
     pub(crate) fn mutate(&mut self) {
@@ -10,6 +11,9 @@ impl Generation {
         for individual in &mut self.population {
             if rng.gen_bool(MUTATION_CHANCE) {
                 mutate(&mut individual.tree);
+            }
+            if rng.gen_bool(MUTATION_SINGLE_CHANCE) {
+                mutate_single(&mut individual.tree);
             }
         }
     }
@@ -35,6 +39,7 @@ pub(crate) fn random_with_children(children: Vec<&Node>) -> Node {
     let mut rng = rand::thread_rng();
 
     match children.len() {
+        0 => random_useful_leaf(),
         1 => {
             let i = rng.gen_range(0..=1);
             let c = Box::from(children[0].clone());
