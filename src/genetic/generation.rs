@@ -32,6 +32,7 @@ impl Generation {
         Generation {
             population,
             best_index: None,
+            worst_index: None,
         }
     }
 
@@ -49,6 +50,7 @@ impl Generation {
         Generation {
             population,
             best_index: None,
+            worst_index: None,
         }
     }
 }

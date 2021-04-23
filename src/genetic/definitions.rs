@@ -15,6 +15,7 @@ pub struct Individual {
 pub struct Generation {
     pub population: Vec<Individual>,
     pub best_index: Option<usize>,
+    pub worst_index: Option<usize>,
 }
 
 pub struct Parents {

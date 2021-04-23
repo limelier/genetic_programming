@@ -13,6 +13,10 @@ impl Generation {
             if self.best_index == None || result > self.population[self.best_index.unwrap()].result.unwrap() {
                 self.best_index = Some(index);
             }
+
+            if self.worst_index == None || result < self.population[self.worst_index.unwrap()].result.unwrap() {
+                self.worst_index = Some(index)
+            }
         }
     }
 }
