@@ -1,8 +1,8 @@
 use crate::trees::definitions::Node;
-use crate::vm::definitions::{BinaryOperation, Source, TurtleOperation, UnaryOperation};
+use crate::vm::definitions::{BinaryOperation, UnaryOperation};
 use rand::Rng;
-use crate::simulator::definitions::{Direction, Side};
 use crate::genetic::definitions::{Generation, Individual, MAX_GEN_DEPTH, MIN_GEN_DEPTH, INDIVIDUALS_PER_METHOD_AND_DEPTH, POPULATION_SIZE, Parents, P_GROW_LEAF};
+use crate::trees::random::random_useful_leaf;
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Method {
@@ -64,33 +64,9 @@ fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
     let mut rng = rand::thread_rng();
 
     if current_depth == max_depth || (method == Method::Grow && rng.gen_bool(P_GROW_LEAF)) {
-        random_terminal()
+        random_useful_leaf()
     } else {
         random_function(method, max_depth, current_depth)
-    }
-}
-
-fn random_terminal() -> Node {
-    let mut rng = rand::thread_rng();
-
-    if rng.gen::<bool>() {
-        Node::Val(
-            if rng.gen::<bool>() {
-                Source::Value(rng.gen::<i8>())
-            } else {
-                Source::Register(rng.gen::<u8>())
-            }
-        )
-    } else {
-        Node::Turtle(
-            match rng.gen_range(0..=4) {
-                0 => TurtleOperation::Move(rng.gen::<Direction>()),
-                1 => TurtleOperation::Turn(rng.gen::<Side>()),
-                2 => TurtleOperation::Place(rng.gen::<Direction>()),
-                3 => TurtleOperation::Dig(rng.gen::<Direction>()),
-                _ => TurtleOperation::Detect(rng.gen::<Direction>()),
-            }
-        )
     }
 }
 

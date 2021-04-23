@@ -2,6 +2,8 @@ use rand::{Rng, thread_rng};
 
 use crate::trees::definitions::Node;
 use rand::prelude::SliceRandom;
+use crate::simulator::definitions::{Direction, Side};
+use crate::vm::definitions::{Source, TurtleOperation};
 
 impl Node {
     pub(crate) fn get_weighted_node(&self) -> &Node {
@@ -37,6 +39,14 @@ impl Node {
         self.get_nth_node_mut(index).unwrap()
     }
 
+    // Get a mutable reference to a random node in the tree
+    pub(crate) fn get_random_node_mut(&mut self) -> &mut Node {
+        let count = self.nodes().count();
+        let idx = thread_rng().gen_range(0..count);
+
+        self.get_nth_node_mut(idx).unwrap().0
+    }
+
     /// Move down randomly to a certain depth; stop if a leaf occurs before then
     pub(crate) fn randomly_descend(&self, depth: usize) -> &Node {
         if depth == 0 || self.is_leaf() {
@@ -49,6 +59,29 @@ impl Node {
 
 fn weight(node: &&Node) -> usize { if node.is_leaf() { 1 } else { 9 } }
 
+pub(crate) fn random_useful_leaf() -> Node {
+    let mut rng = rand::thread_rng();
+
+    if rng.gen::<bool>() {
+        Node::Val(
+            if rng.gen::<bool>() {
+                Source::Value(rng.gen::<i8>())
+            } else {
+                Source::Register(rng.gen::<u8>())
+            }
+        )
+    } else {
+        Node::Turtle(
+            match rng.gen_range(0..=4) {
+                0 => TurtleOperation::Move(rng.gen::<Direction>()),
+                1 => TurtleOperation::Turn(rng.gen::<Side>()),
+                2 => TurtleOperation::Place(rng.gen::<Direction>()),
+                3 => TurtleOperation::Dig(rng.gen::<Direction>()),
+                _ => TurtleOperation::Detect(rng.gen::<Direction>()),
+            }
+        )
+    }
+}
 
 #[cfg(test)]
 mod test {
@@ -82,5 +115,11 @@ mod test {
     fn get_weighted_node_mut() {
         let mut tree = big_tree();
         dbg!(tree.get_weighted_node_mut());
+    }
+
+    #[test] #[ignore]
+    fn get_random_node_mut() {
+        let mut tree = big_tree();
+        dbg!(tree.get_random_node_mut());
     }
 }

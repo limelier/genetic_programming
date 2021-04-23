@@ -1,4 +1,4 @@
 pub mod definitions;
 pub mod translate;
 pub mod methods;
-mod random;
+pub(crate) mod random;
