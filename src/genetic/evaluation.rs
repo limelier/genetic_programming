@@ -26,6 +26,7 @@ fn evaluate(individual: &mut Individual, target: &BlockSpace) {
     let depth = individual.tree.get_max_depth();
     if depth > MAX_DEPTH {
         individual.result = Some(Result {
+            dice_index: 0.0,
             score: SCORE_DEPTH_LIMIT_EXCEEDED,
             perfect: false,
         });
@@ -39,18 +40,29 @@ fn evaluate(individual: &mut Individual, target: &BlockSpace) {
         Ok(()) => {
             let state = program.get_simulator_state();
             let res = compare_state(target, &state);
-            let score = res.air_absent as f64 * SCORE_ABSENT_AIR +
-                res.air_present as f64 * SCORE_PRESENT_AIR +
-                res.blocks_absent as f64 * SCORE_ABSENT_BLOCK +
-                res.blocks_present as f64 * SCORE_PRESENT_BLOCK;
+            let true_positive = res.blocks_present as f64;
+            let false_positive = res.air_absent as f64;
+            let true_negative = res.air_present as f64;
+            let false_negative = res.blocks_absent as f64;
+
+            let score = false_positive * SCORE_FALSE_POSITIVE +
+                true_negative * SCORE_TRUE_NEGATIVE +
+                false_negative * SCORE_FALSE_NEGATIVE +
+                true_positive * SCORE_TRUE_POSITIVE;
+
+            // Sørensen–Dice index
+            let dice_index = (2.0 * true_positive) / (2.0 * true_positive + false_positive + false_negative);
+            let score = dice_index;
 
             Result {
+                dice_index,
                 score: score * (DEPTH_SOFTENER + MAX_DEPTH as f64 - depth as f64) / (DEPTH_SOFTENER + MAX_DEPTH as f64),
                 perfect: res.perfect,
             }
         }
         Err(_) => {
             Result {
+                dice_index: 0.0,
                 score: SCORE_PROGRAM_ERROR,
                 perfect: false,
             }
@@ -113,9 +125,9 @@ mod test {
         let mut individual = Individual { tree, result: None };
         evaluate(&mut individual, &target_line_of_eight());
 
-        let expected_block_score = 1. * SCORE_PRESENT_BLOCK
-            + 7. * SCORE_ABSENT_BLOCK
-            + (16. * 16. * 16. - 8.) * SCORE_PRESENT_AIR;
+        let expected_block_score = 1. * SCORE_TRUE_POSITIVE
+            + 7. * SCORE_FALSE_NEGATIVE
+            + (16. * 16. * 16. - 8.) * SCORE_TRUE_NEGATIVE;
 
         let expected_score = expected_block_score
             * (DEPTH_SOFTENER + MAX_DEPTH as f64 - 1.)
@@ -136,9 +148,9 @@ mod test {
         let mut individual = Individual { tree, result: None };
         evaluate(&mut individual, &target_line_of_eight());
 
-        let expected_block_score = 1. * SCORE_PRESENT_BLOCK
-            + 7. * SCORE_ABSENT_BLOCK
-            + (16. * 16. * 16. - 8.) * SCORE_PRESENT_AIR;
+        let expected_block_score = 1. * SCORE_TRUE_POSITIVE
+            + 7. * SCORE_FALSE_NEGATIVE
+            + (16. * 16. * 16. - 8.) * SCORE_TRUE_NEGATIVE;
 
         let expected_score = expected_block_score
             * (DEPTH_SOFTENER + MAX_DEPTH as f64 - 3.)

@@ -93,7 +93,7 @@ impl Node {
         SearchResult::Count(checked_nodes)
     }
 
-    pub(crate) fn get_max_depth(&self) -> usize {
+    pub fn get_max_depth(&self) -> usize {
         if self.is_leaf() {
             1
         } else {

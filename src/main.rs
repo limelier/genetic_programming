@@ -1,5 +1,5 @@
-use genetic_programming::simulator::definitions::BlockSpace;
 use genetic_programming::meta::train::train_many;
+use genetic_programming::simulator::definitions::BlockSpace;
 
 fn main() {
     let mut target = BlockSpace::default();
@@ -8,5 +8,12 @@ fn main() {
     }
     let target = target;  // remove mutability
     let individuals = train_many(&target, 30);
-    dbg!(individuals);
+
+    println!("dice_index depth");
+    for individual in individuals {
+        println!("{} {}",
+                 individual.result.unwrap().dice_index,
+                 individual.tree.get_max_depth()
+        );
+    }
 }

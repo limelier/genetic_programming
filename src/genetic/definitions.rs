@@ -2,6 +2,7 @@ use crate::trees::definitions::Node;
 
 #[derive(PartialOrd, PartialEq, Copy, Clone, Debug)]
 pub struct Result {
+    pub dice_index: f64,
     pub(crate) score: f64,
     pub(crate) perfect: bool,
 }
@@ -36,10 +37,10 @@ pub(crate) const CROSSOVER_SIZE: usize = POPULATION_SIZE * 3 / 4;
 pub(crate) const MAX_DEPTH: usize = 12;
 /// The bigger, the less important tree depth is in individual evaluation
 pub(crate) const DEPTH_SOFTENER: f64 = 6.0;
-pub(crate) const SCORE_PRESENT_AIR: f64 = 0.0;
-pub(crate) const SCORE_ABSENT_AIR: f64 = -0.1;
-pub(crate) const SCORE_PRESENT_BLOCK: f64 = 1.0;
-pub(crate) const SCORE_ABSENT_BLOCK: f64 = 0.0;
+pub(crate) const SCORE_TRUE_NEGATIVE: f64 = 0.0;
+pub(crate) const SCORE_FALSE_POSITIVE: f64 = -0.1;
+pub(crate) const SCORE_TRUE_POSITIVE: f64 = 1.0;
+pub(crate) const SCORE_FALSE_NEGATIVE: f64 = 0.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
