@@ -1,0 +1,6 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe commands turnLeft and turnRight allow the turtle to turn 90 degrees clockwise or counter-clockwise.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe commands place, placeUp and placeDown allow blocks to be placed in adjacent spaces.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe place, placeUp and placeDown commands allow blocks to be placed in adjacent spaces.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe dig, digUp and digDown commands allow erasing blocks from adjacent spaces.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qdetect, detectUp and detectDown will allow detecting blocks next to the turtle.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qdetect, detectUp and detectDown will allow detecting blocks next to the turtle.\\E$"}
