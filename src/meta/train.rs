@@ -23,3 +23,18 @@ pub fn train_many(target: &BlockSpace, number: usize) -> Vec<Individual> {
 
     results
 }
+
+pub fn train_many_silent(target: &BlockSpace, number: usize) -> Vec<Individual> {
+    let mut results = vec!();
+
+    results.par_extend(
+        (1..=number)
+            .into_par_iter()
+            .map(|_| {
+                let result = train(target);
+                result
+            })
+    );
+
+    results
+}

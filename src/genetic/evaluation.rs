@@ -3,6 +3,7 @@ use crate::simulator::definitions::BlockSpace;
 use crate::trees::translate::translate_tree;
 use crate::vm::program::Program;
 
+
 impl Generation {
     pub fn evaluate(&mut self, target: &BlockSpace) {
         for index in 0..self.population.len() {
@@ -42,21 +43,15 @@ fn evaluate(individual: &mut Individual, target: &BlockSpace) {
             let res = compare_state(target, &state);
             let true_positive = res.blocks_present as f64;
             let false_positive = res.air_absent as f64;
-            let true_negative = res.air_present as f64;
             let false_negative = res.blocks_absent as f64;
-
-            let score = false_positive * SCORE_FALSE_POSITIVE +
-                true_negative * SCORE_TRUE_NEGATIVE +
-                false_negative * SCORE_FALSE_NEGATIVE +
-                true_positive * SCORE_TRUE_POSITIVE;
 
             // Sørensen–Dice index
             let dice_index = (2.0 * true_positive) / (2.0 * true_positive + false_positive + false_negative);
-            let score = dice_index;
+            let score = dice_index * (DEPTH_SOFTENER + MAX_DEPTH as f64 - depth as f64) / (DEPTH_SOFTENER + MAX_DEPTH as f64);
 
             Result {
                 dice_index,
-                score: score * (DEPTH_SOFTENER + MAX_DEPTH as f64 - depth as f64) / (DEPTH_SOFTENER + MAX_DEPTH as f64),
+                score,
                 perfect: res.perfect,
             }
         }
