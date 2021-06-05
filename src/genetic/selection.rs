@@ -37,7 +37,8 @@ impl Generation {
                 ((score - worst_score)/(best_score - worst_score) + 1.0).powf(SELECTION_PRESSURE)
             } else {
                 0.0
-            })
+            });
+            1;
         }
 
         let mut rng = thread_rng();

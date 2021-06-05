@@ -73,38 +73,38 @@ fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
 fn random_function(method: Method, max_depth: usize, current_depth: usize) -> Node {
     let mut rng = rand::thread_rng();
 
-    match rng.gen_range(0..=21) {
-        0..=6 => Node::Unary(
+    match rng.gen_range(0..=7) {
+        0 => Node::Unary(
             rng.gen::<UnaryOperation>(),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        7..=15 => Node::Binary(
+        1 => Node::Binary(
             rng.gen::<BinaryOperation>(),
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        16 => Node::Compare(
+        2 => Node::Compare(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        17 => Node::Store(
+        3 => Node::Store(
             rng.gen::<u8>(),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        18 => Node::If(
+        4 => Node::If(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        19 => Node::While(
+        5 => Node::While(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        20 => Node::Then(
+        6 => Node::Then(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),
-        21 => Node::Repeat(
+        7 => Node::Repeat(
             Box::from(recurse(method, max_depth, current_depth + 1)),
             Box::from(recurse(method, max_depth, current_depth + 1)),
         ),

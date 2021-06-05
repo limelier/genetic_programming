@@ -3,11 +3,11 @@ use crate::vm::definitions::{Instruction, Source, JumpCondition, RESULT_REGISTER
 use crate::vm::definitions::BinaryOperation::Set;
 
 pub fn translate_tree(tree: &Node) -> Vec<Instruction> {
-    let mut next_label = 0u8;
+    let mut next_label = 0u16;
     translate_subtree(tree, STACK_START, &mut next_label)
 }
 
-fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u8) -> Vec<Instruction> {
+fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u16) -> Vec<Instruction> {
     match tree {
         Node::Null => {
             // do nothing

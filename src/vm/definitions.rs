@@ -6,7 +6,7 @@ use rand::Rng;
 
 pub type Reg = u8;
 pub type Ins = usize;
-pub type Label = u8;
+pub type Label = u16;
 pub type Val = i8;
 
 pub const RESULT_REGISTER: u8 = 200;
