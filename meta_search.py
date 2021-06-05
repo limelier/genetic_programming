@@ -1,5 +1,7 @@
 import itertools
+import pprint
 import subprocess
+import time
 
 from numpy import arange
 
@@ -96,9 +98,10 @@ def gen_all():
     best = None
     best_vals = None
 
-    for combination in itertools.product(*[gen.items() for gen in gens]):
+    total_num = sum(1 for _ in itertools.product(*[gen.items() for gen in gens]))
+    for idx, combination in enumerate(itertools.product(*[gen.items() for gen in gens])):
         values = dict(zip(keys, combination))
-        print(values)
+        print(f'{idx+1}/{total_num} {combination}: ', end='', flush=True)
 
         def_file = non_modifiable + format_str.format(**values)
 
@@ -106,15 +109,18 @@ def gen_all():
             f.write(def_file)
 
         command = 'cargo run -q --release .'
+
+        start_time = time.time()
         result = subprocess.run(command.split(), stdout=subprocess.PIPE, text=True)
         res = tuple(float(i) for i in result.stdout.split(' '))
-        print(res)
+        seconds = time.time() - start_time
+        print(f'{res} in {seconds:.2f}s')
         if best is None or res[0] > best[0] or (res[0] == best[0] and res[1] < best[1]):
             best = res
             best_vals = values
 
-    print('best:', best)
-    print(best_vals)
+    print('\nbest:', best)
+    pprint.pprint(best_vals)
 
     def_file = non_modifiable + format_str.format(**best_vals)
 

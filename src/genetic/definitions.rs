@@ -3,9 +3,9 @@ use crate::trees::definitions::Node;
 
 #[derive(PartialOrd, PartialEq, Copy, Clone, Debug)]
 pub struct Result {
+    pub dice_index: f64,
     pub(crate) score: f64,
     pub(crate) perfect: bool,
-    pub dice_index: f64,
 }
 
 #[derive(Debug, Clone)]
@@ -34,19 +34,19 @@ pub(crate) const MAX_GEN_DEPTH: usize = 6;
 pub(crate) const POPULATION_SIZE: usize = (MAX_GEN_DEPTH - MIN_GEN_DEPTH + 1) * INDIVIDUALS_PER_METHOD_AND_DEPTH * 2;
 pub(crate) const MAX_PROGRAM_RUNTIME_MS: u128 = 10;
 pub(crate) const GEN_COUNT: usize = 1000;
-pub(crate) const CROSSOVER_SIZE: usize = (POPULATION_SIZE as f64 * 0.2) as usize;
+pub(crate) const CROSSOVER_SIZE: usize = (POPULATION_SIZE as f64 * 0.5) as usize;
 
 pub(crate) const MAX_DEPTH: usize = 12;
 /// The bigger, the less important tree depth is in individual evaluation
-pub(crate) const DEPTH_SOFTENER: f64 = 6.0;
+pub(crate) const DEPTH_SOFTENER: f64 = 1.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
 pub(crate) const TOURNAMENT_SIZE: usize = 4;
 pub(crate) const TOURNAMENT_P: f64 = 1.0;
 
-pub(crate) const MUTATION_CHANCE: f64 = 0.50;
-pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.40;
+pub(crate) const MUTATION_CHANCE: f64 = 0.00;
+pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.00;
 
 pub(crate) const P_GROW_LEAF: f64 = 0.1;
 
