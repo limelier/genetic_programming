@@ -52,4 +52,4 @@ for key, rng in ranges.items():
         lines = filter(lambda line: line[0][key] == value, parsed_lines)
         results = (line[1] for line in lines)
         scores, depths, times = zip(*results)
-        print(f'{avg(scores):.3f}, {avg(depths):.3f}, {avg(times):.3f}')
+        print(f'{avg(scores):.4f}, {avg(depths):.4f}, {avg(times):.4f}')
