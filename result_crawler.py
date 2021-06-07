@@ -1,6 +1,7 @@
 import parse
 from numpy import arange
 
+
 class Gen:
     def __init__(self, rng, default, change):
         self.rng = rng
@@ -29,10 +30,13 @@ ranges = {
     'selection_pressure': Gen([0.2, 1.0, 5.0], 1.0, True),
 }
 
-def avg(l):
-    return sum(l) / len(l)
 
-format_string = '{:d}/{:d} ({:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:f}, {:f}, {:f}): ({:f}, {:f}) in {:f}s\n'
+def avg(lst):
+    return sum(lst) / len(lst)
+
+
+format_string = \
+    '{:d}/{:d} ({:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:f}, {:f}, {:f}): ({:f}, {:f}) in {:f}s\n'
 parsed_lines = []
 
 with open('meta.txt', 'r') as f:
@@ -45,11 +49,11 @@ with open('meta.txt', 'r') as f:
             parsed_lines.append((values, result))
 
 print('Average dice index, depth and time for:\n')
-for key, rng in ranges.items():
+for key, vals in ranges.items():
     print(key)
-    for value in rng.items():
+    for value in vals.items():
         print(f' {value:>7}: ', end='')
-        lines = filter(lambda line: line[0][key] == value, parsed_lines)
+        lines = filter(lambda parsed_line: parsed_line[0][key] == value, parsed_lines)
         results = (line[1] for line in lines)
         scores, depths, times = zip(*results)
         print(f'{avg(scores):.4f}, {avg(depths):.4f}, {avg(times):.4f}')
