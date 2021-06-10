@@ -65,7 +65,7 @@ impl Node {
         })
     }
 
-    /// Get a mutable reference to the nth node of a tree, in preorder
+    /// Get a mutable reference to the nth node of a tree, in preorder, as well as its depth
     pub(crate) fn get_nth_node_mut(&mut self, n: usize) -> Option<(&mut Node, usize)> {
         match self.search_nth_node_mut(n, 0) {
             SearchResult::Count(_) => None,

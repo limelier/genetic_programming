@@ -4,19 +4,19 @@ use genetic_programming::simulator::definitions::BlockSpace;
 fn main() {
     let mut target = BlockSpace::default();
     // simple example: line
-    // for i in 0..8 {
-    //     target[i][1][0] = 1;
-    // }
+    for i in 0..8 {
+        target[i][1][0] = 1;
+    }
 
 
     // medium example: cuboid
-    for i in 4..12 {
-        for j in 6..8 {
-            for k in 2..4 {
-                target[i][j][k] = 1;
-            }
-        }
-    }
+    // for i in 4..12 {
+    //     for j in 6..8 {
+    //         for k in 2..4 {
+    //             target[i][j][k] = 1;
+    //         }
+    //     }
+    // }
 
     let target = target;  // remove mutability
     let individuals = train_many_silent(&target, 30);

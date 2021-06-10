@@ -3,8 +3,8 @@ use crate::trees::definitions::Node;
 
 #[derive(PartialOrd, PartialEq, Copy, Clone, Debug)]
 pub struct Result {
-    pub dice_index: f64,
     pub(crate) score: f64,
+    pub dice_index: f64,
     pub(crate) perfect: bool,
 }
 
@@ -45,8 +45,8 @@ pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 pub(crate) const TOURNAMENT_SIZE: usize = 4;
 pub(crate) const TOURNAMENT_P: f64 = 1.0;
 
-pub(crate) const MUTATION_CHANCE: f64 = 0.50;
-pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.70;
+pub(crate) const MUTATION_CHANCE: f64 = 0.01;
+pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.50;
 
 pub(crate) const P_GROW_LEAF: f64 = 0.1;
 

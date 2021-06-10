@@ -1,0 +1,4 @@
+- run w new mutation chances
+X modify single mutation to use individual rolls
+- try incrementally more complex targets
+- try to find bugs in the code

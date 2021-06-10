@@ -85,8 +85,8 @@ ranges = {
     'depth_softener': Gen([1.0, 6.0, 10.0], 6.0, True),
     'max_program_runtime_ms': Gen(range(5, 25, 5), 10, False),
     'max_depth': Gen(range(5, 15, 1), 12, False),
-    'mutation_chance': Gen([0.0, 0.02, 0.05, 0.1, 0.5], 0.05, True),
-    'mutation_single_chance': Gen([0.0, 0.05, 0.1, 0.3, 0.7], 0.1, True),
+    'mutation_chance': Gen([0.0, 0.001, 0.01, 0.02, 0.05], 0.05, True),
+    'mutation_single_chance': Gen([0.0, 0.001, 0.01, 0.02, 0.05, 0.1], 0.1, True),
     'crossover_size_proportion': Gen([0.2, 0.5, 0.75], 0.75, True),
     'selection_pressure': Gen([0.2, 1.0, 5.0], 1.0, True),
 }

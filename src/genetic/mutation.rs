@@ -12,9 +12,7 @@ impl Generation {
             if rng.gen_bool(MUTATION_CHANCE) {
                 mutate(&mut individual.tree);
             }
-            if rng.gen_bool(MUTATION_SINGLE_CHANCE) {
-                mutate_single(&mut individual.tree);
-            }
+            mutate_single(&mut individual.tree);
         }
     }
 }
@@ -29,8 +27,14 @@ fn mutate(tree: &mut Node) {
 
 // Replace a random node with one of the same arity, keeping children
 fn mutate_single(tree: &mut Node) {
-    let node = tree.get_random_node_mut();
-    *node = random_with_children(node.children());
+    let mut rng = thread_rng();
+
+    for i in 0..tree.nodes().count() {
+        if rng.gen_bool(MUTATION_SINGLE_CHANCE) {
+            let (node, _) = tree.get_nth_node_mut(i).unwrap();
+            *node = random_with_children(node.children())
+        }
+    }
 }
 
 pub(crate) fn random_with_children(children: Vec<&Node>) -> Node {
