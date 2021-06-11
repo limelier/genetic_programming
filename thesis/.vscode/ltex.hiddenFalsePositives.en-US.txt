@@ -4,3 +4,9 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe dig, digUp and digDown commands allow erasing blocks from adjacent spaces.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qdetect, detectUp and detectDown will allow detecting blocks next to the turtle.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qdetect, detectUp and detectDown will allow detecting blocks next to the turtle.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qstyle=colouredRust\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstyle=colouredRust\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstyle=colouredRust, language=Rust\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qstyle=colouredRust, language=Rust\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstyle=colouredRust, language=Rust, basicstyle=\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qstyle=colouredRust, language=Rust, basicstyle=\\E$"}

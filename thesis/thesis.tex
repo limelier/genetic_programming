@@ -1,5 +1,10 @@
 \documentclass{report}
 \usepackage{setspace}
+\usepackage{listings, listings-rust} % Code blocks.
+\usepackage{hyperref}
+
+% Change default code listing style
+\lstset{style=colouredRust, language=Rust, basicstyle=\ttfamily\footnotesize}
 
 % Change the spacing between lines to 1.5
 \onehalfspacing
@@ -23,6 +28,8 @@ The idea that the thesis is built around is using genetic programming to create,
 In this chapter, I will outline the precise problem that needs to be solved, as well as the constraints of the work environment.
 
 \section{The turtle}
+\label{sec:turtle}
+
 The turtle is a robot that takes up one space in the voxel grid. Its state is described using a triplet of integer coordinates, as well as a direction aligned to one of the horizontal axes.
 
 For the precise abilities of the robot, I will take inspiration from ComputerCraft, the previously mentioned modification. From the library of commands available for turtle control in ComputerCraft, I will utilize only the following:
@@ -42,4 +49,133 @@ One interesting thing is that most of the commands only allow interactions direc
 In Minecraft, a turtle can interact with most blocks in the full 3D space, which is effectively unbounded on the horizontal axes. For my purposes, I will use a limited 3D space, only 16 blocks across in every direction. The robot can move only inside the training space, and only affect voxels contained within it. The area out-of-bounds can be considered, for the purposes of turtle logic, to be made up of unbreakable blocks.
 
 Every position in the space can be identified by a triplet of coordinates $(x, y, z)$ where $x, y, z = \overline{0..15}$ and where the $y$-axis is vertical and the $x$- and $z$-axes are horizontal. This is analogous to the inspiration material, as Minecraft also uses \emph{y-up} space. The positions can either be free, or taken up by a block (or voxel). The initial position of the turtle in the training space is $(0, 0, 0)$, and its direction is towards positive $x$. Every position is initially free, and may be filled by the turtle during its operation.
+
+\chapter{Technical details}
+The idea of the thesis is to attempt the generation of programs for turtles evolutionarily, using a genetic algorithm. Ideally, these programs should also be reasonably easy to translate from the abstraction used in the training algorithm to Lua code that can actually be run on a Minecraft turtle. However, this presents a problem: genetic programming works more naturally with programs structured as trees, but Lua is not a functional language, and thus does not translate easily into trees. This means that an additional layer is required, leading to the following program structure:
+
+\begin{itemize}
+    \item a simulator for the turtle and the voxel space that can easily be controlled by outside code
+    \item a virtual machine that can run linear programs (that can easily be translated to imperative code) that can interact with an array of registers and with the simulator
+    \item a higher level tree-based structure for programs that can easily be mutated and mixed together
+    \item a genetic algorithm that works with populations of tree-based programs, evolving them over time
+\end{itemize}
+
+This structure is implemented in Rust, a modern multi-paradigm programming language presenting several advantages, including:
+\begin{itemize}
+    \item high-level language features with a low overhead
+    \item static typing, leading to higher performance
+    \item a memory allocation system that is safe without the need for a garbage collector, leading to easy parallelization
+\end{itemize}
+Rust's memory safety, which prevents many hard to track down bugs, has lead to it being used alongside C and C++ in projects such as the Linux kernel. High performance and concurrency are required for a genetic algorithm as well, so I felt that Rust was a good fit for this project.
+
+\section{The simulator}
+The simulator for the training space and the turtle itself is fairly simple. Its structure is as follows:
+
+\begin{lstlisting}[language=Rust]
+pub struct Simulator {
+    blocks: BlockSpace, // 3D array of bytes
+    turtle: Turtle
+}
+\end{lstlisting}
+
+The blocks are stored in a 3D array.
+
+\begin{lstlisting}
+pub(crate) const BLOCK_SPACE_SIZE: usize = 16;
+pub type BlockSpace = 
+    [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE];
+\end{lstlisting}
+
+The turtle has a position (a triple of coordinates) and a facing direction (on either of the horizontal axes, towards plus or minus).
+\begin{lstlisting}
+struct Vector3(isize, isize, isize);
+enum Orientation {
+    XPos,
+    XNeg,
+    ZPos,
+    ZNeg
+}
+
+struct Turtle {
+    pos: Vector3,
+    facing: Orientation
+}
+\end{lstlisting}
+
+Commands to the turtle are called as methods on the \verb|Simulator| instance. These methods will modify the data of the turtle and the blocks as needed. For example, the following is the code for attempting to move the turtle in a direction (forwards, up or down):
+
+\begin{lstlisting}
+pub fn try_move(&mut self, dir: Direction) -> bool {
+    let pos = self.turtle.get_adjacent(dir);
+    if Self::pos_in_bounds(pos) {
+        let Vector3(x, y, z) = pos;
+        if self.blocks[x as usize][y as usize][z as usize] == 0 {
+            self.turtle.shift(pos);
+            true
+        } else {
+            false
+        }
+    } else {
+        false
+    }
+}
+\end{lstlisting}
+
+\section{Linear programs and the virtual machine}
+Linear programs are encapsulated with the state of the virtual machine that runs them as a single entity. This leads to the following structure:
+
+\begin{lstlisting}
+pub struct Program {
+    instructions: Vec<Instruction>,
+    labels: HashMap<Label, Ins>,
+    registers: [Val; 256],
+    instruction_pointer: Ins,
+    halted: bool,
+    simulator: Simulator,
+}
+\end{lstlisting}
+
+The member variable \verb|instructions| contains the actual ``code'' of the program, while the rest represent either information derived from it (\verb|labels|, used for evaluating jump instructions) or the current state of the VM. In detail, these are:
+
+\begin{itemize}
+    \item \verb|registers|, which are variables that can be changed by instructions in the code
+    \item \verb|instruction_pointer|, which stores the index of the currently executed instruction in the instruction array
+    \item \verb|halted|, a boolean value which becomes \verb|true| when execution has finished
+    \item the \verb|simulator|, which can be interacted with using certain ``turtle'' instructions
+\end{itemize}
+
+Each instruction in \verb|instructions| is one of several types:
+\begin{lstlisting}
+pub enum Instruction {
+    /// Do operation on register alone
+    Unary(Reg, UnaryOperation),
+    /// Do operation on register using source
+    Binary(Reg, Source, BinaryOperation),
+    /// Jump to the given instruction if it exists, and if the condition is met
+    Jump (Label, JumpCondition),
+    /// Compare register with source, store value in comparison register
+    Compare (Reg, Source),
+    /// Print the source value
+    Print (Source),
+    /// Execute turtle operations in the simulator
+    Turtle (TurtleOperation),
+    /// Label for jumping
+    Label (Label),
+    /// Do nothing
+    Pass
+}
+\end{lstlisting}
+
+The \verb|UnaryOperation| type holds unary operations such as incrementing or shifting, while \verb|BinaryOperation| holds binary operations such as addition or the binary ``AND'' operation. \verb|TurtleOperation|, on the other hand, holds operations specific to the problem domain, as described in \autoref{sec:turtle}:
+
+\begin{lstlisting}
+pub enum TurtleOperation {
+    Move(Direction),
+    Turn(Side),
+    Place(Direction),
+    Dig(Direction),
+    Detect(Direction),
+}
+\end{lstlisting}
+
 \end{document}
