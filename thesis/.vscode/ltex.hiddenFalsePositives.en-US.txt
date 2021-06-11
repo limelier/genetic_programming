@@ -10,3 +10,8 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qstyle=colouredRust, language=Rust\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstyle=colouredRust, language=Rust, basicstyle=\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qstyle=colouredRust, language=Rust, basicstyle=\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qarduino\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qpub(crate) const BLOCK_SPACE_SIZE: usize = 16; pub type BlockSpace = [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE];\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfontsize=\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfontsize= frame=leftline framesep=2mm rulecolor=lightgray\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qfontsize= frame=leftline framesep=2mm rulecolor=lightgray\\E$"}

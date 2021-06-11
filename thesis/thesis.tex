@@ -1,11 +1,12 @@
 \documentclass{report}
 \usepackage{setspace}
-\usepackage{listings, listings-rust} % Code blocks.
+\usepackage{minted}
 \usepackage{hyperref}
 
-% Change default code listing style
-\lstset{style=colouredRust, language=Rust, basicstyle=\ttfamily\footnotesize}
-
+\setminted{fontsize=\small}
+\setminted{frame=leftline}
+\setminted{framesep=2mm}
+\setminted{rulecolor=lightgray}
 % Change the spacing between lines to 1.5
 \onehalfspacing
 
@@ -71,23 +72,23 @@ Rust's memory safety, which prevents many hard to track down bugs, has lead to i
 \section{The simulator}
 The simulator for the training space and the turtle itself is fairly simple. Its structure is as follows:
 
-\begin{lstlisting}[language=Rust]
+\begin{minted}{rust}
 pub struct Simulator {
     blocks: BlockSpace, // 3D array of bytes
     turtle: Turtle
 }
-\end{lstlisting}
+\end{minted}
 
 The blocks are stored in a 3D array.
 
-\begin{lstlisting}
+\begin{minted}{rust}
 pub(crate) const BLOCK_SPACE_SIZE: usize = 16;
 pub type BlockSpace = 
     [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE];
-\end{lstlisting}
+\end{minted}
 
 The turtle has a position (a triple of coordinates) and a facing direction (on either of the horizontal axes, towards plus or minus).
-\begin{lstlisting}
+\begin{minted}{rust}
 struct Vector3(isize, isize, isize);
 enum Orientation {
     XPos,
@@ -100,11 +101,11 @@ struct Turtle {
     pos: Vector3,
     facing: Orientation
 }
-\end{lstlisting}
+\end{minted}
 
 Commands to the turtle are called as methods on the \verb|Simulator| instance. These methods will modify the data of the turtle and the blocks as needed. For example, the following is the code for attempting to move the turtle in a direction (forwards, up or down):
 
-\begin{lstlisting}
+\begin{minted}{rust}
 pub fn try_move(&mut self, dir: Direction) -> bool {
     let pos = self.turtle.get_adjacent(dir);
     if Self::pos_in_bounds(pos) {
@@ -119,12 +120,12 @@ pub fn try_move(&mut self, dir: Direction) -> bool {
         false
     }
 }
-\end{lstlisting}
+\end{minted}
 
 \section{Linear programs and the virtual machine}
 Linear programs are encapsulated with the state of the virtual machine that runs them as a single entity. This leads to the following structure:
 
-\begin{lstlisting}
+\begin{minted}{rust}
 pub struct Program {
     instructions: Vec<Instruction>,
     labels: HashMap<Label, Ins>,
@@ -133,7 +134,7 @@ pub struct Program {
     halted: bool,
     simulator: Simulator,
 }
-\end{lstlisting}
+\end{minted}
 
 The member variable \verb|instructions| contains the actual ``code'' of the program, while the rest represent either information derived from it (\verb|labels|, used for evaluating jump instructions) or the current state of the VM. In detail, these are:
 
@@ -145,7 +146,7 @@ The member variable \verb|instructions| contains the actual ``code'' of the prog
 \end{itemize}
 
 Each instruction in \verb|instructions| is one of several types:
-\begin{lstlisting}
+\begin{minted}{rust}
 pub enum Instruction {
     /// Do operation on register alone
     Unary(Reg, UnaryOperation),
@@ -164,11 +165,11 @@ pub enum Instruction {
     /// Do nothing
     Pass
 }
-\end{lstlisting}
+\end{minted}
 
 The \verb|UnaryOperation| type holds unary operations such as incrementing or shifting, while \verb|BinaryOperation| holds binary operations such as addition or the binary ``AND'' operation. \verb|TurtleOperation|, on the other hand, holds operations specific to the problem domain, as described in \autoref{sec:turtle}:
 
-\begin{lstlisting}
+\begin{minted}{rust}
 pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
@@ -176,6 +177,6 @@ pub enum TurtleOperation {
     Dig(Direction),
     Detect(Direction),
 }
-\end{lstlisting}
+\end{minted}
 
 \end{document}
