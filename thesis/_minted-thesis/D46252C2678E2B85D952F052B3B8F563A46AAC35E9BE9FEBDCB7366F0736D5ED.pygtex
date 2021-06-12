@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Instruction}::\PYG{n}{Jump}\PYG{p}{(}\PYG{n}{label}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{condition}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{do\PYGZus{}jump}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{match}\PYG{+w}{ }\PYG{n}{condition}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{JumpCondition}::\PYG{n+nb}{None}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n}{JumpCondition}::\PYG{n}{Zero}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}reg}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n}{JumpCondition}::\PYG{n}{NotZero}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}reg}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n}{JumpCondition}::\PYG{n}{Compare}\PYG{p}{(}\PYG{n}{ord}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}
+\PYG{+w}{            }\PYG{n}{ord\PYGZus{}to\PYGZus{}num}\PYG{p}{(}\PYG{n}{ord}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}reg}\PYG{p}{(}\PYG{n}{COMPARE\PYGZus{}REGISTER}\PYG{p}{),}
+\PYG{+w}{        }\PYG{n}{JumpCondition}::\PYG{n}{NotCompare}\PYG{p}{(}\PYG{n}{ord}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}
+\PYG{+w}{            }\PYG{n}{ord\PYGZus{}to\PYGZus{}num}\PYG{p}{(}\PYG{n}{ord}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}reg}\PYG{p}{(}\PYG{n}{COMPARE\PYGZus{}REGISTER}\PYG{p}{),}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{};}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{do\PYGZus{}jump}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{destination}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{labels}\PYG{p}{.}\PYG{n}{get}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{label}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{destination}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb}{None}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{Err}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Attempted to jump to missing label\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{destination}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{destination}\PYG{p}{.}\PYG{n}{unwrap}\PYG{p}{();}
+\PYG{+w}{        }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{instruction\PYGZus{}pointer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{destination}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{jumped}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{},}
+\end{Verbatim}

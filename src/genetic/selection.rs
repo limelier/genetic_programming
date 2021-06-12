@@ -42,7 +42,11 @@ impl Generation {
         }
 
         let mut rng = thread_rng();
-        let dist = WeightedIndex::new(&fits).unwrap();
+        // let dist = WeightedIndex::new(&fits).unwrap(); // keeps panicking, unwrap on Err, but only rarely
+        let dist = WeightedIndex::new(&fits).unwrap_or_else(|_| {
+            dbg!(fits); // why DO the weights keep failing?
+            panic!() // todo remove debug code
+        });
         let chosen: Vec<usize> = (&mut rng)
             .sample_iter(dist)
             .take(POPULATION_SIZE + CROSSOVER_SIZE)

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct} \PYG{n+nc}{Vector3}\PYG{p}{(}\PYG{k+kt}{isize}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{isize}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{isize}\PYG{p}{);}
+\PYG{k}{enum} \PYG{n+nc}{Orientation}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{XPos}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{XNeg}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{ZPos}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{ZNeg}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{struct} \PYG{n+nc}{Turtle}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{pos}: \PYG{n+nc}{Vector3}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{facing}: \PYG{n+nc}{Orientation}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

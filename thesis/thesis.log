@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  11 JUN 2021 20:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  12 JUN 2021 14:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -249,15 +249,27 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
 )
 \Hy@SectionHShift=\skip54
+) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+ (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen160
+\Gin@req@width=\dimen161
 ) (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
  (/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
- (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
-)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
@@ -279,25 +291,25 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-Package hyperref Info: Link coloring OFF on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+Package hyperref Info: Link coloring OFF on input line 20.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
@@ -307,9 +319,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count296
 )
-LaTeX Info: Redefining \ref on input line 18.
-LaTeX Info: Redefining \pageref on input line 18.
-LaTeX Info: Redefining \nameref on input line 18.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
  (/home/limelier/docs/college/genetic_programming/thesis/thesis.out) (/home/limelier/docs/college/genetic_programming/thesis/thesis.out)
 \@outlinefile=\write5
 \openout5 = `thesis.out'.
@@ -317,23 +329,28 @@ LaTeX Info: Redefining \nameref on input line 18.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count297
-\scratchdimen=\dimen160
+\scratchdimen=\dimen162
 \scratchbox=\box57
 \nofMPsegments=\count298
 \nofMParguments=\count299
 \everyMPshowfont=\toks20
 \MPscratchCnt=\count300
-\MPscratchDim=\dimen161
+\MPscratchDim=\dimen163
 \MPnumerator=\count301
 \makeMPintoPDFobject=\count302
 \everyMPtoPDFconversion=\toks21
-)
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 20.
+(Font)              <12> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 20.
+(Font)              <6> on input line 22.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -341,7 +358,7 @@ Chapter 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 \chapter
+l.30 \chapter
              {Practical context} [1
 
 ]
@@ -350,9 +367,9 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 52.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 52.
+(Font)              <5> on input line 54.
  [3]
 Chapter 3.
 [4
@@ -381,25 +398,61 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/D237C78617A864DE93136460A4DEB908A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/11CAE837DED785630A34A80D41DC8095A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [7] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/11CAE837DED785630A34A80D41DC8095A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [7]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/3066D245496E087DE60DCA285D895FF9A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/C6309B9BD4209C862DD7D7F9B64B6ECEA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [8]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/D46252C2678E2B85D952F052B3B8F563A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/13128D9C303C037320C7B94CDEC87C72A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [9])
+<./resources//binary_mutation.png, id=100, 413.545pt x 162.6075pt>
+File: ./resources//binary_mutation.png Graphic file (type png)
+<use ./resources//binary_mutation.png>
+Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 283.
+(pdftex.def)             Requested size: 310.15797pt x 121.95532pt.
+ [10 </home/limelier/docs/college/genetic_programming/thesis/./resources//binary_mutation.png>]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/DDFE99D81B777AC43F66577C0B7DB920A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/FEC042C5E176807E405BDAD5DE0E9418A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [11])
+<./resources//tree_1.png, id=112, 261.97874pt x 181.67876pt>
+File: ./resources//tree_1.png Graphic file (type png)
+<use ./resources//tree_1.png>
+Package pdftex.def Info: ./resources//tree_1.png  used on input line 331.
+(pdftex.def)             Requested size: 196.48357pt x 136.25871pt.
+ [12 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_1.png>]
+<./resources//tree_2.png, id=120, 282.05376pt x 201.75375pt>
+File: ./resources//tree_2.png Graphic file (type png)
+<use ./resources//tree_2.png>
+Package pdftex.def Info: ./resources//tree_2.png  used on input line 354.
+(pdftex.def)             Requested size: 282.05305pt x 201.75325pt.
+ [13 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_2.png>] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: CB21F64D9CDE3F05E4725233250E7896;1008.
+(rerunfilecheck)             Checksum: 6FDE5598505EB359757C4B2F3C2CC7DC;1495.
 runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 11183 strings out of 478994
- 183885 string characters out of 5864751
- 528510 words of memory out of 5000000
- 28490 multiletter control sequences out of 15000+600000
- 409466 words of font info for 48 fonts, out of 8000000 for 9000
+ 11556 strings out of 478994
+ 192229 string characters out of 5864751
+ 539746 words of memory out of 5000000
+ 28810 multiletter control sequences out of 15000+600000
+ 409773 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,6n,88p,654b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,7n,88p,654b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (8 pages, 131345 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (14 pages, 164198 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 170 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

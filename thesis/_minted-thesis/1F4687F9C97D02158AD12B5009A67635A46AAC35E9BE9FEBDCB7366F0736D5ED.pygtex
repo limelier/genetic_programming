@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{struct} \PYG{n+nc}{Program}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{instructions}: \PYG{n+nb}{Vec}\PYG{o}{\PYGZlt{}}\PYG{n}{Instruction}\PYG{o}{\PYGZgt{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{labels}: \PYG{n+nc}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{n}{Label}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Ins}\PYG{o}{\PYGZgt{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{registers}: \PYG{p}{[}\PYG{n}{Val}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{256}\PYG{p}{],}
+\PYG{+w}{    }\PYG{n}{instruction\PYGZus{}pointer}: \PYG{n+nc}{Ins}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{halted}: \PYG{k+kt}{bool}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{simulator}: \PYG{n+nc}{Simulator}\PYG{p}{,}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

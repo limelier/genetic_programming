@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{p}{(}\PYG{k}{crate}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{BLOCK\PYGZus{}SPACE\PYGZus{}SIZE}: \PYG{k+kt}{usize} \PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{16}\PYG{p}{;}
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{type} \PYG{n+nc}{BlockSpace}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{p}{[[[}\PYG{k+kt}{u8}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{BLOCK\PYGZus{}SPACE\PYGZus{}SIZE}\PYG{p}{];}\PYG{+w}{ }\PYG{n}{BLOCK\PYGZus{}SPACE\PYGZus{}SIZE}\PYG{p}{];}\PYG{+w}{ }\PYG{n}{BLOCK\PYGZus{}SPACE\PYGZus{}SIZE}\PYG{p}{];}
+\end{Verbatim}

@@ -2,7 +2,9 @@
 \usepackage{setspace}
 \usepackage{minted}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
+\graphicspath{ {./resources/} }
 \setminted{fontsize=\small}
 \setminted{frame=leftline}
 \setminted{framesep=2mm}
@@ -178,5 +180,182 @@ pub enum TurtleOperation {
     Detect(Direction),
 }
 \end{minted}
+
+To execute the code, the VM goes through instructions step by step, processing each one. For example, the following code snippet handles the \verb|Unary| instruction type:
+
+\begin{minted}{rust}
+Instruction::Unary(reg, op) => {
+    let old = self.get_reg(reg);
+    let new =match op {
+        UnaryOperation::Not => !old,
+        UnaryOperation::ShiftLeft => {
+            let lost_bit = old & (1 << 7);
+            self.set_reg(RESULT_REGISTER, lost_bit);
+            old << 1
+        },
+        UnaryOperation::ShiftRight => {
+            let lost_bit = old & 1;
+            self.set_reg(RESULT_REGISTER, lost_bit);
+            old >> 1
+        },
+        UnaryOperation::RotateLeft => i8::rotate_left(old, 1),
+        UnaryOperation::RotateRight => i8::rotate_right(old, 1),
+        UnaryOperation::Increment => i8::overflowing_add(old, 1).0,
+        UnaryOperation::Decrement => i8::overflowing_sub(old, 1).0,
+    };
+    self.set_reg(reg, new);
+}
+\end{minted}
+
+One can notice here the use of a special register, \verb|RESULT_REGISTER|. It and the \verb|COMPARE_REGISTER|, are set by some operations and can be read like any other register. This allows programs to read and use, for example, the result of turtle operations, bits lost by the bit shift operation, or the results of comparisons.
+
+\begin{minted}{rust}
+Instruction::Compare(reg, src) => {
+    let other = self.get_source(src);
+    let this = self.get_reg(reg);
+    self.set_reg(COMPARE_REGISTER, match i8::cmp(&this, &other) {
+        Ordering::Less => -1,
+        Ordering::Equal => 0,
+        Ordering::Greater => 1,
+    });
+}
+\end{minted}
+
+While for most instructions the instruction pointer will just be incremented by one each time, the jump instructions can use labels to alter program flow conditionally:
+
+\begin{minted}{rust}
+Instruction::Jump(label, condition) => {
+    let do_jump = match condition {
+        JumpCondition::None => true,
+        JumpCondition::Zero(reg) => self.get_reg(reg) == 0,
+        JumpCondition::NotZero(reg) => self.get_reg(reg) != 0,
+        JumpCondition::Compare(ord) =>
+            ord_to_num(ord) == self.get_reg(COMPARE_REGISTER),
+        JumpCondition::NotCompare(ord) =>
+            ord_to_num(ord) != self.get_reg(COMPARE_REGISTER),
+    };
+    if do_jump {
+        let destination = self.labels.get(&label);
+        if destination == None {
+            return Err("Attempted to jump to missing label");
+        }
+        let destination = destination.unwrap();
+        self.instruction_pointer = *destination;
+        jumped = true;
+    }
+},
+\end{minted}
+
+Lastly, turtle operations interact with the simulator and place their results in the \verb|RESULT_REGISTER|.
+
+\begin{minted}{rust}
+Instruction::Turtle(op) => {
+    match op {
+        TurtleOperation::Move(dir) => {
+            let res = self.simulator.try_move(dir) as i8;
+            self.set_reg(RESULT_REGISTER, res);
+        },
+        TurtleOperation::Turn(side) => self.simulator.turn(side),
+        TurtleOperation::Place(dir) => {
+            let res = self.simulator.try_place(dir) as i8;
+            self.set_reg(RESULT_REGISTER, res);
+        },
+        TurtleOperation::Dig(dir) => {
+            let res = self.simulator.try_dig(dir) as i8;
+            self.set_reg(RESULT_REGISTER, res);
+        },
+        TurtleOperation::Detect(dir) => {
+            let res = self.simulator.detect(dir) as i8;
+            self.set_reg(RESULT_REGISTER, res);
+        },
+    }
+}
+\end{minted}
+
+\section{Tree-based programs}
+\subsection{Motivation}
+The virtual machine can run fairly complicated programs, but linear programs are not a good fit for genetic programming. A genetic algorithm needs to be able to mutate individuals and splice them together, and linear programs are too sensitive to change for this to work well. A perfectly functional linear program can be easily be completely broken by changing a single instruction.
+
+In fact, using linear programs directly was something I initially attempted; I would translate an instruction into one or more bytes, effectively turning a set of instructions into a byte array. This, however, made the programs even more sensitive to change, as modifying a single byte belonging to a multi-byte instruction could make it so that the byte array could not even be translated into working code anymore. Even if the bytes could be translated into code, there was no guarantee that a single-byte mutation would not radically change the functionality of the program.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{binary_mutation}
+    \caption{Mutating the first byte of a three-byte instruction can turn it into a two-byte instruction, leaving one byte to change the meaning of bytes after it.}
+\end{figure}
+
+Using linear programs for genetic programming is not impossible, and it has been done to great success in the past. However, the extra complexity that this would introduce was something I wanted to avoid. As such, I opted to instead use tree-based programs, something which is more natural to functional programming than imperative programming. Still, converting a tree to an imperative program is not difficult, and trees would be much easier to work with for the genetic algorithm.
+
+\subsection{Structure}
+The tree-based programs are constructed using nodes, which can have a function or value and, depending on their arity, a number of children. The types of nodes implemented are as follows:
+
+\begin{minted}{rust}
+pub enum Node {
+    Null,
+    Val(Source),
+    Unary(UnaryOperation, Box<Node>),
+    Binary(BinaryOperation, Box<Node>, Box<Node>),
+    Then(Box<Node>, Box<Node>),
+    Print(Box<Node>),
+    Store(Reg, Box<Node>),
+    /// condition, if_not_zero, if_zero
+    If(Box<Node>, Box<Node>, Box<Node>),
+    /// condition, block; repeat block until condition equals zero
+    While(Box<Node>, Box<Node>),
+    /// count, block; repeat block count times
+    Repeat(Box<Node>, Box<Node>),
+    Compare(Box<Node>, Box<Node>),
+    Turtle(TurtleOperation),
+}
+\end{minted}
+
+I will also be representing these trees graphically, to aid in their understanding for the purposes of this thesis. For example, the following literal is equivalent to the image below it:
+\begin{minted}{rust}
+Binary(
+    BinaryOperation::Add,
+    Box::from(Binary(
+        BinaryOperation::Add,
+        Box::from(Val(Source::Value(1))),
+        Box::from(Val(Source::Value(2))),
+    )),
+    Box::from(Binary(
+        BinaryOperation::Multiply,
+        Box::from(Val(Source::Value(3))),
+        Box::from(Val(Source::Value(4))),
+    )),
+)
+\end{minted}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{tree_1}
+    \caption{A simple tree-based program}
+\end{figure}
+
+Since the purpose of these programs is to build structures, they must allow for side effects. To this purpose, the full instruction set is as follows:
+\begin{itemize}
+    \item \verb|Null|: do nothing.
+    \item \verb|Val|: supply a value, either from a register or directly.
+    \item \verb|Unary| and \verb|Binary|: execute an operation, using its children as parameters.
+    \item \verb|Then|: execute the left child, followed by the right one.
+    \item \verb|Print|: print the value of its child returning it, used for debugging.
+    \item \verb|Store|: store the value of its child in the given register.
+    \item \verb|If|: depending on the value of its leftmost child, execute and return the value of either its middle child or the right one.
+    \item \verb|While|: while its left child has a value different from $0$, execute the right one, returning its value on the last iteration. 
+    \item \verb|Repeat|: repeat its right child as many times as the value of the left child.
+    \item \verb|Compare|: compare the left and right children, returning the comparison result.
+    \item \verb|Turtle|: execute a turtle operation and return its result.
+\end{itemize}
+
+When mutating a tree is required, it is possible to change out a node for one of the same arity, or even for a completely new sub-tree, and still have a functioning program.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{tree_2}
+    \caption{A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.}
+\end{figure}
+
+\subsection{Translation}
+The end-goal, as before, is to generate a linear program. This means that a mechanism to convert a tree-based program into a linear one is required.
 
 \end{document}

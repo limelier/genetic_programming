@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Binary}\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{BinaryOperation}::\PYG{n}{Add}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Binary}\PYG{p}{(}
+\PYG{+w}{        }\PYG{n}{BinaryOperation}::\PYG{n}{Add}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Val}\PYG{p}{(}\PYG{n}{Source}::\PYG{n}{Value}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{))),}
+\PYG{+w}{        }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Val}\PYG{p}{(}\PYG{n}{Source}::\PYG{n}{Value}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{))),}
+\PYG{+w}{    }\PYG{p}{)),}
+\PYG{+w}{    }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Binary}\PYG{p}{(}
+\PYG{+w}{        }\PYG{n}{BinaryOperation}::\PYG{n}{Multiply}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Val}\PYG{p}{(}\PYG{n}{Source}::\PYG{n}{Value}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{))),}
+\PYG{+w}{        }\PYG{n+nb}{Box}::\PYG{n}{from}\PYG{p}{(}\PYG{n}{Val}\PYG{p}{(}\PYG{n}{Source}::\PYG{n}{Value}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{))),}
+\PYG{+w}{    }\PYG{p}{)),}
+\PYG{p}{)}
+\end{Verbatim}

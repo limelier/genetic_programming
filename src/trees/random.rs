@@ -39,14 +39,6 @@ impl Node {
         self.get_nth_node_mut(index).unwrap()
     }
 
-    // Get a mutable reference to a random node in the tree
-    pub(crate) fn get_random_node_mut(&mut self) -> &mut Node {
-        let count = self.nodes().count();
-        let idx = thread_rng().gen_range(0..count);
-
-        self.get_nth_node_mut(idx).unwrap().0
-    }
-
     /// Move down randomly to a certain depth; stop if a leaf occurs before then
     pub(crate) fn randomly_descend(&self, depth: usize) -> &Node {
         if depth == 0 || self.is_leaf() {

@@ -10,8 +10,8 @@ use crate::trees::definitions::Node;
 
 #[derive(PartialOrd, PartialEq, Copy, Clone, Debug)]
 pub struct Result {
-    pub dice_index: f64,
     pub(crate) score: f64,
+    pub dice_index: f64,
     pub(crate) perfect: bool,
 }
 
@@ -77,7 +77,7 @@ class Gen:
 
 
 ranges = {
-    'individuals_per_method_and_depth': Gen(range(2, 31, 2), 10, False),
+    'individuals_per_method_and_depth': Gen(range(2, 31, 2), 5, False),
     'generations': Gen(range(100, 5000, 100), 1000, False),
     'p_grow_leaf': Gen(arange(0.0, 0.6, .05), 0.1, False),
     'min_gen_depth': Gen(range(1, 6, 1), 2, False),
