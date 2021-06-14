@@ -19,3 +19,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QComputerCraft community, ComputerCraft Wiki MediaWiki, 12 Sep 2012\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThis method, proposed by J.R. Koza \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, is called “ramped half-and-half”.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThis measurement is done using the Sørensen–Dice coefficient\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, henceforth referred to as the “Dice index”.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QThe \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q field of each individual is made up of its \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, its unmodified \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, and a boolean value \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q which is set to true if it has a Dice index of 1.\\E$"}

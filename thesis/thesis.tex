@@ -583,7 +583,33 @@ The \emph{depth softener} is a parameter of the algorithm  used to control the i
 
 Individuals whose tree exceeds the allowed depth, or whose program either takes too long or terminates with an error, receive a score of $-\infty$.
 
+The \verb|result| field of each individual is made up of its \verb|score|, its unmodified \verb|dice_index|, and a boolean value \verb|perfect| which is set to true if it has a Dice index of 1.
+
+After evaluating each individual, a generation will also store the best score of any individual in the population, as well as the worst finite score found.
+
 \subsection{Selection}
+
+Selection is the process of picking individuals from the current generation to use in the creation of the next one. These individuals are chosen based on their score in one of two ways.
+
+\emph{Tournament selection} involves running a number ``tournaments'' and picking the winner as a parent for the next generation. A tournament involves randomly selecting a handful of individuals from the population, and sorting them by their results. Then, the best individual in this set is chosen with probability $p$, the second with probability $(1-p)p$, etc. If no other individual is chosen, the worst one will be.
+
+Tournament selection only picks parents, so the entirety of the next population will be constructed using crossover.
+
+\emph{Fitness-weighted selection}, on the other hand, is done on the whole population at once. First, each individual's score $s$ is mapped into a fitness $f$ using the following formula:
+
+$$f = \left(\frac{s - s_{min}}{s_{max} - s_{min}}\right)^{SP}$$
+\begin{align*}\quad
+    \text{where}\quad
+    s_{min} &= \text{the worst score in the generation}\\
+    s_{max} &= \text{the best\footnotemark score in the generation}\\
+    SP &= \text{selection pressure}
+\end{align*}
+
+\footnotetext{If every individual in the generation has the same score, then $s_{max}$ will be equal to $s_{min} + 0.1$ instead, in order to avoid division by zero.}
+
+The selection pressure is a parameter that dictates how strongly the selection process is weighed in favor of better individuals.
+
+After the fitness of each individual is calculated, the function uses them as weights to randomly pick (with replacement) a number of individuals from the population to either be copied directly to the next generation, or to serve as parents during the crossover process.
 
 \subsection{Crossover}
 

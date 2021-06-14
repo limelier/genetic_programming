@@ -30,16 +30,22 @@ impl Generation {
         }
 
         // calculate fitness values
-        let mut fits = Vec::with_capacity(POPULATION_SIZE);
-        for i in 0..POPULATION_SIZE {
-            let score = self.population[i].result.unwrap().score;
-            fits.push(if score.is_finite() {
-                ((score - worst_score)/(best_score - worst_score) + 1.0).powf(SELECTION_PRESSURE)
-            } else {
-                0.0
-            });
-            1;
-        }
+        let fits = if best_score.is_finite() {
+            let mut fits = Vec::with_capacity(POPULATION_SIZE);
+            for i in 0..POPULATION_SIZE {
+                let score = self.population[i].result.unwrap().score;
+                fits.push(if score.is_finite() {
+                    ((score - worst_score)/(best_score - worst_score) + 1.0).powf(SELECTION_PRESSURE)
+                } else {
+                    0.0
+                });
+                1;
+            }
+            fits
+        } else {
+            // set all weights to 1 if all scores are -inf
+            Vec::from([1f64; POPULATION_SIZE])
+        };
 
         let mut rng = thread_rng();
         // let dist = WeightedIndex::new(&fits).unwrap(); // keeps panicking, unwrap on Err, but only rarely
