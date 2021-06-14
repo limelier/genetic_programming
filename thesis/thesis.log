@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  14 JUN 2021 17:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  14 JUN 2021 18:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -508,15 +508,24 @@ Package pdftex.def Info: ./resources//tree_3.png  used on input line 462.
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/0E9CAFACBF1BF5F78BAB1E9F1A2B2F8EA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [17])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/B38D78B54C9D9AC70BFDFB89769160FDA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [18] [19] [20] [21]
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/B38D78B54C9D9AC70BFDFB89769160FDA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [18] [19] [20]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/D51237664265247BE12D79691BEB8BD4A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [21])
+<./resources//crossover.png, id=223, 573.14125pt x 553.06625pt>
+File: ./resources//crossover.png Graphic file (type png)
+<use ./resources//crossover.png>
+Package pdftex.def Info: ./resources//crossover.png  used on input line 649.
+(pdftex.def)             Requested size: 343.8874pt x 331.8423pt.
+ [22 </home/limelier/docs/college/genetic_programming/thesis/./resources//crossover.png>] [23]
 Chapter 4.
-[22
+[24
 
 ]
 Chapter 5.
-(/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [23
+(/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [25
 
-]) [24
+]) [26
 
 ] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 Package rerunfilecheck Info: File `thesis.out' has not changed.
@@ -525,18 +534,18 @@ runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 12264 strings out of 478994
- 204616 string characters out of 5864751
- 551558 words of memory out of 5000000
- 29443 multiletter control sequences out of 15000+600000
+ 12279 strings out of 478994
+ 205332 string characters out of 5864751
+ 551631 words of memory out of 5000000
+ 29452 multiletter control sequences out of 15000+600000
  411200 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,15n,88p,760b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,15n,88p,760b,642s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (25 pages, 268144 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (27 pages, 290596 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 247 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 322 PDF objects out of 1000 (max. 8388607)
+ 255 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 178 words of extra memory for PDF output out of 10000 (max. 10000000)
 

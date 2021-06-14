@@ -613,6 +613,43 @@ After the fitness of each individual is calculated, the function uses them as we
 
 \subsection{Crossover}
 
+To easily explain crossover, both in my code and this sub-section, I will borrow a couple of terms from the field of the horticultural technique of \emph{grafting}, which involves joining tissue from two different plants in order to continue their growth together. In this context, the lower part of the combined plant is called a rootstock or \emph{stock}, while the upper part is called a \emph{scion}. I, however, will be using the two terms to refer to the two trees that will provide the necessary parts, the parents of the new child.
+
+Crossover, for the purposes of genetic algorithms, involves taking two individuals and mixing parts of them together to create a new individual. This is analogous to the real-life genetic process of chromosomal crossover, where matching regions on matching chromosomes break apart and reconnect with each other.
+
+In my code, crossover involves the following process:
+\begin{itemize}
+    \item pick a weighted-random node of the stock, with leaves having a weight of $1$ and other nodes a weight of $9$, a method again suggested by Koza\cite{koza}
+    \item randomly descend the scion to a depth equal to that of the selected node (stopping if a leaf node is hit)
+    \item choose a random node from the resulting subtree of the scion, weighing the crossover process in favor of exchanging less genetic material
+    \item replace the selected stock node with the chosen node from the scion
+\end{itemize}
+
+\begin{minted}{rust}
+fn crossover(stock: &Node, scion: &Node) -> Node {
+    let mut stock = stock.clone();
+    let (stock_point, stock_point_depth) = stock.get_weighted_node_mut();
+
+    // randomly descend as many levels as the stock point is deep, *then* choose a random node
+    let scion_point = scion
+        .randomly_descend(stock_point_depth)
+        .get_weighted_node();
+
+    let mut new_branch = scion_point.clone();
+    std::mem::swap(stock_point, &mut new_branch);
+
+    stock
+}
+\end{minted}
+
+This operation effectively replaces a subtree of the stock with that one of the scion's.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.60]{crossover}
+    \caption{A stock and a scion combine to produce a single child.}
+\end{figure}
+
 \subsection{Mutation}
 
 \chapter{Experiments}

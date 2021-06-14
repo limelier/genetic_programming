@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{fn} \PYG{n+nf}{crossover}\PYG{p}{(}\PYG{n}{stock}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{Node}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{scion}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{Node}\PYG{p}{)}\PYG{+w}{ }\PYGZhy{}\PYGZgt{} \PYG{n+nc}{Node}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{stock}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{stock}\PYG{p}{.}\PYG{n}{clone}\PYG{p}{();}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{stock\PYGZus{}point}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stock\PYGZus{}point\PYGZus{}depth}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{stock}\PYG{p}{.}\PYG{n}{get\PYGZus{}weighted\PYGZus{}node\PYGZus{}mut}\PYG{p}{();}
+
+\PYG{+w}{    }\PYG{c+c1}{// randomly descend as many levels as the stock point is deep, *then* choose a random node}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{scion\PYGZus{}point}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{scion}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n}{randomly\PYGZus{}descend}\PYG{p}{(}\PYG{n}{stock\PYGZus{}point\PYGZus{}depth}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{.}\PYG{n}{get\PYGZus{}weighted\PYGZus{}node}\PYG{p}{();}
+
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{new\PYGZus{}branch}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{scion\PYGZus{}point}\PYG{p}{.}\PYG{n}{clone}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{std}::\PYG{n}{mem}::\PYG{n}{swap}\PYG{p}{(}\PYG{n}{stock\PYGZus{}point}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{new\PYGZus{}branch}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{n}{stock}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
