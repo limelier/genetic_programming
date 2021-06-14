@@ -1,14 +1,26 @@
 \begin{thebibliography}{1}
 
-\bibitem{ccwiki}
-C.~community.
-\newblock {\em ComputerCraft Wiki}, Sept. 2012.
-\newblock Accessed: 14 jun 2021.
+\bibitem{dice}
+L.~R. Dice.
+\newblock Measures of the amount of ecologic association between species.
+\newblock {\em Ecology}, 26(3):297--302, 1945.
 
 \bibitem{koza}
 J.~R. Koza.
 \newblock {\em Genetic Programming: On the Programming of Computers by Means of
   Natural Selection}.
 \newblock MIT Press, Cambridge, MA, USA, 1992.
+
+\bibitem{ccwiki}
+\relax ComputerCraft~community.
+\newblock {\em ComputerCraft Wiki}, Sept. 2012.
+\newblock Accessed: 14 jun 2021.
+
+\bibitem{sorensen}
+T.~J. S{\o}rensen.
+\newblock {\em A method of establishing groups of equal amplitude in plant
+  sociology based on similarity of species content and its application to
+  analyses of the vegetation on Danish commons}, volume~5.
+\newblock Munksgaard Copenhagen, 1948.
 
 \end{thebibliography}

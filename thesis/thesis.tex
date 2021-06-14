@@ -1,8 +1,9 @@
 \documentclass{report}
-\usepackage{setspace}
-\usepackage{minted}
-\usepackage{hyperref}
-\usepackage{graphicx}
+\usepackage{setspace} % for paragraph spacing
+\usepackage{minted} % for code blocks
+\usepackage{hyperref} % for references to labels
+\usepackage{graphicx} % for pictures
+\usepackage{amsmath} % for "align*" environment
 
 \graphicspath{ {./resources/} }
 \setminted{fontsize=\small}
@@ -555,7 +556,32 @@ The first generation is constructed using equal numbers of individuals generated
 
 \subsection{Evaluation}
 
+Trees are evaluated against a target structure, measuring how close the built structure is to the target. This measurement is done using the \emph{Sørensen–Dice coefficient}\cite{sorensen}\cite{dice}, henceforth referred to as the ``Dice index''. This index is calculated as follows:
 
+$$DSC = \frac{2TP}{2TP + FP + FN}$$
+\begin{align*}\quad
+    \text{where}\quad
+    TP &= \text{number of true positives}\\
+    FP &= \text{number of false positives}\\
+    FN &= \text{number of false negatives}
+\end{align*}
+
+To be more explicit, a ``true positive'' in this case means a position that is filled in both the target structure and the built one (and similar for the other two terms). This index has a value of $0$ when the two have nothing in common, and $1$ when they are identical (hence, $FP$ and $FN$ are $0$).
+
+One thing that must be taken into account, however, is that a smaller program (shallower tree) should score better than a bigger one (deeper tree) which does the same thing. For this purpose, the actual score of a tree is the following:
+
+$$s = DSC * \frac{DS + MD - d}{DS + MD}$$
+\begin{align*}\quad
+    \text{where}\quad
+    DSC &= \text{Dice index}\\
+    DS &= \text{depth softener}\\
+    MD &= \text{the maximum allowed depth of a tree}\\\
+    d &= \text{the depth of the tree}
+\end{align*}
+
+The \emph{depth softener} is a parameter of the algorithm  used to control the importance of tree's depth to the score of an individual; a bigger $DS$ means that depth has less of an impact.
+
+Individuals whose tree exceeds the allowed depth, or whose program either takes too long or terminates with an error, receive a score of $-\infty$.
 
 \subsection{Selection}
 
