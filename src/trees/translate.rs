@@ -20,7 +20,7 @@ fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u16) -> Vec<In
             )
         }
         Node::Unary(op, child) => {
-            // do the subtree, which stores result in r[stack_tr]
+            // do the subtree, which stores result in r[stack_ptr]
             let mut instr = translate_subtree(child, stack_ptr, next_label);
             // do op on r[stack_ptr]
             instr.push(Instruction::Unary(stack_ptr, *op));

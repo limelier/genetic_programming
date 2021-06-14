@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Node}::\PYG{n}{Unary}\PYG{p}{(}\PYG{n}{op}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{child}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// do the subtree, which stores result in r[stack\PYGZus{}ptr]}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{instr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{child}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+c1}{// do op on r[stack\PYGZus{}ptr]}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{Instruction}::\PYG{n}{Unary}\PYG{p}{(}\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{op}\PYG{p}{));}
+
+\PYG{+w}{    }\PYG{n}{instr}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

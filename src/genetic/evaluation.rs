@@ -114,6 +114,7 @@ mod test {
         target
     }
 
+    /*
     #[test]
     fn test_eval_simple() {
         let tree = Node::Turtle(TurtleOperation::Place(Direction::Up));
@@ -153,6 +154,7 @@ mod test {
 
         assert_eq!(individual.result.unwrap().score, expected_score);
     }
+    */
 
     #[test]
     fn test_eval_perfect() {

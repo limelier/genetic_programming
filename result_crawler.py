@@ -39,7 +39,7 @@ format_string = \
     '{:d}/{:d} ({:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:d}, {:d}, {:f}, {:f}, {:f}, {:f}): ({:f}, {:f}) in {:f}s\n'
 parsed_lines = []
 
-with open('meta.txt', 'r') as f:
+with open('search_2.txt', 'r') as f:
     for line in f:
         parsed = parse.parse(format_string, line)
         if parsed is not None:

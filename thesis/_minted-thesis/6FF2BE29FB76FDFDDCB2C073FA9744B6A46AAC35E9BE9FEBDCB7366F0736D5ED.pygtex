@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Node}::\PYG{n}{If}\PYG{p}{(}\PYG{n}{cond}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{if\PYGZus{}not\PYGZus{}zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{if\PYGZus{}zero}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{label\PYGZus{}else}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{next\PYGZus{}label}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{label\PYGZus{}after}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{label\PYGZus{}else}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{o}{*}\PYG{n}{next\PYGZus{}label}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{    }\PYG{c+c1}{// process cond subtree, store result in r[stack\PYGZus{}ptr]}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{instr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{cond}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{c+c1}{// if cond != 0, keep going to the if\PYGZus{}not\PYGZus{}zero block, then jump to label\PYGZus{}after}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{Instruction}::\PYG{n}{Jump}\PYG{p}{(}\PYG{n}{label\PYGZus{}else}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{JumpCondition}::\PYG{n}{Zero}\PYG{p}{(}\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{)));}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{if\PYGZus{}not\PYGZus{}zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{));}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{Instruction}::\PYG{n}{Jump}\PYG{p}{(}\PYG{n}{label\PYGZus{}after}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{JumpCondition}::\PYG{n+nb}{None}\PYG{p}{));}
+\PYG{+w}{    }\PYG{c+c1}{// else, jump to label\PYGZus{}else, do the if\PYGZus{}zero block, then continue to label\PYGZus{}after}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{Instruction}::\PYG{n}{Label}\PYG{p}{(}\PYG{n}{label\PYGZus{}else}\PYG{p}{));}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{if\PYGZus{}zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{));}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{Instruction}::\PYG{n}{Label}\PYG{p}{(}\PYG{n}{label\PYGZus{}after}\PYG{p}{));}
+
+\PYG{+w}{    }\PYG{n}{instr}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

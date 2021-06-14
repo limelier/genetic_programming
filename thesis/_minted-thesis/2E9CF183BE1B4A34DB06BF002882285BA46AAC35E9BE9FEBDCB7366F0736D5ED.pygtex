@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Node}::\PYG{n}{Then}\PYG{p}{(}\PYG{n}{left}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{right}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// do left subtree, which stores result in r[stack\PYGZus{}ptr]}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{instr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{left}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+c1}{// do right subtree, which stores result in r[stack\PYGZus{}ptr]}
+\PYG{+w}{    }\PYG{n}{instr}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{right}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{));}
+
+\PYG{+w}{    }\PYG{n}{instr}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

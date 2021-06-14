@@ -347,15 +347,143 @@ Since the purpose of these programs is to build structures, they must allow for 
     \item \verb|Turtle|: execute a turtle operation and return its result.
 \end{itemize}
 
-When mutating a tree is required, it is possible to change out a node for one of the same arity, or even for a completely new sub-tree, and still have a functioning program.
+When mutating a tree is required, it is possible to change out a node for one of the same arity, or even for a completely new subtree, and still have a functioning program.
 
 \begin{figure}[h]
     \centering
-    \includegraphics{tree_2}
+    \includegraphics[scale=0.75]{tree_2}
     \caption{A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.}
 \end{figure}
 
 \subsection{Translation}
 The end-goal, as before, is to generate a linear program. This means that a mechanism to convert a tree-based program into a linear one is required.
+
+There are some subtleties to be aware of: the trees are not entirely functional (side effects complicate things), and their code has to be translated into the linear structured described before. The mechanism chosen for this is by making use of a \emph{stack pointer}. This is a variable that holds a reference to a certain register during the translation process, starting with \verb|STACK_START| (100). This variable is incremented when recursing deeper into the tree, and is used to identify the register that should be used for storing the result returned by a subtree. Henceforth, the register referred to by this pointer shall be denoted \verb|r[stack_ptr]|.
+
+Additionally, \emph{labels} are used for control-flow structures. A label is a (linear) instruction holding an unsigned 16-bit integer, used by jump instructions as a target. Every new label instruction receives a new integer, guaranteeing their uniqueness.
+
+Translation follows the following mechanism, where \verb|translate_subtree| is a recursive function:
+
+\begin{minted}{rust}
+pub fn translate_tree(tree: &Node) -> Vec<Instruction> {
+    let mut next_label = 0u16;
+    translate_subtree(tree, STACK_START, &mut next_label)
+}
+
+fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u16) -> Vec<Instruction> {
+    match tree {
+        ...
+    }
+}
+\end{minted}
+
+For example, a subtree rooted in a unary operation is translated from its children first. Afterwards, the operation is executed on \verb|r[stack_ptr]|, which will have been set to the result of the child subtree.
+
+\begin{minted}{rust}
+Node::Unary(op, child) => {
+    // do the subtree, which stores result in r[stack_ptr]
+    let mut instr = translate_subtree(child, stack_ptr, next_label);
+    // do op on r[stack_ptr]
+    instr.push(Instruction::Unary(stack_ptr, *op));
+
+    instr
+}
+\end{minted}
+
+For multiple subtrees, the stack pointer is incremented, so that two separate values may be used:
+
+\begin{minted}{rust}
+Node::Binary(op, left, right) => {
+    // do left subtree, which stores result in r[stack_ptr]
+    let mut instr = translate_subtree(left, stack_ptr, next_label);
+    // do right subtree, which stores result in r[stack_ptr + 1]
+    instr.append(&mut translate_subtree(right, stack_ptr + 1, next_label));
+    // do op on r[stack_ptr] with r[stack_ptr + 1]
+    instr.push(Instruction::Binary(stack_ptr, Source::Register(stack_ptr + 1), *op));
+
+    instr
+}
+\end{minted}
+
+A \verb|Then| node simply adds the instructions for one subtree before the other:
+
+\begin{minted}{rust}
+Node::Then(left, right) => {
+    // do left subtree, which stores result in r[stack_ptr]
+    let mut instr = translate_subtree(left, stack_ptr, next_label);
+    // do right subtree, which stores result in r[stack_ptr]
+    instr.append(&mut translate_subtree(right, stack_ptr, next_label));
+
+    instr
+}
+\end{minted}
+
+Conditional nodes, such as \verb|If|, also make use of labels:
+
+\begin{minted}{rust}
+Node::If(cond, if_not_zero, if_zero) => {
+    let label_else = *next_label;
+    let label_after = label_else + 1;
+    *next_label += 2;
+    // process cond subtree, store result in r[stack_ptr]
+    let mut instr = translate_subtree(cond, stack_ptr, next_label);
+
+    // if cond != 0, keep going to the if_not_zero block, then jump to label_after
+    instr.push(Instruction::Jump(label_else, JumpCondition::Zero(stack_ptr)));
+    instr.append(&mut translate_subtree(if_not_zero, stack_ptr, next_label));
+    instr.push(Instruction::Jump(label_after, JumpCondition::None));
+    // else, jump to label_else, do the if_zero block, then continue to label_after
+    instr.push(Instruction::Label(label_else));
+    instr.append(&mut translate_subtree(if_zero, stack_ptr, next_label));
+    instr.push(Instruction::Label(label_after));
+
+    instr
+}
+\end{minted}
+
+Finally, nodes making use of special registers such as the \verb|RESULT_REGISTER| and the \verb|COMPARE_REGISTER| will move results to \verb|r[stack_ptr]| to make them accessible by their parents.
+
+\begin{minted}{rust}
+Node::Turtle(operation) => {
+    vec!(
+        // do the operation, storing result in r[RESULT_REGISTER]
+        Instruction::Turtle(*operation),
+        // copy r[RESULT_REGISTER] into r[stack_ptr] to move it up the tree
+        Instruction::Binary(stack_ptr, Source::Register(RESULT_REGISTER), Set),
+    )
+}
+\end{minted}
+
+For example, the tree below translates into the instructions below it.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{tree_3}
+    \caption{A simple tree.}
+\end{figure}
+
+\begin{figure}[h]
+\begin{minted}{rust}
+Binary(101, Value(8), Set),  // set reg. 101 to 8
+Label(0),
+Jump(1, Zero(101)),  // jump to label 1 when reg. 101 is 0
+Turtle(Move(Forward)),
+Binary(100, Register(200), Set),  // set reg. 100 to the value of the result register
+Unary(101, Decrement),  // decrement reg. 101
+Jump(0, None),  // jump to label 0
+Label(1)
+\end{minted}
+\caption{The equivalent list of instructions.}
+\end{figure}
+
+\section{Genetic algorithm}
+
+
+
+\chapter{Experiments}
+
+\chapter{Results and conclusions}
+
+\chapter{Bibliography}
 
 \end{document}

@@ -108,10 +108,4 @@ mod test {
         let mut tree = big_tree();
         dbg!(tree.get_weighted_node_mut());
     }
-
-    #[test] #[ignore]
-    fn get_random_node_mut() {
-        let mut tree = big_tree();
-        dbg!(tree.get_random_node_mut());
-    }
 }

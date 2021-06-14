@@ -29,7 +29,7 @@ fn main() {
         let depth = individual.tree.get_max_depth();
         idx_sum += dice_index;
         depth_sum += depth;
-        // println!("{} {}", dice_index, depth);
+        println!("{} {}", dice_index, depth);
     }
     let num = individuals.len() as f64;
     println!("{} {}", idx_sum / num, (depth_sum as f64) / num);
