@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  14 JUN 2021 13:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  14 JUN 2021 16:10
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -411,7 +411,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
 \openout3 = `thesis.pyg'.
 
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/13128D9C303C037320C7B94CDEC87C72A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [9])
-<./resources//binary_mutation.png, id=116, 413.545pt x 162.6075pt>
+<./resources//binary_mutation.png, id=134, 413.545pt x 162.6075pt>
 File: ./resources//binary_mutation.png Graphic file (type png)
 <use ./resources//binary_mutation.png>
 Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 283.
@@ -423,13 +423,13 @@ Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 28
 \openout3 = `thesis.pyg'.
 
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/FEC042C5E176807E405BDAD5DE0E9418A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [11])
-<./resources//tree_1.png, id=128, 261.97874pt x 181.67876pt>
+<./resources//tree_1.png, id=146, 261.97874pt x 181.67876pt>
 File: ./resources//tree_1.png Graphic file (type png)
 <use ./resources//tree_1.png>
 Package pdftex.def Info: ./resources//tree_1.png  used on input line 331.
 (pdftex.def)             Requested size: 196.48357pt x 136.25871pt.
  [12 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_1.png>]
-<./resources//tree_2.png, id=136, 282.05376pt x 201.75375pt>
+<./resources//tree_2.png, id=154, 282.05376pt x 201.75375pt>
 File: ./resources//tree_2.png Graphic file (type png)
 <use ./resources//tree_2.png>
 Package pdftex.def Info: ./resources//tree_2.png  used on input line 354.
@@ -453,44 +453,48 @@ Package pdftex.def Info: ./resources//tree_2.png  used on input line 354.
 \openout3 = `thesis.pyg'.
 
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/76E4AEBC052956DE8B6B9DB4DC5CE446A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [15])
-<./resources//tree_3.png, id=151, 201.75375pt x 121.45375pt>
+<./resources//tree_3.png, id=170, 201.75375pt x 121.45375pt>
 File: ./resources//tree_3.png Graphic file (type png)
 <use ./resources//tree_3.png>
 Package pdftex.def Info: ./resources//tree_3.png  used on input line 461.
 (pdftex.def)             Requested size: 201.75325pt x 121.45343pt.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/BAF577C4518F13BF16C77842A2E72471A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [16 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_3.png>]
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/CEADCD6D79770B90BEC6C63B323C63B8A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [16 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_3.png>]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/0E9CAFACBF1BF5F78BAB1E9F1A2B2F8EA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [17])
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/B38D78B54C9D9AC70BFDFB89769160FDA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [18] [19]
 Chapter 4.
-[17
+[20
 
 ]
 Chapter 5.
-[18
+(/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [21
 
-]
-Chapter 6.
-[19
+]) [22
 
 ] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 143C56B323964905B5D1E003DA9FF48A;2006.
+(rerunfilecheck)             Checksum: B67AAC5C6401C1F88DD82F7F7AB9BE0D;2546.
 runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 11614 strings out of 478994
- 196148 string characters out of 5864751
- 540257 words of memory out of 5000000
- 28835 multiletter control sequences out of 15000+600000
- 409773 words of font info for 49 fonts, out of 8000000 for 9000
+ 11645 strings out of 478994
+ 197558 string characters out of 5864751
+ 540460 words of memory out of 5000000
+ 28847 multiletter control sequences out of 15000+600000
+ 410072 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,7n,88p,760b,627s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,7n,88p,760b,629s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (20 pages, 180280 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (23 pages, 192004 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 255 PDF objects out of 1000 (max. 8388607)
+ 209 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

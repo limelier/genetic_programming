@@ -23,7 +23,7 @@
 \chapter{Introduction}
 This thesis will explore the construction of three-dimensional voxel structures using a “turtle”-type virtual robot. This robot is programmable, with the ability to interact with its surroundings by means of a set of elementary functions. These functions allow it to move, place and destroy blocks, and detect adjacent blocks for the purpose of making decisions.
 
-This project initially took form based on an existing concept: a modification for Minecraft that adds such a robot to the game, which is programmable using Lua. Minecraft is a sandbox video game where players can build structures using 3D blocks aligned to a grid. The modification, \emph{ComputerCraft}, adds simple Lua-programmable computers to the game. Among them is a mobile computer, called a \emph{turtle}, that can use a special library to interact with its environment.
+This project initially took form based on an existing concept: a modification for Minecraft that adds such a robot to the game, which is programmable using Lua. Minecraft is a sandbox video game where players can build structures using 3D blocks aligned to a grid. The modification, \emph{ComputerCraft}\cite{ccwiki}, adds simple Lua-programmable computers to the game. Among them is a mobile computer, called a \emph{turtle}, that can use a special library to interact with its environment.
 
 The idea that the thesis is built around is using genetic programming to create, given a target voxel structure, a program that can construct it. When run by a turtle with sufficient materials, this program should allow it to reproduce the initial target as accurately as possible.
 
@@ -470,7 +470,7 @@ Jump(1, Zero(101)),  // jump to label 1 when reg. 101 is 0
 Turtle(Move(Forward)),
 Binary(100, Register(200), Set),  // set reg. 100 to the value of the result register
 Unary(101, Decrement),  // decrement reg. 101
-Jump(0, None),  // jump to label 0
+Jump(0, None),  // jump to label 0 always
 Label(1)
 \end{minted}
 \caption{The equivalent list of instructions.}
@@ -478,12 +478,96 @@ Label(1)
 
 \section{Genetic algorithm}
 
+For a brief summary, a genetic algorithm is an algorithm taking inspiration from the real-life processes of natural selection and evolution. It involves taking an entire ``population'' of ``individuals'', in this case tree-structured programs, and evaluating them. The next generation is created from the current one, with individuals that performed better having a higher chance of ``reproducing''. To make helpful changes, individuals are mixed together and randomly modified individually. Here is a short glossary to help with the following section:
 
+\begin{itemize}
+    \item \emph{population} or \emph{generation}: a group of individuals evaluated, modified and propagated in a single iteration of the genetic algorithm
+    \item \emph{individual}: a single tree, in a population
+    \item \emph{evaluation}: the process of checking the performance of every individual in a generation
+    \item \emph{fitness}: the weight allocated to each individual during the selection process
+    \item \emph{selection}: the process of building a new population from the old one, by copying individuals or crossing them together
+    \item \emph{crossover}: the building of one individual out of parts of two parents
+    \item \emph{mutation}: using randomness to modify parts of an individual in hope of creating useful new traits
+\end{itemize}
+
+The over-all training function, that goes through the generations gradually improving individuals, is detailed below. This function takes as parameter a \verb|target| that the trained individuals are supposed to build.
+
+\begin{minted}{rust}
+pub fn train(target: &BlockSpace) -> definitions::Individual {
+    // randomly-generate the first generation
+    let mut generation = Generation::random();
+    // evaluate the first generation
+    generation.evaluate(target);
+    let mut best_overall = generation.population[0].clone();
+    for _gen in 0..GEN_COUNT {
+        // find and store the best individual from each generation
+        let best_individual = &generation.population[generation.best_index.unwrap()];
+        let best_result = &best_individual.result.unwrap();
+        // store this individual if it is the best over-all
+        if best_result.score > best_overall.result.unwrap().score {
+            best_overall = best_individual.clone();
+        }
+        // select individuals from the current generation to either take part in the next 
+        // one directly or as parents for new children
+        let (kept_over, parent_pairs) = generation.select_weighted_by_fitness();
+        // build a new generation from the selected individuals
+        generation = Generation::from_old(&generation, &kept_over, &parent_pairs);
+        // produce random, potentially useful mutations in the individuals
+        generation.mutate();
+        // evaluate the built generation, for the next iteration
+        generation.evaluate(target);
+    }
+
+    // return the best individual found in any generation
+    best_overall
+}
+\end{minted}
+
+In the following sub-sections, I will go into more detail concerning each part of this algorithm.
+
+\subsection{Creating the first generation}
+
+The first generation is constructed by randomly-generating individuals using two methods and several depths. This method, proposed by J.R. Koza \cite{koza}, is called ``ramped half-and-half''.
+
+The first method is called \emph{full}, and involves creating a full tree down to a certain depth. Nodes below that depth must have a non-zero arity (i.e. not be leaves), and the entire maximum depth must be made up of leaves. The second method, \emph{grow}, permits leaves further up in the tree with a certain probability.
+
+\begin{minted}{rust}
+pub fn generate(method: Method, max_depth: usize) -> Node {
+    recurse(method, max_depth, 0)
+}
+
+fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
+    let mut rng = rand::thread_rng();
+
+    if current_depth == max_depth || (method == Method::Grow && rng.gen_bool(P_GROW_LEAF)) {
+        // generate a leaf, excluding useless leaves such as the Null node
+        random_useful_leaf()
+    } else {
+        // generate a function, continuing recursion with its children
+        random_function(method, max_depth, current_depth)
+    }
+}
+\end{minted}
+
+One useful nuance here is that, even though there exist many types of unary and binary operations, the \verb|Unary| and \verb|Binary| nodes have the same chance to be generated as control structures like \verb|Repeat|. This should, in theory, make it so that programs have a higher chance of generating the comparatively complex structures required to construct parts of structures.
+
+The first generation is constructed using equal numbers of individuals generated using either method, and by varying the \verb|max_depth| parameter between two thresholds (hence the `ramped' part of the name). This results in a nice variety of small and large, simple and complex trees, hopefully providing a relatively unbiased start.
+
+\subsection{Evaluation}
+
+
+
+\subsection{Selection}
+
+\subsection{Crossover}
+
+\subsection{Mutation}
 
 \chapter{Experiments}
 
 \chapter{Results and conclusions}
 
-\chapter{Bibliography}
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
 
 \end{document}

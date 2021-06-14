@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{fn} \PYG{n+nf}{generate}\PYG{p}{(}\PYG{n}{method}: \PYG{n+nc}{Method}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}depth}: \PYG{k+kt}{usize}\PYG{p}{)}\PYG{+w}{ }\PYGZhy{}\PYGZgt{} \PYG{n+nc}{Node}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{recurse}\PYG{p}{(}\PYG{n}{method}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}depth}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{fn} \PYG{n+nf}{recurse}\PYG{p}{(}\PYG{n}{method}: \PYG{n+nc}{Method}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}depth}: \PYG{k+kt}{usize}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}depth}: \PYG{k+kt}{usize}\PYG{p}{)}\PYG{+w}{ }\PYGZhy{}\PYGZgt{} \PYG{n+nc}{Node}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{rng}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{rand}::\PYG{n}{thread\PYGZus{}rng}\PYG{p}{();}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{current\PYGZus{}depth}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{max\PYGZus{}depth}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{method}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{Method}::\PYG{n}{Grow}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{rng}\PYG{p}{.}\PYG{n}{gen\PYGZus{}bool}\PYG{p}{(}\PYG{n}{P\PYGZus{}GROW\PYGZus{}LEAF}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// generate a leaf, excluding useless leaves such as the Null node}
+\PYG{+w}{        }\PYG{n}{random\PYGZus{}useful\PYGZus{}leaf}\PYG{p}{()}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// generate a function, continuing recursion with its children}
+\PYG{+w}{        }\PYG{n}{random\PYGZus{}function}\PYG{p}{(}\PYG{n}{method}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}depth}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{current\PYGZus{}depth}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

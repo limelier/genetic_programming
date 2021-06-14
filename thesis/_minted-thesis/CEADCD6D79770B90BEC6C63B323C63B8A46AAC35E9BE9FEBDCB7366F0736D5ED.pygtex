@@ -5,6 +5,6 @@
 \PYG{n}{Turtle}\PYG{p}{(}\PYG{n}{Move}\PYG{p}{(}\PYG{n}{Forward}\PYG{p}{)),}
 \PYG{n}{Binary}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Register}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{Set}\PYG{p}{),}\PYG{+w}{  }\PYG{c+c1}{// set reg. 100 to the value of the result register}
 \PYG{n}{Unary}\PYG{p}{(}\PYG{l+m+mi}{101}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Decrement}\PYG{p}{),}\PYG{+w}{  }\PYG{c+c1}{// decrement reg. 101}
-\PYG{n}{Jump}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{None}\PYG{p}{),}\PYG{+w}{  }\PYG{c+c1}{// jump to label 0}
+\PYG{n}{Jump}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{None}\PYG{p}{),}\PYG{+w}{  }\PYG{c+c1}{// jump to label 0 always}
 \PYG{n}{Label}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
 \end{Verbatim}
