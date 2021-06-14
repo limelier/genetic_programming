@@ -619,6 +619,7 @@ Crossover, for the purposes of genetic algorithms, involves taking two individua
 
 In my code, crossover involves the following process:
 \begin{itemize}
+    \label{weighted_random}
     \item pick a weighted-random node of the stock, with leaves having a weight of $1$ and other nodes a weight of $9$, a method again suggested by Koza\cite{koza}
     \item randomly descend the scion to a depth equal to that of the selected node (stopping if a leaf node is hit)
     \item choose a random node from the resulting subtree of the scion, weighing the crossover process in favor of exchanging less genetic material
@@ -651,6 +652,24 @@ This operation effectively replaces a subtree of the stock with that one of the 
 \end{figure}
 
 \subsection{Mutation}
+
+Mutation is a process that can modify a tree unpredictably, with the idea of producing useful changes. My implementation applies two different kinds of mutation for each individual, described as follows.
+
+One kind of mutation applies to individual nodes. For each node in an individual, there is a certain probability to be replaced by another node with the same arity:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{single_mutation}
+    \caption{The red nodes are replaced by the green ones due to single-node mutation. The rest of the nodes remain unchanged.}
+\end{figure}
+
+The other kind of mutation involves replacing entire subtrees with newly generated ones. This happens once per tree, with a certain probability. Specifically, this involves picking a weighted-random node (similarly to \autoref{weighted_random}). This node is the root of a subtree which will be replaced by a new subtree, generated using the \emph{grow} method up to the same depth as the old one.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{subtree_mutation}
+    \caption{The red subtree is replaced by the yellow one due to subtree mutation. The rest of the nodes remain unchanged.}
+\end{figure}
 
 \chapter{Experiments}
 
