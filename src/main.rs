@@ -3,11 +3,22 @@ use genetic_programming::simulator::definitions::BlockSpace;
 
 fn main() {
     let mut target = BlockSpace::default();
-    // simple example: line
-    for i in 0..8 {
-        target[i][1][0] = 1;
-    }
+    // simplest example: single voxel, above turtle
+    target[0][1][0] = 1;
 
+    // second simplest: two voxels
+    // target[0][1][0] = 1;
+    // target[1][1][0] = 1;
+
+    // simple example: tiny line
+    // for i in 0..4 {
+    //     target[i][1][0] = 1;
+    // }
+
+    // simple example: line
+    // for i in 0..8 {
+    //     target[i][1][0] = 1;
+    // }
 
     // medium example: cuboid
     // for i in 4..12 {
@@ -29,7 +40,7 @@ fn main() {
         let depth = individual.tree.get_max_depth();
         idx_sum += dice_index;
         depth_sum += depth;
-        println!("{} {}", dice_index, depth);
+        // println!("{} {}", dice_index, depth);
     }
     let num = individuals.len() as f64;
     println!("{} {}", idx_sum / num, (depth_sum as f64) / num);
