@@ -27,6 +27,13 @@ pub struct Parents {
     pub scion: usize,
 }
 
+#[allow(dead_code)]
+pub(crate) enum SelectionMethod {
+    FitnessWeighted,
+    Tournament,
+}
+
+pub(crate) const SELECTION_METHOD: SelectionMethod = SelectionMethod::Tournament;
 
 pub(crate) const INDIVIDUALS_PER_METHOD_AND_DEPTH: usize = 5;
 pub(crate) const MIN_GEN_DEPTH: usize = 2;
