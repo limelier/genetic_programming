@@ -487,7 +487,6 @@ For a brief summary, a genetic algorithm is an algorithm taking inspiration from
     \item \emph{population} or \emph{generation}: a group of individuals evaluated, modified and propagated in a single iteration of the genetic algorithm
     \item \emph{individual}: a single tree, in a population
     \item \emph{evaluation}: the process of checking the performance of every individual in a generation
-    \item \emph{fitness}: the weight allocated to each individual during the selection process
     \item \emph{selection}: the process of building a new population from the old one, by copying individuals or crossing them together
     \item \emph{crossover}: the building of one individual out of parts of two parents
     \item \emph{mutation}: using randomness to modify parts of an individual in hope of creating useful new traits
@@ -497,27 +496,28 @@ The over-all training function, that goes through the generations gradually impr
 
 \begin{minted}{rust}
 pub fn train(target: &BlockSpace) -> definitions::Individual {
-    // randomly-generate the first generation
+    // generate initial generation
     let mut generation = Generation::random();
-    // evaluate the first generation
     generation.evaluate(target);
     let mut best_overall = generation.population[0].clone();
     for _gen in 0..GEN_COUNT {
-        // find and store the best individual from each generation
+        // store best individual of generation
         let best_individual = &generation.population[generation.best_index.unwrap()];
         let best_result = &best_individual.result.unwrap();
-        // store this individual if it is the best over-all
+        // replace best_overall if better individual found
         if best_result.score > best_overall.result.unwrap().score {
             best_overall = best_individual.clone();
         }
-        // select individuals from the current generation to either take part in the next 
-        // one directly or as parents for new children
-        let (kept_over, parent_pairs) = generation.select_weighted_by_fitness();
-        // build a new generation from the selected individuals
+        // use either selection method to pick out individuals for the next gen
+        let (kept_over, parent_pairs) = match SELECTION_METHOD {
+            SelectionMethod::FitnessWeighted => generation.select_weighted_by_fitness(),
+            SelectionMethod::Tournament => generation.select_by_tournament(),
+        };
+        // create the new generation (through cloning and crossover)
         generation = Generation::from_old(&generation, &kept_over, &parent_pairs);
-        // produce random, potentially useful mutations in the individuals
+        // cause potentially useful mutations
         generation.mutate();
-        // evaluate the built generation, for the next iteration
+        // evaluate new generation
         generation.evaluate(target);
     }
 
@@ -595,8 +595,6 @@ Selection is the process of picking individuals from the current generation to u
 
 \emph{Tournament selection} involves running a number ``tournaments'' and picking the winner as a parent for the next generation. A tournament involves randomly selecting a handful of individuals from the population, and sorting them by their results. Then, the best individual in this set is chosen with probability $p$, the second with probability $(1-p)p$, etc. If no other individual is chosen, the worst one will be.
 
-Tournament selection only picks parents, so the entirety of the next population will be constructed using crossover.
-
 \emph{Fitness-weighted selection}, on the other hand, is done on the whole population at once. First, each individual's score $s$ is mapped into a fitness $f$ using the following formula:
 
 $$f = \left(\frac{s - s_{min}}{s_{max} - s_{min}}\right)^{SP}$$
@@ -609,7 +607,7 @@ $$f = \left(\frac{s - s_{min}}{s_{max} - s_{min}}\right)^{SP}$$
 
 \footnotetext{If every individual in the generation has the same score, then $s_{max}$ will be equal to $s_{min} + 0.1$ instead, in order to avoid division by zero.}
 
-The selection pressure is a parameter that dictates how strongly the selection process is weighed in favor of better individuals.
+The selection pressure is a parameter that dictates how strongly the selection process is weighed in favor of better individuals. The fitness value is calculated this way to normalize the chances for every individual to be chosen, giving even the worst individuals some chance to be picked.
 
 After the fitness of each individual is calculated, the function uses them as weights to randomly pick (with replacement) a number of individuals from the population to either be copied directly to the next generation, or to serve as parents during the crossover process.
 

@@ -23,9 +23,6 @@ pub fn train(target: &BlockSpace) -> definitions::Individual {
         if best_result.score > best_overall.result.unwrap().score {
             best_overall = best_individual.clone();
         }
-        if best_result.perfect {
-            break;
-        }
         let (kept_over, parent_pairs) = match SELECTION_METHOD {
             SelectionMethod::FitnessWeighted => generation.select_weighted_by_fitness(),
             SelectionMethod::Tournament => generation.select_by_tournament(),
