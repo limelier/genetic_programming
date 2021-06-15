@@ -49,12 +49,14 @@ pub(crate) const DEPTH_SOFTENER: f64 = 6.0;
 pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
+// TOURNAMENT ONLY
 pub(crate) const TOURNAMENT_SIZE: usize = 4;
 pub(crate) const TOURNAMENT_P: f64 = 1.0;
+// FITNESS-WEIGHTED ONLY
+pub(crate) const SELECTION_PRESSURE: f64 = 1.0;
 
 pub(crate) const MUTATION_CHANCE: f64 = 0.05;
 pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.10;
 
 pub(crate) const P_GROW_LEAF: f64 = 0.1;
 
-pub(crate) const SELECTION_PRESSURE: f64 = 1.0;
