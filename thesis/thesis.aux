@@ -20,60 +20,110 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Practical context}{3}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}The turtle}{3}{section.2.1}\protected@file@percent }
 \newlabel{sec:turtle}{{2.1}{3}{The turtle}{section.2.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}The training space}{4}{section.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The training space, as it would appear in Minecraft. The axes are represented by the red ($x$), green ($y$) and blue ($z$) edges of the cube, and the training space is contained within. The turtle is located at $(0, 0, 0)$, and is facing towards positive $x$.}}{5}{figure.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The training space, as it would appear in Minecraft. The axes are represented by the red ($x$), green ($y$) and blue ($z$) edges of the cube, and the training space is contained within. The turtle is located at $(0, 0, 0)$, and is facing towards positive $x$.\relax }}{5}{figure.caption.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Technical details}{6}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}The simulator}{7}{section.3.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {3.1}{\ignorespaces The \texttt  {Simulator} struct.\relax }}{7}{listing.caption.3}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{lst:simulator_struct}{{3.1}{7}{The \texttt {Simulator} struct.\relax }{listing.caption.3}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.2}{\ignorespaces The \texttt  {BlockSpace} type alias.\relax }}{7}{listing.caption.4}\protected@file@percent }
+\newlabel{lst:blockspace_type}{{3.2}{7}{The \texttt {BlockSpace} type alias.\relax }{listing.caption.4}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.3}{\ignorespaces The \texttt  {Turtle} struct.\relax }}{8}{listing.caption.5}\protected@file@percent }
+\newlabel{lst:turtle_struct}{{3.3}{8}{The \texttt {Turtle} struct.\relax }{listing.caption.5}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.4}{\ignorespaces The code for attempting to move the turtle.\relax }}{8}{listing.caption.6}\protected@file@percent }
+\newlabel{lst:try_move}{{3.4}{8}{The code for attempting to move the turtle.\relax }{listing.caption.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Linear programs and the virtual machine}{8}{section.3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {3.5}{\ignorespaces The \texttt  {Program} struct.\relax }}{9}{listing.caption.7}\protected@file@percent }
+\newlabel{lst:program_structure}{{3.5}{9}{The \texttt {Program} struct.\relax }{listing.caption.7}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.6}{\ignorespaces The \texttt  {Instruction} enum.\relax }}{9}{listing.caption.8}\protected@file@percent }
+\newlabel{lst:instruction_enum}{{3.6}{10}{The \texttt {Instruction} enum.\relax }{listing.caption.8}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.7}{\ignorespaces The \texttt  {TurtleOperation} enum.\relax }}{10}{listing.caption.9}\protected@file@percent }
+\newlabel{lst:turtle_op_enum}{{3.7}{10}{The \texttt {TurtleOperation} enum.\relax }{listing.caption.9}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.8}{\ignorespaces The handler for the \texttt  {Unary} instruction.\relax }}{10}{listing.caption.10}\protected@file@percent }
+\newlabel{lst:unary_handler}{{3.8}{11}{The handler for the \texttt {Unary} instruction.\relax }{listing.caption.10}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.9}{\ignorespaces The handler for the \texttt  {Compare} instruction.\relax }}{11}{listing.caption.11}\protected@file@percent }
+\newlabel{lst:compare_handler}{{3.9}{11}{The handler for the \texttt {Compare} instruction.\relax }{listing.caption.11}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.10}{\ignorespaces The handler for the \texttt  {Jump} instruction.\relax }}{12}{listing.caption.12}\protected@file@percent }
+\newlabel{lst:jump_handler}{{3.10}{12}{The handler for the \texttt {Jump} instruction.\relax }{listing.caption.12}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.11}{\ignorespaces The handler for the \texttt  {Turtle} instruction.\relax }}{12}{listing.caption.13}\protected@file@percent }
+\newlabel{lst:turtle_handler}{{3.11}{12}{The handler for the \texttt {Turtle} instruction.\relax }{listing.caption.13}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Tree-based programs}{12}{section.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Motivation}{12}{subsection.3.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Mutating the first byte of a three-byte instruction can turn it into a two-byte instruction, leaving one byte to change the meaning of bytes after it.}}{12}{figure.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Mutating the first byte of a three-byte instruction can turn it into a two-byte instruction, leaving one byte to change the meaning of bytes after it.\relax }}{13}{figure.caption.14}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Structure}{13}{subsection.3.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces A simple tree-based program}}{14}{figure.3.2}\protected@file@percent }
-\newlabel{fig:simple_program}{{3.2}{14}{A simple tree-based program}{figure.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.}}{15}{figure.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Translation}{15}{subsection.3.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces A simple tree.}}{18}{figure.3.4}\protected@file@percent }
-\newlabel{fig:tree_3}{{3.4}{18}{A simple tree}{figure.3.4}{}}
-\@writefile{lol}{\contentsline {listing}{\numberline {3.1}{\ignorespaces The equivalent list of instructions.}}{18}{listing.3.1}\protected@file@percent }
-\newlabel{lst:tree_3_instr}{{3.1}{18}{The equivalent list of instructions}{listing.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Genetic algorithm}{18}{section.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {3.12}{\ignorespaces The \texttt  {Node} enum.\relax }}{14}{listing.caption.15}\protected@file@percent }
+\newlabel{lst:node_enum}{{3.12}{14}{The \texttt {Node} enum.\relax }{listing.caption.15}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.13}{\ignorespaces Tree literal equivalent to \autoref  {fig:simple_program}\relax }}{14}{listing.caption.16}\protected@file@percent }
+\newlabel{lst:simple_program}{{3.13}{14}{Tree literal equivalent to \autoref {fig:simple_program}\relax }{listing.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces A simple tree-based program\relax }}{15}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:simple_program}{{3.2}{15}{A simple tree-based program\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.\relax }}{16}{figure.caption.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Translation}{16}{subsection.3.3.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {3.14}{\ignorespaces The \texttt  {translate\_tree} and \texttt  {translate\_subtree} functions.\relax }}{17}{listing.caption.19}\protected@file@percent }
+\newlabel{lst:translate}{{3.14}{17}{The \texttt {translate\_tree} and \texttt {translate\_subtree} functions.\relax }{listing.caption.19}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.15}{\ignorespaces \texttt  {Unary} node translation.\relax }}{17}{listing.caption.20}\protected@file@percent }
+\newlabel{lst:unary_translation}{{3.15}{17}{\texttt {Unary} node translation.\relax }{listing.caption.20}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.16}{\ignorespaces \texttt  {Binary} node translation.\relax }}{17}{listing.caption.21}\protected@file@percent }
+\newlabel{lst:binary_translation}{{3.16}{18}{\texttt {Binary} node translation.\relax }{listing.caption.21}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.17}{\ignorespaces \texttt  {Then} node translation.\relax }}{18}{listing.caption.22}\protected@file@percent }
+\newlabel{lst:then_translation}{{3.17}{18}{\texttt {Then} node translation.\relax }{listing.caption.22}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.18}{\ignorespaces \texttt  {If} node translation.\relax }}{18}{listing.caption.23}\protected@file@percent }
+\newlabel{lst:if_translation}{{3.18}{18}{\texttt {If} node translation.\relax }{listing.caption.23}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.19}{\ignorespaces \texttt  {Turtle} node translation.\relax }}{19}{listing.caption.24}\protected@file@percent }
+\newlabel{lst:turtle_translation}{{3.19}{19}{\texttt {Turtle} node translation.\relax }{listing.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces A simple tree.\relax }}{19}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:tree_3}{{3.4}{19}{A simple tree.\relax }{figure.caption.25}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.20}{\ignorespaces The equivalent list of instructions.\relax }}{19}{listing.caption.26}\protected@file@percent }
+\newlabel{lst:tree_3_instr}{{3.20}{19}{The equivalent list of instructions.\relax }{listing.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Genetic algorithm}{19}{section.3.4}\protected@file@percent }
 \citation{koza}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{20}{subsection.3.4.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {3.21}{\ignorespaces The training function.\relax }}{21}{listing.caption.27}\protected@file@percent }
+\newlabel{lst:training_function}{{3.21}{21}{The training function.\relax }{listing.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{21}{subsection.3.4.1}\protected@file@percent }
 \citation{sorensen}
 \citation{dice}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Evaluation}{21}{subsection.3.4.2}\protected@file@percent }
-\newlabel{depth_softener}{{3.4.2}{22}{Evaluation}{subsection.3.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Selection}{22}{subsection.3.4.3}\protected@file@percent }
-\newlabel{tournament_p}{{3.4.3}{22}{Selection}{subsection.3.4.3}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.22}{\ignorespaces The generation function, which can use either method.\relax }}{22}{listing.caption.28}\protected@file@percent }
+\newlabel{lst:gen_function}{{3.22}{22}{The generation function, which can use either method.\relax }{listing.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Evaluation}{22}{subsection.3.4.2}\protected@file@percent }
+\newlabel{depth_softener}{{3.4.2}{23}{Evaluation}{subsection.3.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Selection}{23}{subsection.3.4.3}\protected@file@percent }
+\newlabel{tournament_p}{{3.4.3}{23}{Selection}{subsection.3.4.3}{}}
 \citation{koza}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Crossover}{23}{subsection.3.4.4}\protected@file@percent }
-\newlabel{weighted_random}{{3.4.4}{23}{Crossover}{subsection.3.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces A stock and a scion combine to produce a single child.}}{24}{figure.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Crossover}{24}{subsection.3.4.4}\protected@file@percent }
+\newlabel{weighted_random}{{3.4.4}{24}{Crossover}{subsection.3.4.4}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {3.23}{\ignorespaces The code handling the crossover.\relax }}{25}{listing.caption.29}\protected@file@percent }
+\newlabel{lst:crossover}{{3.23}{25}{The code handling the crossover.\relax }{listing.caption.29}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Mutation}{25}{subsection.3.4.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces The red nodes are replaced by the green ones due to single-node mutation. The rest of the nodes remain unchanged.}}{25}{figure.3.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces The red subtree is replaced by the yellow one due to subtree mutation. The rest of the nodes remain unchanged.}}{26}{figure.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Experiments}{27}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces A stock and a scion combine to produce a single child.\relax }}{26}{figure.caption.30}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces The red nodes are replaced by the green ones due to single-node mutation. The rest of the nodes remain unchanged.\relax }}{27}{figure.caption.31}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces The red subtree is replaced by the yellow one due to subtree mutation. The rest of the nodes remain unchanged.\relax }}{28}{figure.caption.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Experiments}{29}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experimental setup}{27}{section.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Test cases}{28}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{28}{subsection.4.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A screenshot showing the elementary case. The white glass block represents the target structure.}}{29}{figure.4.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {listing}{\numberline {4.1}{\ignorespaces Two combinations of parameters that solved the elementary case optimally.}}{29}{listing.4.1}\protected@file@percent }
-\newlabel{lst:elementary_combinations}{{4.1}{29}{Two combinations of parameters that solved the elementary case optimally}{listing.4.1}{}}
+\@writefile{lol}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experimental setup}{29}{section.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Test cases}{30}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{30}{subsection.4.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A screenshot showing the elementary case. The white glass block represents the target structure.\relax }}{31}{figure.caption.33}\protected@file@percent }
+\@writefile{lol}{\contentsline {listing}{\numberline {4.1}{\ignorespaces Two combinations of parameters that solved the elementary case optimally.\relax }}{31}{listing.caption.34}\protected@file@percent }
+\newlabel{lst:elementary_combinations}{{4.1}{31}{Two combinations of parameters that solved the elementary case optimally.\relax }{listing.caption.34}{}}
 \bibstyle{abbrv}
 \bibdata{bibliography}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{30}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{32}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lol}{\addvspace {10\p@ }}
 \bibcite{dice}{1}
 \bibcite{koza}{2}
 \bibcite{ccwiki}{3}
@@ -94,7 +144,7 @@
   13128D9C303C037320C7B94CDEC87C72A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   DDFE99D81B777AC43F66577C0B7DB920A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   FEC042C5E176807E405BDAD5DE0E9418A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
-  6F849309DF7D3960C87637EA50FB8FB7A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
+  407716AD66288AC8B831FA3BEEF3E591A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   08BF58CE15D447902C3616E22B83DEB5A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   7257F51FFDF92404E352668000C644C6A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   2E9CF183BE1B4A34DB06BF002882285BA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
@@ -105,4 +155,4 @@
   B38D78B54C9D9AC70BFDFB89769160FDA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   D51237664265247BE12D79691BEB8BD4A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex,
   16186F22AB1751D79CDE3E7FD28D13E40102E502927AACB428B4F294F23E2359.pygtex}
-\gdef \@abspage@last{32}
+\gdef \@abspage@last{34}

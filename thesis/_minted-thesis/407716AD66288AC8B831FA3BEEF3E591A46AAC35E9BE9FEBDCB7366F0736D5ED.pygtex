@@ -4,7 +4,11 @@
 \PYG{+w}{    }\PYG{n}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{tree}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{STACK\PYGZus{}START}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}\PYG{p}{)}
 \PYG{p}{\PYGZcb{}}
 
-\PYG{k}{fn} \PYG{n+nf}{translate\PYGZus{}subtree}\PYG{p}{(}\PYG{n}{tree}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{Node}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{stack\PYGZus{}ptr}: \PYG{k+kt}{u8}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{next\PYGZus{}label}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{mut}\PYG{+w}{ }\PYG{k+kt}{u16}\PYG{p}{)}\PYG{+w}{ }\PYGZhy{}\PYGZgt{} \PYG{n+nb}{Vec}\PYG{o}{\PYGZlt{}}\PYG{n}{Instruction}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{k}{fn} \PYG{n+nf}{translate\PYGZus{}subtree}\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{tree}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{Node}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{stack\PYGZus{}ptr}: \PYG{k+kt}{u8}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{next\PYGZus{}label}: \PYG{k+kp}{\PYGZam{}}\PYG{n+nc}{mut}\PYG{+w}{ }\PYG{k+kt}{u16}
+\PYG{p}{)}\PYG{+w}{ }\PYGZhy{}\PYGZgt{} \PYG{n+nb}{Vec}\PYG{o}{\PYGZlt{}}\PYG{n}{Instruction}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{    }\PYG{k}{match}\PYG{+w}{ }\PYG{n}{tree}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{        }\PYG{o}{..}\PYG{p}{.}
 \PYG{+w}{    }\PYG{p}{\PYGZcb{}}

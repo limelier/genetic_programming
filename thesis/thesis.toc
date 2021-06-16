@@ -8,15 +8,15 @@
 \contentsline {section}{\numberline {3.3}Tree-based programs}{12}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Motivation}{12}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Structure}{13}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Translation}{15}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Genetic algorithm}{18}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{20}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Evaluation}{21}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Selection}{22}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Crossover}{23}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.3.3}Translation}{16}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Genetic algorithm}{19}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{21}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Evaluation}{22}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Selection}{23}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Crossover}{24}{subsection.3.4.4}%
 \contentsline {subsection}{\numberline {3.4.5}Mutation}{25}{subsection.3.4.5}%
-\contentsline {chapter}{\numberline {4}Experiments}{27}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Experimental setup}{27}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Test cases}{28}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{28}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Conclusions}{30}{chapter.5}%
+\contentsline {chapter}{\numberline {4}Experiments}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Experimental setup}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Test cases}{30}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{30}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Conclusions}{32}{chapter.5}%

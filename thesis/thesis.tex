@@ -1,8 +1,8 @@
 \documentclass{report}
+\usepackage{caption} % for code listings or something
 \usepackage{chngcntr} % for changing listing captions
 \usepackage{setspace} % for paragraph spacing
-\usepackage{floatrow} % for captioned code blocks
-\usepackage{minted} % for code blocks
+\usepackage[newfloat]{minted} % for code blocks
 \usepackage{hyperref} % for references to labels
 \usepackage{graphicx} % for pictures
 \usepackage{amsmath} % for "align*" environment
@@ -14,6 +14,9 @@
 \setminted{rulecolor=lightgray}
 % Change the spacing between lines to 1.5
 \onehalfspacing
+
+% todo put back
+\newenvironment{code}{\captionsetup{type=listing}}{}
 
 \title{Genetic programming for building voxel structures with turtle robots}
 \author{Iacobescu Tudor}
@@ -87,25 +90,35 @@ This structure is implemented in Rust, a modern multi-paradigm programming langu
 Rust's memory safety, which prevents many hard to track down bugs, has lead to it being used alongside C and C++ in projects such as the Linux kernel. High performance and concurrency are required for a genetic algorithm as well, so I felt that Rust was a good fit for this project.
 
 \section{The simulator}
-The simulator for the training space and the turtle itself is fairly simple. Its structure is as follows:
+The simulator for the training space and the turtle itself is fairly simple.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub struct Simulator {
     blocks: BlockSpace, // 3D array of bytes
     turtle: Turtle
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{Simulator} struct.}
+    \label{lst:simulator_struct}
+\end{code}
 
 The blocks are stored in a 3D array.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub(crate) const BLOCK_SPACE_SIZE: usize = 16;
 pub type BlockSpace = 
     [[[u8; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE]; BLOCK_SPACE_SIZE];
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{BlockSpace} type alias.}
+    \label{lst:blockspace_type}
+\end{code}
 
 The turtle has a position (a triple of coordinates) and a facing direction (on either of the horizontal axes, towards plus or minus).
-\begin{minted}{rust}
+
+\begin{code}
+    \begin{minted}{rust}
 struct Vector3(isize, isize, isize);
 enum Orientation {
     XPos,
@@ -118,11 +131,15 @@ struct Turtle {
     pos: Vector3,
     facing: Orientation
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{Turtle} struct.}
+    \label{lst:turtle_struct}
+\end{code}
 
-Commands to the turtle are called as methods on the \verb|Simulator| instance. These methods will modify the data of the turtle and the blocks as needed. For example, the following is the code for attempting to move the turtle in a direction (forwards, up or down):
+Commands to the turtle are called as methods on the \verb|Simulator| instance. These methods will modify the data of the turtle and the blocks as needed. For example, \autoref{lst:try_move} contains the code for attempting to move the turtle in a direction (forwards, up or down):
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub fn try_move(&mut self, dir: Direction) -> bool {
     let pos = self.turtle.get_adjacent(dir);
     if Self::pos_in_bounds(pos) {
@@ -137,12 +154,16 @@ pub fn try_move(&mut self, dir: Direction) -> bool {
         false
     }
 }
-\end{minted}
+    \end{minted}
+    \caption{The code for attempting to move the turtle.}        
+    \label{lst:try_move}
+\end{code}
 
 \section{Linear programs and the virtual machine}
-Linear programs are encapsulated with the state of the virtual machine that runs them as a single entity. This leads to the following structure:
+Linear programs are encapsulated with the state of the virtual machine that runs them as a single entity. This leads to the structure in \autoref{lst:program_structure}.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub struct Program {
     instructions: Vec<Instruction>,
     labels: HashMap<Label, Ins>,
@@ -151,7 +172,10 @@ pub struct Program {
     halted: bool,
     simulator: Simulator,
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{Program} struct.}
+    \label{lst:program_structure}
+\end{code}
 
 The member variable \verb|instructions| contains the actual ``code'' of the program, while the rest represent either information derived from it (\verb|labels|, used for evaluating jump instructions) or the current state of the VM. In detail, these are:
 
@@ -162,8 +186,10 @@ The member variable \verb|instructions| contains the actual ``code'' of the prog
     \item the \verb|simulator|, which can be interacted with using certain ``turtle'' instructions
 \end{itemize}
 
-Each instruction in \verb|instructions| is one of several types:
-\begin{minted}{rust}
+Each instruction in \verb|instructions| is one of several types, as seen in \autoref{lst:instruction_enum}.
+
+\begin{code}
+    \begin{minted}{rust}
 pub enum Instruction {
     /// Do operation on register alone
     Unary(Reg, UnaryOperation),
@@ -182,11 +208,15 @@ pub enum Instruction {
     /// Do nothing
     Pass
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{Instruction} enum.}
+    \label{lst:instruction_enum}
+\end{code}
 
-The \verb|UnaryOperation| type holds unary operations such as incrementing or shifting, while \verb|BinaryOperation| holds binary operations such as addition or the binary ``AND'' operation. \verb|TurtleOperation|, on the other hand, holds operations specific to the problem domain, as described in \autoref{sec:turtle}:
+The \verb|UnaryOperation| type holds unary operations such as incrementing or shifting, while \verb|BinaryOperation| holds binary operations such as addition or the binary ``AND'' operation. \verb|TurtleOperation| (\autoref{lst:turtle_op_enum}), on the other hand, holds operations specific to the problem domain, as described in \autoref{sec:turtle}.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub enum TurtleOperation {
     Move(Direction),
     Turn(Side),
@@ -194,11 +224,15 @@ pub enum TurtleOperation {
     Dig(Direction),
     Detect(Direction),
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{TurtleOperation} enum.}
+    \label{lst:turtle_op_enum}
+\end{code}
 
-To execute the code, the VM goes through instructions step by step, processing each one. For example, the following code snippet handles the \verb|Unary| instruction type:
+To execute the code, the VM goes through instructions step by step, processing each one. For example, the code snippet in \autoref{lst:unary_handler} handles the \verb|Unary| instruction type.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Instruction::Unary(reg, op) => {
     let old = self.get_reg(reg);
     let new =match op {
@@ -220,11 +254,15 @@ Instruction::Unary(reg, op) => {
     };
     self.set_reg(reg, new);
 }
-\end{minted}
+    \end{minted}
+    \caption{The handler for the \texttt{Unary} instruction.}
+    \label{lst:unary_handler}
+\end{code}
 
-One can notice here the use of a special register, \verb|RESULT_REGISTER|. It and the \verb|COMPARE_REGISTER|, are set by some operations and can be read like any other register. This allows programs to read and use, for example, the result of turtle operations, bits lost by the bit shift operation, or the results of comparisons.
+One can notice the use of a special register, \verb|RESULT_REGISTER|. It and the \verb|COMPARE_REGISTER|, are set by some operations and can be read like any other register. This allows programs to read and use, for example, the result of turtle operations, bits lost by the bit shift operation, or the results of comparisons (see \autoref{lst:compare_handler}).
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Instruction::Compare(reg, src) => {
     let other = self.get_source(src);
     let this = self.get_reg(reg);
@@ -234,11 +272,15 @@ Instruction::Compare(reg, src) => {
         Ordering::Greater => 1,
     });
 }
-\end{minted}
+    \end{minted}
+    \caption{The handler for the \texttt{Compare} instruction.}
+    \label{lst:compare_handler}
+\end{code}
 
-While for most instructions the instruction pointer will just be incremented by one each time, the jump instructions can use labels to alter program flow conditionally:
+While for most instructions the instruction pointer will just be incremented by one each time, the jump instructions can use labels to alter program flow conditionally (\autoref{lst:jump_handler}). 
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Instruction::Jump(label, condition) => {
     let do_jump = match condition {
         JumpCondition::None => true,
@@ -259,11 +301,15 @@ Instruction::Jump(label, condition) => {
         jumped = true;
     }
 },
-\end{minted}
+    \end{minted}
+    \caption{The handler for the \texttt{Jump} instruction.}
+    \label{lst:jump_handler}
+\end{code}
 
-Lastly, turtle operations interact with the simulator and place their results in the \verb|RESULT_REGISTER|.
+Lastly, turtle operations interact with the simulator and place their results in the \verb|RESULT_REGISTER| (\autoref{lst:turtle_handler}).
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Instruction::Turtle(op) => {
     match op {
         TurtleOperation::Move(dir) => {
@@ -285,7 +331,10 @@ Instruction::Turtle(op) => {
         },
     }
 }
-\end{minted}
+    \end{minted}
+    \caption{The handler for the \texttt{Turtle} instruction.}
+    \label{lst:turtle_handler}
+\end{code}
 
 \section{Tree-based programs}
 \subsection{Motivation}
@@ -302,9 +351,10 @@ In fact, using linear programs directly was something I initially attempted; I w
 Using linear programs for genetic programming is not impossible, and it has been done to great success in the past. However, the extra complexity that this would introduce was something I wanted to avoid. As such, I opted to instead use tree-based programs, something which is more natural to functional programming than imperative programming. Still, converting a tree to an imperative program is not difficult, and trees would be much easier to work with for the genetic algorithm.
 
 \subsection{Structure}
-The tree-based programs are constructed using nodes, which can have a function or value and, depending on their arity, a number of children. The types of nodes implemented are as follows:
+The tree-based programs are constructed using nodes, which can have a function or value and, depending on their arity, a number of children. The types of nodes implemented are listed in \autoref{lst:node_enum}.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub enum Node {
     Null,
     Val(Source),
@@ -322,10 +372,15 @@ pub enum Node {
     Compare(Box<Node>, Box<Node>),
     Turtle(TurtleOperation),
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{Node} enum.}
+    \label{lst:node_enum}
+\end{code}
 
-I will also be representing these trees graphically, to aid in their understanding for the purposes of this thesis. For example, the following literal is equivalent to the tree pictured in \autoref{fig:simple_program}:
-\begin{minted}{rust}
+I will also be representing these trees graphically, to aid in their understanding for the purposes of this thesis. For example, the literal in \autoref{lst:simple_program} is equivalent to the tree pictured in \autoref{fig:simple_program}:
+
+\begin{code}
+    \begin{minted}{rust}
 Binary(
     BinaryOperation::Add,
     Box::from(Binary(
@@ -339,7 +394,10 @@ Binary(
         Box::from(Val(Source::Value(4))),
     )),
 )
-\end{minted}
+    \end{minted}
+    \caption{Tree literal equivalent to \autoref{fig:simple_program}}
+    \label{lst:simple_program}
+\end{code}
 
 \begin{figure}[ht]
     \centering
@@ -378,24 +436,33 @@ There are some subtleties to be aware of: the trees are not entirely functional 
 
 Additionally, \emph{labels} are used for control-flow structures. A label is a (linear) instruction holding an unsigned 16-bit integer, used by jump instructions as a target. Every new label instruction receives a new integer, guaranteeing their uniqueness.
 
-Translation follows the following mechanism, where \verb|translate_subtree| is a recursive function:
+Translation uses the functions shown in \autoref{lst:translate}, where the second function \verb|translate_subtree| is a recursive function.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub fn translate_tree(tree: &Node) -> Vec<Instruction> {
     let mut next_label = 0u16;
     translate_subtree(tree, STACK_START, &mut next_label)
 }
 
-fn translate_subtree(tree: &Node, stack_ptr: u8, next_label: &mut u16) -> Vec<Instruction> {
+fn translate_subtree(
+    tree: &Node,
+    stack_ptr: u8,
+    next_label: &mut u16
+) -> Vec<Instruction> {
     match tree {
         ...
     }
 }
-\end{minted}
+    \end{minted}
+    \caption{The \texttt{translate\_tree} and \texttt{translate\_subtree} functions.}
+    \label{lst:translate}
+\end{code}
 
-For example, a subtree rooted in a unary operation is translated from its children first. Afterwards, the operation is executed on \verb|r[stack_ptr]|, which will have been set to the result of the child subtree.
+For example, in \autoref{lst:unary_translation}, a subtree rooted in a unary operation is translated from its children first. Afterwards, the operation is executed on \verb|r[stack_ptr]|, which will have been set to the result of the child subtree.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Node::Unary(op, child) => {
     // do the subtree, which stores result in r[stack_ptr]
     let mut instr = translate_subtree(child, stack_ptr, next_label);
@@ -404,11 +471,15 @@ Node::Unary(op, child) => {
 
     instr
 }
-\end{minted}
+    \end{minted}
+    \caption{\texttt{Unary} node translation.}
+    \label{lst:unary_translation}
+\end{code}
 
-For multiple subtrees, the stack pointer is incremented, so that two separate values may be used:
+For multiple subtrees, the stack pointer is incremented, so that two separate values may be used, as in \autoref{lst:binary_translation}.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Node::Binary(op, left, right) => {
     // do left subtree, which stores result in r[stack_ptr]
     let mut instr = translate_subtree(left, stack_ptr, next_label);
@@ -419,11 +490,15 @@ Node::Binary(op, left, right) => {
 
     instr
 }
-\end{minted}
+    \end{minted}
+    \caption{\texttt{Binary} node translation.}
+    \label{lst:binary_translation}
+\end{code}
 
-A \verb|Then| node simply adds the instructions for one subtree before the other:
+A \verb|Then| node simply adds the instructions for one subtree before the other, like in \autoref{lst:then_translation}
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Node::Then(left, right) => {
     // do left subtree, which stores result in r[stack_ptr]
     let mut instr = translate_subtree(left, stack_ptr, next_label);
@@ -432,11 +507,15 @@ Node::Then(left, right) => {
 
     instr
 }
-\end{minted}
+    \end{minted}
+    \caption{\texttt{Then} node translation.}
+    \label{lst:then_translation}
+\end{code}
 
-Conditional nodes, such as \verb|If|, also make use of labels:
+Conditional nodes, such as \verb|If|, also make use of labels.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Node::If(cond, if_not_zero, if_zero) => {
     let label_else = *next_label;
     let label_after = label_else + 1;
@@ -455,11 +534,15 @@ Node::If(cond, if_not_zero, if_zero) => {
 
     instr
 }
-\end{minted}
+    \end{minted}
+    \caption{\texttt{If} node translation.}
+    \label{lst:if_translation}
+\end{code}
 
 Finally, nodes making use of special registers such as the \verb|RESULT_REGISTER| and the \verb|COMPARE_REGISTER| will move results to \verb|r[stack_ptr]| to make them accessible by their parents.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 Node::Turtle(operation) => {
     vec!(
         // do the operation, storing result in r[RESULT_REGISTER]
@@ -468,7 +551,10 @@ Node::Turtle(operation) => {
         Instruction::Binary(stack_ptr, Source::Register(RESULT_REGISTER), Set),
     )
 }
-\end{minted}
+    \end{minted}
+    \caption{\texttt{Turtle} node translation.}
+    \label{lst:turtle_translation}
+\end{code}
 
 For example, the tree in \autoref{fig:tree_3} translates into the instructions in \autoref{lst:tree_3_instr}.
 
@@ -479,7 +565,7 @@ For example, the tree in \autoref{fig:tree_3} translates into the instructions i
     \label{fig:tree_3}
 \end{figure}
 
-\begin{listing}[ht]
+\begin{code}
     \begin{minted}{rust}
 Binary(101, Value(8), Set),  // set reg. 101 to 8
 Label(0),
@@ -492,7 +578,7 @@ Label(1)
     \end{minted}
     \caption{The equivalent list of instructions.}
     \label{lst:tree_3_instr}
-\end{listing}
+\end{code}
 
 \section{Genetic algorithm}
 
@@ -507,9 +593,10 @@ For a brief summary, a genetic algorithm is an algorithm taking inspiration from
     \item \emph{mutation}: using randomness to modify parts of an individual in hope of creating useful new traits
 \end{itemize}
 
-The over-all training function, that goes through the generations gradually improving individuals, is detailed below. This function takes as parameter a \verb|target| that the trained individuals are supposed to build.
+The over-all training function, that goes through the generations gradually improving individuals, is detailed in \autoref{lst:training_function}. This function takes as parameter a \verb|target| that the trained individuals are supposed to build.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub fn train(target: &BlockSpace) -> definitions::Individual {
     // generate initial generation
     let mut generation = Generation::random();
@@ -539,7 +626,10 @@ pub fn train(target: &BlockSpace) -> definitions::Individual {
     // return the best individual found in any generation
     best_overall
 }
-\end{minted}
+    \end{minted}
+    \caption{The training function.}
+    \label{lst:training_function}
+\end{code}
 
 In the following sub-sections, I will go into more detail concerning each part of this algorithm.
 
@@ -549,7 +639,8 @@ The first generation is constructed by randomly-generating individuals using two
 
 The first method is called \emph{full}, and involves creating a full tree down to a certain depth. Nodes below that depth must have a non-zero arity (i.e. not be leaves), and the entire maximum depth must be made up of leaves. The second method, \emph{grow}, permits leaves further up in the tree with a certain probability.
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 pub fn generate(method: Method, max_depth: usize) -> Node {
     recurse(method, max_depth, 0)
 }
@@ -565,7 +656,10 @@ fn recurse(method: Method, max_depth: usize, current_depth: usize) -> Node {
         random_function(method, max_depth, current_depth)
     }
 }
-\end{minted}
+    \end{minted}
+    \caption{The generation function, which can use either method.}
+    \label{lst:gen_function}
+\end{code}
 
 One useful nuance here is that, even though there exist many types of unary and binary operations, the \verb|Unary| and \verb|Binary| nodes have the same chance to be generated as control structures like \verb|Repeat|. This should, in theory, make it so that programs have a higher chance of generating the comparatively complex structures required to construct parts of structures.
 
@@ -634,7 +728,7 @@ To easily explain crossover, both in my code and this sub-section, I will borrow
 
 Crossover, for the purposes of genetic algorithms, involves taking two individuals and mixing parts of them together to create a new individual. This is analogous to the real-life genetic process of chromosomal crossover, where matching regions on matching chromosomes break apart and reconnect with each other.
 
-In my code, crossover involves the following process:
+In my code (\autoref{lst:crossover}), crossover involves the following process:
 \begin{itemize}
     \label{weighted_random}
     \item pick a weighted-random node of the stock, with leaves having a weight of $1$ and other nodes a weight of $9$, a method again suggested by Koza\cite{koza}
@@ -643,7 +737,8 @@ In my code, crossover involves the following process:
     \item replace the selected stock node with the chosen node from the scion
 \end{itemize}
 
-\begin{minted}{rust}
+\begin{code}
+    \begin{minted}{rust}
 fn crossover(stock: &Node, scion: &Node) -> Node {
     let mut stock = stock.clone();
     let (stock_point, stock_point_depth) = stock.get_weighted_node_mut();
@@ -658,7 +753,10 @@ fn crossover(stock: &Node, scion: &Node) -> Node {
 
     stock
 }
-\end{minted}
+    \end{minted}
+    \caption{The code handling the crossover.}
+    \label{lst:crossover}
+\end{code}
 
 This operation effectively replaces a subtree of the stock with that one of the scion's.
 
@@ -736,7 +834,7 @@ This test case is the simplest, with the target structure made up of a single bl
 
 Both selection methods easily obtained the expected result, a Dice index of $1.0$ and an average depth of $1.0$, with most of the parameter combinations. For completeness' sake, though, \autoref{lst:elementary_combinations} holds two such combinations.
 
-\begin{listing}[ht]
+\begin{code}
     \begin{minted}{python}
 {  # fitness-weighted selection combination
  'crossover_size_proportion': 0.75,
@@ -760,7 +858,7 @@ Both selection methods easily obtained the expected result, a Dice index of $1.0
     \end{minted}
     \caption{Two combinations of parameters that solved the elementary case optimally.}
     \label{lst:elementary_combinations}
-\end{listing}
+\end{code}
 
 \chapter{Conclusions}
 
