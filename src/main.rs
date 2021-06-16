@@ -4,11 +4,11 @@ use genetic_programming::simulator::definitions::BlockSpace;
 fn main() {
     let mut target = BlockSpace::default();
     // simplest example: single voxel, above turtle
-    target[0][1][0] = 1;
+    // target[0][1][0] = 1;
 
     // second simplest: two voxels
-    // target[0][1][0] = 1;
-    // target[1][1][0] = 1;
+    target[0][1][0] = 1;
+    target[1][1][0] = 1;
 
     // simple example: tiny line
     // for i in 0..4 {
