@@ -1,5 +1,7 @@
 \documentclass{report}
+\usepackage{chngcntr} % for changing listing captions
 \usepackage{setspace} % for paragraph spacing
+\usepackage{floatrow} % for captioned code blocks
 \usepackage{minted} % for code blocks
 \usepackage{hyperref} % for references to labels
 \usepackage{graphicx} % for pictures
@@ -19,6 +21,8 @@
 
 
 \begin{document}
+\counterwithin{listing}{chapter} % make listings follow figure numbering scheme
+
 \maketitle
 
 \tableofcontents
@@ -466,7 +470,7 @@ Node::Turtle(operation) => {
 }
 \end{minted}
 
-For example, the tree in \autoref{fig:tree_3} translates into the instructions in \autoref{fig:tree_3_instr}.
+For example, the tree in \autoref{fig:tree_3} translates into the instructions in \autoref{lst:tree_3_instr}.
 
 \begin{figure}[ht]
     \centering
@@ -475,8 +479,8 @@ For example, the tree in \autoref{fig:tree_3} translates into the instructions i
     \label{fig:tree_3}
 \end{figure}
 
-\begin{figure}[ht]
-\begin{minted}{rust}
+\begin{listing}[ht]
+    \begin{minted}{rust}
 Binary(101, Value(8), Set),  // set reg. 101 to 8
 Label(0),
 Jump(1, Zero(101)),  // jump to label 1 when reg. 101 is 0
@@ -485,10 +489,10 @@ Binary(100, Register(200), Set),  // set reg. 100 to the value of the result reg
 Unary(101, Decrement),  // decrement reg. 101
 Jump(0, None),  // jump to label 0 always
 Label(1)
-\end{minted}
-\caption{The equivalent list of instructions.}
-\label{fig:tree_3_instr}
-\end{figure}
+    \end{minted}
+    \caption{The equivalent list of instructions.}
+    \label{lst:tree_3_instr}
+\end{listing}
 
 \section{Genetic algorithm}
 
@@ -708,8 +712,8 @@ For each run, the following parameters will vary:
     \item the chance for a subtree mutation, with values in $\{0.0, 0.001, 0.01, \linebreak 0.02, 0.05\}$
     \item the chance for a single-node mutation (which can happen multiple times per tree), with values in $\{0.0, 0.001, 0.01, 0.05, 0.1\}$
     \item the proportion of each new population that is generated through crossover instead of cloning, with values in $\{0.5, 0.75, 0.9\}$
-    \item the method used for selection, which can be either \verb|tournament| or \linebreak
-    \verb|fitness_weighted|
+    \item the method used for selection, which can be either \verb|Tournament| or \linebreak
+    \verb|FitnessWeighted|
 \end{itemize}
 
 Additionally, each selection method has certain parameters which will also vary:
@@ -729,6 +733,34 @@ This test case is the simplest, with the target structure made up of a single bl
     \includegraphics[scale=0.3]{minecraft2}
     \caption{A screenshot showing the elementary case. The white glass block represents the target structure.}
 \end{figure}
+
+Both selection methods easily obtained the expected result, a Dice index of $1.0$ and an average depth of $1.0$, with most of the parameter combinations. For completeness' sake, though, \autoref{lst:elementary_combinations} holds two such combinations.
+
+\begin{listing}[ht]
+    \begin{minted}{python}
+{  # fitness-weighted selection combination
+ 'crossover_size_proportion': 0.75,
+ 'depth_softener': 1.0,
+ 'mutation_chance': 0.0,
+ 'mutation_single_chance': 0.001,
+ 'p_grow_leaf': 0.1,
+ 'selection_method': 'FitnessWeighted',
+ 'selection_pressure': 5.0,
+}
+{  # tournament selection combination
+ 'crossover_size_proportion': 0.5,
+ 'depth_softener': 1.0,
+ 'mutation_chance': 0.0,
+ 'mutation_single_chance': 0.0,
+ 'p_grow_leaf': 0.1,
+ 'selection_method': 'Tournament',
+ 'tournament_p': 0.8,
+ 'tournament_size': 7
+}
+    \end{minted}
+    \caption{Two combinations of parameters that solved the elementary case optimally.}
+    \label{lst:elementary_combinations}
+\end{listing}
 
 \chapter{Conclusions}
 

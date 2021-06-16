@@ -21,3 +21,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThis measurement is done using the Sørensen–Dice coefficient\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, henceforth referred to as the “Dice index”.\\E$"}
 {"rule":"DIE_DICE","sentence":"^\\QThe \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q field of each individual is made up of its \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, its unmodified \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, and a boolean value \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q which is set to true if it has a Dice index of 1.\\E$"}
 {"rule":"PREPOSITION_VERB","sentence":"^\\QThis node is the root of a subtree which will be replaced by a new subtree, generated using the grow method up to the same depth as the old one.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QBoth selection methods easily obtained the expected result, a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and an average depth of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, with most of the parameter combinations.\\E$"}

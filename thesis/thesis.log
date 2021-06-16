@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  16 JUN 2021 14:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  16 JUN 2021 15:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -23,14 +23,65 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
+) (/usr/share/texmf-dist/tex/latex/chngcntr/chngcntr.sty
+Package: chngcntr 2018/04/09 v1.1a change counter resetting
+Package chngcntr Info: \counterwithout already defined.
+(chngcntr)             Quitting chngcntr on input line 21.
 ) (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (/usr/share/texmf/tex/latex/minted/minted.sty
-Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+) (/usr/share/texmf-dist/tex/latex/floatrow/floatrow.sty
+Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
  (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
-) (/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+) (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen139
+\captionmargin@=\dimen140
+\captionwidth=\dimen141
+\caption@tempdima=\dimen142
+\caption@indent=\dimen143
+\caption@parindent=\dimen144
+\caption@hangindent=\dimen145
+Package caption Info: Standard document class detected.
+)
+\c@float@type=\count188
+\float@exts=\toks16
+\float@box=\box47
+\@floatcapt=\box48
+Package floatrow Info: Modified float package code loaded on input line 455.
+Package floatrow Info: Modified rotfloat package code loaded on input line 473.
+\FR@everyfloat=\toks17
+\flrow@foot=\insert199
+\FB@wd=\dimen146
+\FBo@wd=\dimen147
+\FBc@wd=\dimen148
+\FBo@ht=\skip49
+\FBc@ht=\skip50
+\FBf@ht=\skip51
+\FBo@max=\skip52
+\FBc@max=\skip53
+\FBf@max=\skip54
+\c@FBl@b=\count189
+\floatbox@depth=\count190
+\c@FRobj=\count191
+\c@FRsobj=\count192
+\Xhsize=\skip55
+\sXhsize=\skip56
+\Zhsize=\skip57
+\sZhsize=\skip58
+\flrow@rowbox=\box49
+\FR@Zunitlength=\dimen149
+\c@FBcnt=\count193
+\FPOScnt=\count194
+\LTleft=\skip59
+\LTright=\skip60
+\LTleft=\skip61
+\LTright=\skip62
+\flrow@types=\toks18
+) (/usr/share/texmf/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+ (/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
  (/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
@@ -42,69 +93,69 @@ Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 ) (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count188
+\etb@tempcnta=\count195
 ) (/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count189
+\FV@CodeLineNo=\count196
 \FV@InFile=\read2
-\FV@TabBox=\box47
-\c@FancyVerbLine=\count190
-\FV@StepNumber=\count191
+\FV@TabBox=\box50
+\c@FancyVerbLine=\count197
+\FV@StepNumber=\count198
 \FV@OutFile=\write3
 ) (/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 ) (/usr/share/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count192
-\output=\toks16
-\linenoprevgraf=\count193
-\linenumbersep=\dimen139
-\linenumberwidth=\dimen140
-\c@linenumber=\count194
-\c@pagewiselinenumber=\count195
-\c@LN@truepage=\count196
-\c@internallinenumber=\count197
-\c@internallinenumbers=\count198
-\quotelinenumbersep=\dimen141
-\bframerule=\dimen142
-\bframesep=\dimen143
-\bframebox=\box48
+\linenopenalty=\count266
+\output=\toks19
+\linenoprevgraf=\count267
+\linenumbersep=\dimen150
+\linenumberwidth=\dimen151
+\c@linenumber=\count268
+\c@pagewiselinenumber=\count269
+\c@LN@truepage=\count270
+\c@internallinenumber=\count271
+\c@internallinenumbers=\count272
+\quotelinenumbersep=\dimen152
+\bframerule=\dimen153
+\bframesep=\dimen154
+\bframebox=\box51
 LaTeX Info: Redefining \\ on input line 3056.
 )
-\c@FV@TrueTabGroupLevel=\count199
-\c@FV@TrueTabCounter=\count266
-\FV@TabBox@Group=\box49
-\FV@TmpLength=\skip49
-\c@FV@HighlightLinesStart=\count267
-\c@FV@HighlightLinesStop=\count268
-\FV@LoopCount=\count269
-\FV@NCharsBox=\box50
-\FV@BreakIndent=\dimen144
-\FV@BreakIndentNChars=\count270
-\FV@BreakSymbolSepLeft=\dimen145
-\FV@BreakSymbolSepLeftNChars=\count271
-\FV@BreakSymbolSepRight=\dimen146
-\FV@BreakSymbolSepRightNChars=\count272
-\FV@BreakSymbolIndentLeft=\dimen147
-\FV@BreakSymbolIndentLeftNChars=\count273
-\FV@BreakSymbolIndentRight=\dimen148
-\FV@BreakSymbolIndentRightNChars=\count274
-\c@FancyVerbLineBreakLast=\count275
-\FV@LineBox=\box51
-\FV@LineIndentBox=\box52
-\FV@LineWidth=\dimen149
+\c@FV@TrueTabGroupLevel=\count273
+\c@FV@TrueTabCounter=\count274
+\FV@TabBox@Group=\box52
+\FV@TmpLength=\skip63
+\c@FV@HighlightLinesStart=\count275
+\c@FV@HighlightLinesStop=\count276
+\FV@LoopCount=\count277
+\FV@NCharsBox=\box53
+\FV@BreakIndent=\dimen155
+\FV@BreakIndentNChars=\count278
+\FV@BreakSymbolSepLeft=\dimen156
+\FV@BreakSymbolSepLeftNChars=\count279
+\FV@BreakSymbolSepRight=\dimen157
+\FV@BreakSymbolSepRightNChars=\count280
+\FV@BreakSymbolIndentLeft=\dimen158
+\FV@BreakSymbolIndentLeftNChars=\count281
+\FV@BreakSymbolIndentRight=\dimen159
+\FV@BreakSymbolIndentRightNChars=\count282
+\c@FancyVerbLineBreakLast=\count283
+\FV@LineBox=\box54
+\FV@LineIndentBox=\box55
+\FV@LineWidth=\dimen160
 ) (/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count276
-\calc@Bcount=\count277
-\calc@Adimen=\dimen150
-\calc@Bdimen=\dimen151
-\calc@Askip=\skip50
-\calc@Bskip=\skip51
+\calc@Acount=\count284
+\calc@Bcount=\count285
+\calc@Adimen=\dimen161
+\calc@Bdimen=\dimen162
+\calc@Askip=\skip64
+\calc@Bskip=\skip65
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count278
-\calc@Cskip=\skip52
+\calc@Ccount=\count286
+\calc@Cskip=\skip66
 ) (/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
 Package shellesc Info: Unrestricted shell escape enabled on input line 75.
@@ -133,32 +184,24 @@ runsystem(uname -s > "thesis.w18")...executed.
 runsystem(rm -- "thesis.w18")...executed.
 
 ) (/usr/share/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
-\integerpart=\count279
-\decimalpart=\count280
+\integerpart=\count287
+\decimalpart=\count288
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 ) (/usr/share/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip53
-\fb@frw=\dimen152
-\fb@frh=\dimen153
-\FrameRule=\dimen154
-\FrameSep=\dimen155
-) (/usr/share/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count281
-\float@exts=\toks17
-\float@box=\box53
-\@float@everytoks=\toks18
-\@floatcapt=\box54
+\OuterFrameSep=\skip67
+\fb@frw=\dimen163
+\fb@frh=\dimen164
+\FrameRule=\dimen165
+\FrameSep=\dimen166
 )
 \minted@appexistsfile=\read3
-\minted@bgbox=\box55
+\minted@bgbox=\box56
 \minted@code=\write4
-\c@minted@FancyVerbLineTemp=\count282
-\c@minted@pygmentizecounter=\count283
-\@float@every@listing=\toks19
-\c@listing=\count284
+\c@minted@FancyVerbLineTemp=\count289
+\c@minted@pygmentizecounter=\count290
+\c@listing=\count291
 )
 runsystem(mkdir -p _minted-thesis)...executed.
 
@@ -175,9 +218,9 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/usr/share/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen156
-\Hy@linkcounter=\count285
-\Hy@pagecounter=\count286
+\@linkdim=\dimen167
+\Hy@linkcounter=\count292
+\Hy@pagecounter=\count293
  (/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -187,7 +230,7 @@ File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel lan
 ) (/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count287
+\Hy@SavedSpaceFactor=\count294
  (/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -200,21 +243,21 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count288
+\c@Hy@tempcnt=\count295
  (/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen157
+\XeTeXLinkMargin=\dimen168
  (/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count289
-\Field@Width=\dimen158
-\Fld@charsize=\dimen159
+\Fld@menulength=\count296
+\Field@Width=\dimen169
+\Fld@charsize=\dimen170
 Package hyperref Info: Hyper figures OFF on input line 6075.
 Package hyperref Info: Link nesting OFF on input line 6080.
 Package hyperref Info: Hyper index ON on input line 6083.
@@ -228,9 +271,9 @@ LaTeX Info: Redefining \pageref on input line 6149.
 Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi package
 with kernel methods
 )
-\Hy@abspage=\count290
-\c@Item=\count291
-\c@Hfootnote=\count292
+\Hy@abspage=\count297
+\c@Item=\count298
+\c@Hfootnote=\count299
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -239,8 +282,8 @@ File: hpdftex.def 2021-02-27 v7.00k Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery package
 with kernel methods
 )
-\Fld@listcount=\count293
-\c@bookmark@seq@number=\count294
+\Fld@listcount=\count300
+\c@bookmark@seq@number=\count301
  (/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
  (/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -248,7 +291,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
 )
-\Hy@SectionHShift=\skip54
+\Hy@SectionHShift=\skip68
 ) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
@@ -262,11 +305,11 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
  (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen160
-\Gin@req@width=\dimen161
+\Gin@req@height=\dimen171
+\Gin@req@width=\dimen172
 ) (/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
-\@mathmargin=\skip55
+\@mathmargin=\skip69
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -274,47 +317,47 @@ Package: amstext 2000/06/29 v2.01 AMS text
  (/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
-\ex@=\dimen162
+\ex@=\dimen173
 )) (/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen163
+\pmbraise@=\dimen174
 ) (/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count295
+\inf@bad=\count302
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count296
-\leftroot@=\count297
+\uproot@=\count303
+\leftroot@=\count304
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count298
-\DOTSCASE@=\count299
+\classnum@=\count305
+\DOTSCASE@=\count306
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box56
-\strutbox@=\box57
-\big@size=\dimen164
+\Mathstrutbox@=\box57
+\strutbox@=\box58
+\big@size=\dimen175
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count300
-\c@MaxMatrixCols=\count301
+\macc@depth=\count307
+\c@MaxMatrixCols=\count308
 \dotsspace@=\muskip17
-\c@parentequation=\count302
-\dspbrk@lvl=\count303
+\c@parentequation=\count309
+\dspbrk@lvl=\count310
 \tag@help=\toks21
-\row@=\count304
-\column@=\count305
-\maxfields@=\count306
+\row@=\count311
+\column@=\count312
+\maxfields@=\count313
 \andhelp@=\toks22
-\eqnshift@=\dimen165
-\alignsep@=\dimen166
-\tagshift@=\dimen167
-\tagwidth@=\dimen168
-\totwidth@=\dimen169
-\lineht@=\dimen170
+\eqnshift@=\dimen176
+\alignsep@=\dimen177
+\tagshift@=\dimen178
+\tagwidth@=\dimen179
+\totwidth@=\dimen180
+\lineht@=\dimen181
 \@envbody=\toks23
-\multlinegap=\skip56
-\multlinetaggap=\skip57
+\multlinegap=\skip70
+\multlinetaggap=\skip71
 \mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
@@ -340,30 +383,32 @@ runsystem(rm thesis.aex)...executed.
 
  (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count307
-\l__pdf_internal_box=\box58
+\l__color_backend_stack_int=\count314
+\l__pdf_internal_box=\box59
 ) (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-Package hyperref Info: Link coloring OFF on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring OFF on input line 23.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
@@ -371,27 +416,27 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count308
+\c@section@level=\count315
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
  (/home/limelier/docs/college/genetic_programming/thesis/thesis.out) (/home/limelier/docs/college/genetic_programming/thesis/thesis.out)
 \@outlinefile=\write5
 \openout5 = `thesis.out'.
 
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count309
-\scratchdimen=\dimen171
-\scratchbox=\box59
-\nofMPsegments=\count310
-\nofMParguments=\count311
+\scratchcounter=\count316
+\scratchdimen=\dimen182
+\scratchbox=\box60
+\nofMPsegments=\count317
+\nofMParguments=\count318
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count312
-\MPscratchDim=\dimen172
-\MPnumerator=\count313
-\makeMPintoPDFobject=\count314
+\MPscratchCnt=\count319
+\MPscratchDim=\dimen183
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
 \everyMPtoPDFconversion=\toks26
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -407,7 +452,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 \chapter
+l.30 \chapter
              {Introduction} [1
 
 ]
@@ -422,7 +467,7 @@ Chapter 2.
 <./resources//minecraft1.png, id=141, 858.20625pt x 757.83125pt>
 File: ./resources//minecraft1.png Graphic file (type png)
 <use ./resources//minecraft1.png>
-Package pdftex.def Info: ./resources//minecraft1.png  used on input line 63.
+Package pdftex.def Info: ./resources//minecraft1.png  used on input line 67.
 (pdftex.def)             Requested size: 343.27641pt x 303.12714pt.
  [4] [5 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft1.png>]
 Chapter 3.
@@ -468,7 +513,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
 <./resources//binary_mutation.png, id=181, 413.545pt x 162.6075pt>
 File: ./resources//binary_mutation.png Graphic file (type png)
 <use ./resources//binary_mutation.png>
-Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 294.
+Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 298.
 (pdftex.def)             Requested size: 310.15797pt x 121.95532pt.
  [12 </home/limelier/docs/college/genetic_programming/thesis/./resources//binary_mutation.png>]
 \openout3 = `thesis.pyg'.
@@ -480,13 +525,13 @@ Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 29
 <./resources//tree_1.png, id=196, 261.97874pt x 181.67876pt>
 File: ./resources//tree_1.png Graphic file (type png)
 <use ./resources//tree_1.png>
-Package pdftex.def Info: ./resources//tree_1.png  used on input line 342.
+Package pdftex.def Info: ./resources//tree_1.png  used on input line 346.
 (pdftex.def)             Requested size: 196.48357pt x 136.25871pt.
  [14 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_1.png>]
 <./resources//tree_2.png, id=202, 282.05376pt x 201.75375pt>
 File: ./resources//tree_2.png Graphic file (type png)
 <use ./resources//tree_2.png>
-Package pdftex.def Info: ./resources//tree_2.png  used on input line 366.
+Package pdftex.def Info: ./resources//tree_2.png  used on input line 370.
 (pdftex.def)             Requested size: 211.53978pt x 151.31493pt.
  [15 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_2.png>]
 \openout3 = `thesis.pyg'.
@@ -510,11 +555,13 @@ Package pdftex.def Info: ./resources//tree_2.png  used on input line 366.
 <./resources//tree_3.png, id=219, 201.75375pt x 121.45375pt>
 File: ./resources//tree_3.png Graphic file (type png)
 <use ./resources//tree_3.png>
-Package pdftex.def Info: ./resources//tree_3.png  used on input line 473.
+Package pdftex.def Info: ./resources//tree_3.png  used on input line 477.
 (pdftex.def)             Requested size: 201.75325pt x 121.45343pt.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/CEADCD6D79770B90BEC6C63B323C63B8A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [18 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_3.png>]
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/CEADCD6D79770B90BEC6C63B323C63B8A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 493.
+ [18 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_3.png>]
 \openout3 = `thesis.pyg'.
 
  (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/D3F91F46F6DA74FF858F9F73DBA1E07DA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [19])
@@ -527,18 +574,18 @@ Package pdftex.def Info: ./resources//tree_3.png  used on input line 473.
 <./resources//crossover.png, id=273, 573.14125pt x 553.06625pt>
 File: ./resources//crossover.png Graphic file (type png)
 <use ./resources//crossover.png>
-Package pdftex.def Info: ./resources//crossover.png  used on input line 663.
+Package pdftex.def Info: ./resources//crossover.png  used on input line 667.
 (pdftex.def)             Requested size: 343.8874pt x 331.8423pt.
  [24 </home/limelier/docs/college/genetic_programming/thesis/./resources//crossover.png>]
 <./resources//single_mutation.png, id=281, 423.5825pt x 382.42876pt>
 File: ./resources//single_mutation.png Graphic file (type png)
 <use ./resources//single_mutation.png>
-Package pdftex.def Info: ./resources//single_mutation.png  used on input line 675.
+Package pdftex.def Info: ./resources//single_mutation.png  used on input line 679.
 (pdftex.def)             Requested size: 317.6861pt x 286.82085pt.
 <./resources//subtree_mutation.png, id=283, 459.7175pt x 583.17876pt>
 File: ./resources//subtree_mutation.png Graphic file (type png)
 <use ./resources//subtree_mutation.png>
-Package pdftex.def Info: ./resources//subtree_mutation.png  used on input line 683.
+Package pdftex.def Info: ./resources//subtree_mutation.png  used on input line 687.
 (pdftex.def)             Requested size: 344.78728pt x 437.383pt.
  [25 </home/limelier/docs/college/genetic_programming/thesis/./resources//single_mutation.png>] [26 </home/limelier/docs/college/genetic_programming/thesis/./resources//subtree_mutation.png>]
 Chapter 4.
@@ -548,9 +595,11 @@ Chapter 4.
 <./resources//minecraft2.png, id=302, 948.54375pt x 809.0225pt>
 File: ./resources//minecraft2.png Graphic file (type png)
 <use ./resources//minecraft2.png>
-Package pdftex.def Info: ./resources//minecraft2.png  used on input line 729.
+Package pdftex.def Info: ./resources//minecraft2.png  used on input line 733.
 (pdftex.def)             Requested size: 284.56532pt x 242.70862pt.
- [28] [29 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft2.png>]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/16186F22AB1751D79CDE3E7FD28D13E40102E502927AACB428B4F294F23E2359.pygtex) [28] [29 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft2.png>]
 Chapter 5.
 (/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [30
 
@@ -563,18 +612,18 @@ runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 12336 strings out of 478994
- 206572 string characters out of 5864751
- 551995 words of memory out of 5000000
- 29492 multiletter control sequences out of 15000+600000
+ 13623 strings out of 478994
+ 230564 string characters out of 5864751
+ 572260 words of memory out of 5000000
+ 30766 multiletter control sequences out of 15000+600000
  411508 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,15n,88p,760b,642s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,15n,88p,760b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (32 pages, 515316 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (32 pages, 517130 bytes).
 PDF statistics:
- 402 PDF objects out of 1000 (max. 8388607)
- 322 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 324 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
  222 words of extra memory for PDF output out of 10000 (max. 10000000)
 
