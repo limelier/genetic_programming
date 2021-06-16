@@ -35,12 +35,12 @@ pub(crate) enum SelectionMethod {
 
 
 // Selection
-pub(crate) const SELECTION_METHOD: SelectionMethod = SelectionMethod::FitnessWeighted;
+pub(crate) const SELECTION_METHOD: SelectionMethod = SelectionMethod::Tournament;
 // TOURNAMENT ONLY
-pub(crate) const TOURNAMENT_SIZE: usize = 4;
-pub(crate) const TOURNAMENT_P: f64 = 1.0;
+pub(crate) const TOURNAMENT_SIZE: usize = 7;
+pub(crate) const TOURNAMENT_P: f64 = 0.8;
 // FITNESS-WEIGHTED ONLY
-pub(crate) const SELECTION_PRESSURE: f64 = 0.2;
+pub(crate) const SELECTION_PRESSURE: f64 = 1.0;
 
 // Generation
 pub(crate) const INDIVIDUALS_PER_METHOD_AND_DEPTH: usize = 5;
