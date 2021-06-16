@@ -58,7 +58,7 @@ Every position in the space can be identified by a triplet of coordinates $(x, y
 
 For clarity, and for fun, I'm going to use screenshots of Minecraft to illustrate the training space.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.4]{minecraft1}
     \caption{The training space, as it would appear in Minecraft. The axes are represented by the red ($x$), green ($y$) and blue ($z$) edges of the cube, and the training space is contained within. The turtle is located at $(0, 0, 0)$, and is facing towards positive $x$.}
@@ -289,7 +289,7 @@ The virtual machine can run fairly complicated programs, but linear programs are
 
 In fact, using linear programs directly was something I initially attempted; I would translate an instruction into one or more bytes, effectively turning a set of instructions into a byte array. This, however, made the programs even more sensitive to change, as modifying a single byte belonging to a multi-byte instruction could make it so that the byte array could not even be translated into working code anymore. Even if the bytes could be translated into code, there was no guarantee that a single-byte mutation would not radically change the functionality of the program.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{binary_mutation}
     \caption{Mutating the first byte of a three-byte instruction can turn it into a two-byte instruction, leaving one byte to change the meaning of bytes after it.}
@@ -320,7 +320,7 @@ pub enum Node {
 }
 \end{minted}
 
-I will also be representing these trees graphically, to aid in their understanding for the purposes of this thesis. For example, the following literal is equivalent to the image below it:
+I will also be representing these trees graphically, to aid in their understanding for the purposes of this thesis. For example, the following literal is equivalent to the tree pictured in \autoref{fig:simple_program}:
 \begin{minted}{rust}
 Binary(
     BinaryOperation::Add,
@@ -337,10 +337,11 @@ Binary(
 )
 \end{minted}
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{tree_1}
     \caption{A simple tree-based program}
+    \label{fig:simple_program}
 \end{figure}
 
 Since the purpose of these programs is to build structures, they must allow for side effects. To this purpose, the full instruction set is as follows:
@@ -360,7 +361,7 @@ Since the purpose of these programs is to build structures, they must allow for 
 
 When mutating a tree is required, it is possible to change out a node for one of the same arity, or even for a completely new subtree, and still have a functioning program.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{tree_2}
     \caption{A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.}
@@ -465,15 +466,16 @@ Node::Turtle(operation) => {
 }
 \end{minted}
 
-For example, the tree below translates into the instructions below it.
+For example, the tree in \autoref{fig:tree_3} translates into the instructions in \autoref{fig:tree_3_instr}.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics{tree_3}
     \caption{A simple tree.}
+    \label{fig:tree_3}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[ht]
 \begin{minted}{rust}
 Binary(101, Value(8), Set),  // set reg. 101 to 8
 Label(0),
@@ -485,6 +487,7 @@ Jump(0, None),  // jump to label 0 always
 Label(1)
 \end{minted}
 \caption{The equivalent list of instructions.}
+\label{fig:tree_3_instr}
 \end{figure}
 
 \section{Genetic algorithm}
@@ -655,7 +658,7 @@ fn crossover(stock: &Node, scion: &Node) -> Node {
 
 This operation effectively replaces a subtree of the stock with that one of the scion's.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.60]{crossover}
     \caption{A stock and a scion combine to produce a single child.}
@@ -667,7 +670,7 @@ Mutation is a process that can modify a tree unpredictably, with the idea of pro
 
 One kind of mutation applies to individual nodes. For each node in an individual, there is a certain probability to be replaced by another node with the same arity:
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{single_mutation}
     \caption{The red nodes are replaced by the green ones due to single-node mutation. The rest of the nodes remain unchanged.}
@@ -675,7 +678,7 @@ One kind of mutation applies to individual nodes. For each node in an individual
 
 The other kind of mutation involves replacing entire subtrees with newly generated ones. This happens once per tree, with a certain probability. Specifically, this involves picking a weighted-random node (similarly to \autoref{weighted_random}). This node is the root of a subtree which will be replaced by a new subtree, generated using the \emph{grow} method up to the same depth as the old one.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.75]{subtree_mutation}
     \caption{The red subtree is replaced by the yellow one due to subtree mutation. The rest of the nodes remain unchanged.}
@@ -719,15 +722,13 @@ Additionally, each selection method has certain parameters which will also vary:
 \section{Test cases}
 
 \subsection{Elementary case: a single block}
-This test case is the simplest, with the target structure made up of a single block immediately above the starting position of the turtle.
+This test case is the simplest, with the target structure made up of a single block immediately above the starting position of the turtle. It can easily be solved optimally by a single-node tree consisting of just a \verb|Place(UP)| node.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.3]{minecraft2}
     \caption{A screenshot showing the elementary case. The white glass block represents the target structure.}
 \end{figure}
-
-This test case could be easily solved optimally by a single-node tree consisting of just a \verb|Place(UP)| node.
 
 \chapter{Conclusions}
 
