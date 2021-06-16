@@ -56,6 +56,14 @@ In Minecraft, a turtle can interact with most blocks in the full 3D space, which
 
 Every position in the space can be identified by a triplet of coordinates $(x, y, z)$ where $x, y, z = \overline{0..15}$ and where the $y$-axis is vertical and the $x$- and $z$-axes are horizontal. This is analogous to the inspiration material, as Minecraft also uses \emph{y-up} space. The positions can either be free, or taken up by a block (or voxel). The initial position of the turtle in the training space is $(0, 0, 0)$, and its direction is towards positive $x$. Every position is initially free, and may be filled by the turtle during its operation.
 
+For clarity, and for fun, I'm going to use screenshots of Minecraft to illustrate the training space.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{minecraft1}
+    \caption{The training space, as it would appear in Minecraft. The axes are represented by the red ($x$), green ($y$) and blue ($z$) edges of the cube, and the training space is contained within. The turtle is located at $(0, 0, 0)$, and is facing towards positive $x$.}
+\end{figure}
+
 \chapter{Technical details}
 The idea of the thesis is to attempt the generation of programs for turtles evolutionarily, using a genetic algorithm. Ideally, these programs should also be reasonably easy to translate from the abstraction used in the training algorithm to Lua code that can actually be run on a Minecraft turtle. However, this presents a problem: genetic programming works more naturally with programs structured as trees, but Lua is not a functional language, and thus does not translate easily into trees. This means that an additional layer is required, leading to the following program structure:
 
@@ -281,7 +289,7 @@ The virtual machine can run fairly complicated programs, but linear programs are
 
 In fact, using linear programs directly was something I initially attempted; I would translate an instruction into one or more bytes, effectively turning a set of instructions into a byte array. This, however, made the programs even more sensitive to change, as modifying a single byte belonging to a multi-byte instruction could make it so that the byte array could not even be translated into working code anymore. Even if the bytes could be translated into code, there was no guarantee that a single-byte mutation would not radically change the functionality of the program.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{binary_mutation}
     \caption{Mutating the first byte of a three-byte instruction can turn it into a two-byte instruction, leaving one byte to change the meaning of bytes after it.}
@@ -329,7 +337,7 @@ Binary(
 )
 \end{minted}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{tree_1}
     \caption{A simple tree-based program}
@@ -352,7 +360,7 @@ Since the purpose of these programs is to build structures, they must allow for 
 
 When mutating a tree is required, it is possible to change out a node for one of the same arity, or even for a completely new subtree, and still have a functioning program.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{tree_2}
     \caption{A simple program that builds a line from $(0, 1, 0)$ to $(7, 1, 0)$.}
@@ -459,13 +467,13 @@ Node::Turtle(operation) => {
 
 For example, the tree below translates into the instructions below it.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics{tree_3}
     \caption{A simple tree.}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \begin{minted}{rust}
 Binary(101, Value(8), Set),  // set reg. 101 to 8
 Label(0),
@@ -581,6 +589,8 @@ $$s = DSC * \frac{DS + MD - d}{DS + MD}$$
     d &= \text{the depth of the tree}
 \end{align*}
 
+\label{depth_softener}
+
 The \emph{depth softener} is a parameter of the algorithm  used to control the importance of tree's depth to the score of an individual; a bigger $DS$ means that depth has less of an impact.
 
 Individuals whose tree exceeds the allowed depth, or whose program either takes too long or terminates with an error, receive a score of $-\infty$.
@@ -593,7 +603,7 @@ After evaluating each individual, a generation will also store the best score of
 
 Selection is the process of picking individuals from the current generation to use in the creation of the next one. These individuals are chosen based on their score in one of two ways.
 
-\emph{Tournament selection} involves running a number ``tournaments'' and picking the winner as a parent for the next generation. A tournament involves randomly selecting a handful of individuals from the population, and sorting them by their results. Then, the best individual in this set is chosen with probability $p$, the second with probability $(1-p)p$, etc. If no other individual is chosen, the worst one will be.
+\emph{Tournament selection} involves running a number ``tournaments'' and picking the winner as a parent for the next generation. A tournament involves randomly selecting a handful of individuals from the population, and sorting them by their results. Then, the best individual in this set is chosen with probability \label{tournament_p}$p$, the second with probability $(1-p)p$, etc. If no other individual is chosen, the worst one will be.
 
 \emph{Fitness-weighted selection}, on the other hand, is done on the whole population at once. First, each individual's score $s$ is mapped into a fitness $f$ using the following formula:
 
@@ -645,7 +655,7 @@ fn crossover(stock: &Node, scion: &Node) -> Node {
 
 This operation effectively replaces a subtree of the stock with that one of the scion's.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.60]{crossover}
     \caption{A stock and a scion combine to produce a single child.}
@@ -657,7 +667,7 @@ Mutation is a process that can modify a tree unpredictably, with the idea of pro
 
 One kind of mutation applies to individual nodes. For each node in an individual, there is a certain probability to be replaced by another node with the same arity:
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{single_mutation}
     \caption{The red nodes are replaced by the green ones due to single-node mutation. The rest of the nodes remain unchanged.}
@@ -665,7 +675,7 @@ One kind of mutation applies to individual nodes. For each node in an individual
 
 The other kind of mutation involves replacing entire subtrees with newly generated ones. This happens once per tree, with a certain probability. Specifically, this involves picking a weighted-random node (similarly to \autoref{weighted_random}). This node is the root of a subtree which will be replaced by a new subtree, generated using the \emph{grow} method up to the same depth as the old one.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{subtree_mutation}
     \caption{The red subtree is replaced by the yellow one due to subtree mutation. The rest of the nodes remain unchanged.}
@@ -673,7 +683,53 @@ The other kind of mutation involves replacing entire subtrees with newly generat
 
 \chapter{Experiments}
 
-\chapter{Results and conclusions}
+In this chapter, I will be exploring the experiments I have conducted using the program described thus far. I will be illustrating them, analyzing their results individually, and then comparing them to each other.
+
+\section{Experimental setup}
+
+To obtain rigorous results, I am using a ``meta-search'' script, written in Python. This script will iterate through all possible combinations of the parameters I seek to explore, running 30 training runs with each one. Then, I will be averaging out the 30 runs to produce two values: the average Dice index of the best individual produced by each run, as well as the average depth of said individual's tree.
+
+Each run will use a number of fixed parameters, including the following:
+
+\begin{itemize}
+    \item a population of 50 individuals (5 individuals per generation method and per depth between 2 and 6, as per the ramped half-and-half technique)
+    \item a run-time of 1000 generations
+    \item a maximum run-time of 10 milliseconds for each evaluated program
+    \item a maximum depth of 12 for each individual's tree
+\end{itemize}
+
+For each run, the following parameters will vary:
+
+\begin{itemize}
+    \item the ``depth softener'' parameter (described in \autoref{depth_softener}), with values in $\{1.0, 6.0, 10.0\}$
+    \item the chance for a subtree mutation, with values in $\{0.0, 0.001, 0.01, \linebreak 0.02, 0.05\}$
+    \item the chance for a single-node mutation (which can happen multiple times per tree), with values in $\{0.0, 0.001, 0.01, 0.05, 0.1\}$
+    \item the proportion of each new population that is generated through crossover instead of cloning, with values in $\{0.5, 0.75, 0.9\}$
+    \item the method used for selection, which can be either \verb|tournament| or \linebreak
+    \verb|fitness_weighted|
+\end{itemize}
+
+Additionally, each selection method has certain parameters which will also vary:
+
+\begin{itemize}
+    \item tournament selection has a tournament size parameter (in $\{2, 4, 7\}$) and a probability $p$ described in \autoref{tournament_p} (in $\{0.8, 1.0\}$)
+    \item fitness-weighted selection has a selection pressure parameter with values in $\{0.2, 1.0, 5.0\}$
+\end{itemize}
+
+\section{Test cases}
+
+\subsection{Elementary case: a single block}
+This test case is the simplest, with the target structure made up of a single block immediately above the starting position of the turtle.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{minecraft2}
+    \caption{A screenshot showing the elementary case. The white glass block represents the target structure.}
+\end{figure}
+
+This test case could be easily solved optimally by a single-node tree consisting of just a \verb|Place(UP)| node.
+
+\chapter{Conclusions}
 
 \bibliographystyle{abbrv}
 \bibliography{bibliography}
