@@ -7,13 +7,13 @@ fn main() {
     // target[0][1][0] = 1;
 
     // second simplest: two voxels
-    target[0][1][0] = 1;
-    target[1][1][0] = 1;
+    // target[0][1][0] = 1;
+    // target[1][1][0] = 1;
 
     // simple example: tiny line
-    // for i in 0..4 {
-    //     target[i][1][0] = 1;
-    // }
+    for i in 0..4 {
+        target[i][1][0] = 1;
+    }
 
     // simple example: line
     // for i in 0..8 {
