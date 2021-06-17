@@ -37,13 +37,8 @@ pub(crate) enum SelectionMethod {
 // Selection
 pub(crate) const SELECTION_METHOD: SelectionMethod = SelectionMethod::Tournament;
 // TOURNAMENT ONLY
-<<<<<<< HEAD
-pub(crate) const TOURNAMENT_SIZE: usize = 7;
-pub(crate) const TOURNAMENT_P: f64 = 0.8;
-=======
 pub(crate) const TOURNAMENT_SIZE: usize = 2;
-pub(crate) const TOURNAMENT_P: f64 = 1.0;
->>>>>>> e076cf4e78cc527b8d4f0d52fbbbc65593ff3d4b
+pub(crate) const TOURNAMENT_P: f64 = 0.8;
 // FITNESS-WEIGHTED ONLY
 pub(crate) const SELECTION_PRESSURE: f64 = 1.0;
 
@@ -64,9 +59,9 @@ pub(crate) const SCORE_PROGRAM_ERROR: f64 = f64::NEG_INFINITY;
 pub(crate) const SCORE_DEPTH_LIMIT_EXCEEDED: f64 = f64::NEG_INFINITY;
 
 // Mutation
-pub(crate) const MUTATION_CHANCE: f64 = 0.01;
-pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.00;
+pub(crate) const MUTATION_CHANCE: f64 = 0.05;
+pub(crate) const MUTATION_SINGLE_CHANCE: f64 = 0.10;
 
 // Crossover
-pub(crate) const CROSSOVER_SIZE: usize = (POPULATION_SIZE as f64 * 0.9) as usize;
+pub(crate) const CROSSOVER_SIZE: usize = (POPULATION_SIZE as f64 * 0.5) as usize;
 
