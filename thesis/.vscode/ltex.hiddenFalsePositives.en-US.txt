@@ -35,3 +35,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% SN Mut.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% Sel.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qcompat=1.17\\E$"}
+{"rule":"TO_TOO","sentence":"^\\QIf this is a factor, it's possible that lowering the number of registers and shrinking the set of possible instructions, perhaps specializing the approach to a certain kind of structure, would lead to much better results.\\E$"}

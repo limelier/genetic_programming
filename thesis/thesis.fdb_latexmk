@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex thesis"] 1624024881 "thesis.aux" "thesis.bbl" "thesis" 1624024886
+["bibtex thesis"] 1624026874 "thesis.aux" "thesis.bbl" "thesis" 1624026879
   "/usr/share/texmf-dist/bibtex/bst/base/abbrv.bst" 1617738065 20329 b5fed53e10044d0f8112183785c759b1 ""
   "bibliography.bib" 1623676791 1131 24de4967108919a6b5511c271f5e7bce ""
-  "thesis.aux" 1624024885 20432 d6b3180d63dae97af36bf68c2e2e883d "pdflatex"
+  "thesis.aux" 1624026878 20688 67dead881930a3e074a379371466afd7 "pdflatex"
   (generated)
   "thesis.blg"
   "thesis.bbl"
-["pdflatex"] 1624024881 "/home/limelier/docs/college/genetic_programming/thesis/thesis.tex" "/home/limelier/docs/college/genetic_programming/thesis/thesis.pdf" "thesis" 1624024886
+["pdflatex"] 1624026874 "/home/limelier/docs/college/genetic_programming/thesis/thesis.tex" "/home/limelier/docs/college/genetic_programming/thesis/thesis.pdf" "thesis" 1624026879
   "./resources//binary_mutation.png" 1623493408 10089 a5477815d25ff0605508559ef2e993ca ""
   "./resources//case4_fit_tree.png" 1624013349 5748 e6960e93df08503e3681b70a9043ec1c ""
   "./resources//crossover.png" 1623684142 24844 d114ee2554fc850872c2fabaf907841d ""
@@ -22,8 +22,8 @@
   "./resources//tree_2.png" 1623498104 7822 99f3796609373bc14827f7462be5cf18 ""
   "./resources//tree_3.png" 1623667764 5114 533b0f2c3e98bf514b506e1d919ff4f7 ""
   "/dev/null" 1624011273 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "/home/limelier/docs/college/genetic_programming/thesis/thesis.aux" 1624024885 20432 d6b3180d63dae97af36bf68c2e2e883d ""
-  "/home/limelier/docs/college/genetic_programming/thesis/thesis.tex" 1624024876 53332 0f988613a60c467b288675436f3ba5e3 ""
+  "/home/limelier/docs/college/genetic_programming/thesis/thesis.aux" 1624026878 20688 67dead881930a3e074a379371466afd7 ""
+  "/home/limelier/docs/college/genetic_programming/thesis/thesis.tex" 1624026868 56395 8ccd8ccd32baf08e6ecc07ff72951225 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1617738065 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1617738065 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1617738065 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -287,16 +287,16 @@
   "resources//tree_1.png" 1623494993 6110 2cd337d9073490dc908bb4d451dc566d ""
   "resources//tree_2.png" 1623498104 7822 99f3796609373bc14827f7462be5cf18 ""
   "resources//tree_3.png" 1623667764 5114 533b0f2c3e98bf514b506e1d919ff4f7 ""
-  "thesis.aux" 1624024885 20432 d6b3180d63dae97af36bf68c2e2e883d "pdflatex"
-  "thesis.bbl" 1624024881 793 292296daf2ca27847c59fb355c4a1044 "bibtex thesis"
-  "thesis.out" 1624024885 3934 d2afc961450591b585a4e884d78db3b8 "pdflatex"
-  "thesis.tex" 1624024876 53332 0f988613a60c467b288675436f3ba5e3 ""
-  "thesis.toc" 1624024885 2211 91fcfb6846099e2c71dfae9f3beb5436 "pdflatex"
+  "thesis.aux" 1624026878 20688 67dead881930a3e074a379371466afd7 "pdflatex"
+  "thesis.bbl" 1624026874 793 292296daf2ca27847c59fb355c4a1044 "bibtex thesis"
+  "thesis.out" 1624026878 4316 7b51869035cd998d0c3d9bb0789ec56a "pdflatex"
+  "thesis.tex" 1624026868 56395 8ccd8ccd32baf08e6ecc07ff72951225 ""
+  "thesis.toc" 1624026878 2385 473c0b0858b5788cb438984e1a9bb7e7 "pdflatex"
   (generated)
+  "thesis.out"
+  "/home/limelier/docs/college/genetic_programming/thesis/thesis.log"
+  "thesis.aux"
+  "thesis.pdf"
+  "thesis.log"
   "thesis.toc"
   "/home/limelier/docs/college/genetic_programming/thesis/thesis.pdf"
-  "thesis.aux"
-  "thesis.log"
-  "thesis.pdf"
-  "/home/limelier/docs/college/genetic_programming/thesis/thesis.log"
-  "thesis.out"

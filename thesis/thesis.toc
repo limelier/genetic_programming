@@ -25,3 +25,5 @@
 \contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{39}{subsection.4.2.5}%
 \contentsline {section}{\numberline {4.3}Overall analysis}{39}{section.4.3}%
 \contentsline {chapter}{\numberline {5}Conclusions}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Personal notes}{42}{section.5.2}%

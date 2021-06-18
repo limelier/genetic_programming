@@ -41,6 +41,8 @@ This project initially took form based on an existing concept: a modification fo
 
 The idea that the thesis is built around is using genetic programming to create, given a target voxel structure, a program that can construct it. When run by a turtle with sufficient materials, this program should allow it to reproduce the initial target as accurately as possible.
 
+Over the course of this thesis, I will be exploring exactly what my training and testing environment consists of. I will be using this environment to run several tests, and analyzing their results. I will  also explain why I think the performance of the algorithm is unsatisfactory, and why it isn't too useful in practice.
+
 \chapter{Practical context}
 In this chapter, I will outline the precise problem that needs to be solved, as well as the constraints of the work environment.
 
@@ -1046,6 +1048,24 @@ Apart from this, case 5 also makes it immediately clear that the algorithm perfo
 Lastly, one interesting thing to note, as previously mentioned, is that the algorithm performs better in test case 4 than it does in case 3. This is likely because of the aforementioned easy-to-reach local maxima (\autoref{fig:case4_comb_fit_tree}), which takes advantage of a loop to easily yield comparatively good results.
 
 \chapter{Conclusions}
+
+\section{Possible improvements and alternatives}
+
+The results of the tests are pretty clear: the algorithm yields unsatisfactory results for basic test cases, and does not even come close to replicating the target structure for more complex ones. While I cannot exclude programming errors in the code I have written as causes for this poor performance, I can give some other possible causes. 
+
+It appears likely that the search space is too large: 256 registers and a large, flexible set of instructions lead to a very large number of possible trees that can be reached by the genetic algorithm. If this is a factor, it's possible that lowering the number of registers and shrinking the set of possible instructions would help; perhaps specializing the approach for only generating a certain kind of structure would lead to better results.
+
+I believe it is also impractical to use genetic programming for simple structures in general. Lines, cuboids, and repeated patterns are simple applications of loops that are easy to write by hand. Circles, curves or ellipsoids would likely require mathematical functions that a genetic algorithm may have a hard time approximating evolutionarily.
+
+A more complex structure, perhaps even using multiple kinds of voxels, would also be a bad match for this algorithm. A complex structure would be difficult to input into the algorithm, probably more so than constructing it by hand. More voxels would also greatly increase the search space, making it impractical to find the right solution. 
+
+If a complex structure needs to be replicated multiple times, it may be practical to instead build it once by hand, and use a ``scanner'' program to destroy it layer by layer, storing the location of each block in the structure into a 3D array, and then another ``printer'' program to re-build it in a way similar to the operation of a 3D printer.
+
+\section{Personal notes}
+
+Even though this project may not have yielded many useful results, I found it very interesting to work on. Firstly, it provided me an opportunity to expand on my knowledge of genetic algorithms from the courses and seminars I'd done previously. Even though this particular challenge may not be a very good fit for this kind of algorithm, there are still many other applications where it often beats other search strategies, such as function optimization or fields where the nature of the problem and the search space isn't entirely understood.
+
+On the other hand, it also gave me a great opportunity to work with Rust, a language which I'd been meaning to explore for a while, but couldn't due to time constraints and college work. I'm thankful for the chance to try and mix my passion for programming with my favorite video game.
 
 \bibliographystyle{abbrv}
 \bibliography{bibliography}
