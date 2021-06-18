@@ -20,14 +20,14 @@ fn main() {
     target[i][1][0] = 1;
     }
 
-    // medium example: cuboid
-    for i in 4..12 {
-        for j in 6..8 {
-            for k in 2..4 {
-                target[i][j][k] = 1;
-            }
-        }
-    }
+    // // medium example: cuboid
+    // for i in 4..12 {
+    //     for j in 6..8 {
+    //         for k in 2..4 {
+    //             target[i][j][k] = 1;
+    //         }
+    //     }
+    // }
 
     let target = target;  // remove mutability
     let individuals = train_many_silent(&target, 30);
@@ -40,7 +40,8 @@ fn main() {
         let depth = individual.tree.get_max_depth();
         idx_sum += dice_index;
         depth_sum += depth;
-        // println!("{} {}", dice_index, depth);
+        println!("{} {}", dice_index, depth);
+        dbg!(&individual.tree);
     }
     let num = individuals.len() as f64;
     println!("{} {}", idx_sum / num, (depth_sum as f64) / num);

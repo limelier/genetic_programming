@@ -19,9 +19,9 @@
 \contentsline {section}{\numberline {4.1}Experimental setup}{30}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Test cases}{31}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{31}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Second case: two blocks}{33}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Third case: four blocks}{34}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.2}Second case: two blocks}{32}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Third case: four blocks}{33}{subsection.4.2.3}%
 \contentsline {subsection}{\numberline {4.2.4}Fourth case: a line of eight blocks}{34}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{34}{subsection.4.2.5}%
-\contentsline {section}{\numberline {4.3}Analysis}{34}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions}{35}{chapter.5}%
+\contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{37}{subsection.4.2.5}%
+\contentsline {section}{\numberline {4.3}Analysis}{37}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions}{38}{chapter.5}%

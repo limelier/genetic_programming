@@ -26,3 +26,7 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe BlockSpace type alias.\\E$"}
 {"rule":"WORD_CONTAINS_UNDERSCORE","sentence":"^\\QThe translate_tree and translate_subtree functions.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe translatetree and translatesubtree functions.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QIt gets a Dice score of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QIt gets a Dice score of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, because it produces \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q true positives and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q false positives.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QIt gets a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, because it produces \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q true positives and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q false positives.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QThe results of this case are significantly weaker, with a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for the fitness-weighted combination, and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for the tournament one.\\E$"}

@@ -835,39 +835,13 @@ This test case is the simplest, with the target structure made up of a single bl
     \caption{A screenshot showing the elementary case. The white glass block represents the target structure.}
 \end{figure}
 
-Both selection methods easily obtained the expected result, a Dice index of $1.0$ and an average depth of $1.0$, with most of the parameter combinations. For completeness' sake, though, \autoref{lst:elementary_combinations} holds two such combinations.
-
-\begin{code}
-    \begin{minted}{python}
-{  # fitness-weighted selection combination
- 'crossover_size_proportion': 0.75,
- 'depth_softener': 1.0,
- 'mutation_chance': 0.0,
- 'mutation_single_chance': 0.001,
- 'p_grow_leaf': 0.1,
- 'selection_method': 'FitnessWeighted',
- 'selection_pressure': 5.0,
-}
-{  # tournament selection combination
- 'crossover_size_proportion': 0.5,
- 'depth_softener': 1.0,
- 'mutation_chance': 0.0,
- 'mutation_single_chance': 0.0,
- 'p_grow_leaf': 0.1,
- 'selection_method': 'Tournament',
- 'tournament_p': 0.8,
- 'tournament_size': 7
-}
-    \end{minted}
-    \caption{Two combinations of parameters that solved the elementary case optimally.}
-    \label{lst:elementary_combinations}
-\end{code}
+Both selection methods easily obtained the expected result, a Dice index of $1.0$ and an average depth of $1.0$, with most of the parameter combinations.
 
 \subsection{Second case: two blocks}
 
 The second example is slightly more complicated, with a second block added in front of the first one. This means that even the simplest solution would require at least three instructions, and even more nodes.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{minecraft3}
     \caption{A screenshot showing the second case. There is another block to be placed in front of the first one.}
@@ -877,9 +851,93 @@ The effect of the added complexity is visible immediately: the best fitness-weig
 
 \subsection{Third case: four blocks}
 
+The third example adds two more blocks, creating a short line of four. This case is where one might reasonably expect loop structures to become useful. However, the results are not any better than before.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{minecraft4}
+    \caption{A screenshot showing the third case. Two more blocks are present compared to the previous case.}
+\end{figure}
+
+The best fitness-weighted selection combination obtains an average index of $0.616$, and the best tournament one, a weaker result of $0.582$.
+
 \subsection{Fourth case: a line of eight blocks}
 
+Four more blocks are added, expanding the line to eight blocks. This means that looping is now almost mandatory for any decent results.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{minecraft5}
+    \caption{A screenshot of the fourth case, with eight blocks in total.}
+\end{figure}
+
+The results are, in fact, better than the case before. The best fitness-weighted combination yields an average index of $0.666$ with an average depth of $2.000$. The best tournament one is slightly weaker, with an average Dice index of $0.645$ and a depth of $2.366$. To analyze the reason for the better results, I ran 30 more tries with each combination.
+
+The first combination, using fitness-weighted selection, was \autoref{lst:case4_comb_fit}.
+
+\begin{code}
+    \begin{minted}{python}
+{
+ 'crossover_size_proportion': 0.9,
+ 'depth_softener': 10.0,
+ 'mutation_chance': 0.05,
+ 'mutation_single_chance': 0.1,
+ 'selection_method': 'FitnessWeighted',
+ 'selection_pressure': 1.0,
+}
+    \end{minted}
+    \caption{A set of parameters that lead to an average index of $0.666$ and an average depth of $2.000$.}
+    \label{lst:case4_comb_fit}
+\end{code}
+
+Running the program with this combination produces, overwhelmingly, the tree pictured in \autoref{fig:case4_comb_fit_tree}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.75]{case4_fit_tree}
+    \caption{The tree which produces the expected results.}
+    \label{fig:case4_comb_fit_tree}
+\end{figure}
+
+This tree is very simple, and what it does in practice is fill in an entire line, from $x = 0$ to $x = 15$, as pictured in \autoref{fig:case4_comb_fit_minecraft}. It gets a Dice index of $2/3$, because it produces $8$ true positives and $8$ false positives. This relatively high index, combined with the tree's great simplicity, makes it a local maxima that the algorithm falls into almost every time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{case4_fit_minecraft}
+    \caption{The structure constructed by the turtle. The true positives are represented by green glass, and the false positives, by blue glass. The turtle has stopped at the end of the testing space, unable to advance further because of the space's walls. This meant that there was a block above it on the next iteration of the loop, which caused the ``Place above'' call to fail and the program to stop.}
+    \label{fig:case4_comb_fit_minecraft}
+\end{figure}
+
+The tournament combination, whose parameters are listed in \autoref{lst:case4_comb_tour}, was less consistent than its fitness-weighted counterpart, but the trees it produced that had the highest Dice index were the same ones, pictured in \autoref{fig:case4_comb_fit_tree}.
+
+\begin{code}
+    \begin{minted}{python}
+{
+ 'crossover_size_proportion': 0.5,
+ 'depth_softener': 10.0,
+ 'mutation_chance': 0.05,
+ 'mutation_single_chance': 0.1,
+ 'selection_method': 'Tournament',
+ 'tournament_p': 0.8,
+ 'tournament_size': 2
+}
+    \end{minted}
+    \caption{A set of parameters that lead to an average index of $0.645$ and an average depth of $2.366$.}
+    \label{lst:case4_comb_tour}
+\end{code}
+
 \subsection{The hardest case: a cuboid}
+
+As revealed thus far, the algorithm does not fare very well even on simple test cases, with contrivances in its favor. The next test case, pictured in \autoref{fig:case5_minecraft}, is closer to what this algorithm might actually be applied to: an arbitrary cuboid, further away in space.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{minecraft6}
+    \caption{A screenshot of the fifth case, with a $7$ by $2$ by $2$ cuboid from $(4, 6, 2)$ to $(11, 7, 3)$. The projections of this cuboid on the axes are highlighted as black segments, to clarify its size and position.}
+    \label{fig:case5_minecraft}
+\end{figure}
+
+The results of this case are significantly weaker, with a Dice index of $0.005$ (and an average depth of $2.833$) for the fitness-weighted combination, and $0.002$ (with a depth of $2.800$) for the tournament one. This means that, even in the best cases, the algorithm only produced simple programs whose built structures just barely intersect the targets.
 
 \section{Analysis}
 

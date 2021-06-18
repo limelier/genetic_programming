@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  16 JUN 2021 17:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  18 JUN 2021 14:17
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -432,7 +432,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/limelier/docs/college/genetic_programming/thesis/thesis.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...numberline {4.3}Analysis}{34}{section.4.3}
+l.26 ...numberline {4.3}Analysis}{37}{section.4.3}
                                                   % [1
 
 ])
@@ -579,19 +579,51 @@ File: ./resources//minecraft2.png Graphic file (type png)
 Package pdftex.def Info: ./resources//minecraft2.png  used on input line 834.
 (pdftex.def)             Requested size: 284.56532pt x 242.70862pt.
  [31]
-\openout3 = `thesis.pyg'.
-
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/16186F22AB1751D79CDE3E7FD28D13E40102E502927AACB428B4F294F23E2359.pygtex [32 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft2.png>])
-<./resources//minecraft3.png, id=394, 1016.79875pt x 844.15375pt>
+<./resources//minecraft3.png, id=387, 1016.79875pt x 844.15375pt>
 File: ./resources//minecraft3.png Graphic file (type png)
 <use ./resources//minecraft3.png>
-Package pdftex.def Info: ./resources//minecraft3.png  used on input line 872.
+Package pdftex.def Info: ./resources//minecraft3.png  used on input line 846.
 (pdftex.def)             Requested size: 305.04198pt x 253.24808pt.
- [33 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft3.png>] [34]
-Chapter 5.
-(/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [35
+ [32 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft2.png>]
+<./resources//minecraft4.png, id=393, 776.9025pt x 708.6475pt>
+File: ./resources//minecraft4.png Graphic file (type png)
+<use ./resources//minecraft4.png>
+Package pdftex.def Info: ./resources//minecraft4.png  used on input line 858.
+(pdftex.def)             Requested size: 233.07254pt x 212.59589pt.
+ [33 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft3.png>]
+<./resources//minecraft5.png, id=399, 1068.99374pt x 442.65375pt>
+File: ./resources//minecraft5.png Graphic file (type png)
+<use ./resources//minecraft5.png>
+Package pdftex.def Info: ./resources//minecraft5.png  used on input line 870.
+(pdftex.def)             Requested size: 320.70059pt x 132.79713pt.
+ [34 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft4.png> </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft5.png>]
+\openout3 = `thesis.pyg'.
 
-]) [36
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/709ECEAF3A33F6042FB040F5B57ACB900102E502927AACB428B4F294F23E2359.pygtex)
+<./resources//case4_fit_tree.png, id=408, 196.735pt x 121.45375pt>
+File: ./resources//case4_fit_tree.png Graphic file (type png)
+<use ./resources//case4_fit_tree.png>
+Package pdftex.def Info: ./resources//case4_fit_tree.png  used on input line 897.
+(pdftex.def)             Requested size: 147.55087pt x 91.09007pt.
+<./resources//case4_fit_minecraft.png, id=410, 661.72218pt x 392.96812pt>
+File: ./resources//case4_fit_minecraft.png Graphic file (type png)
+<use ./resources//case4_fit_minecraft.png>
+Package pdftex.def Info: ./resources//case4_fit_minecraft.png  used on input line 906.
+(pdftex.def)             Requested size: 330.86028pt x 196.48357pt.
+ [35 </home/limelier/docs/college/genetic_programming/thesis/./resources//case4_fit_tree.png>]
+\openout3 = `thesis.pyg'.
+
+ (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/908F47306322D1769850040B642D86080102E502927AACB428B4F294F23E2359.pygtex) [36 </home/limelier/docs/college/genetic_programming/thesis/./resources//case4_fit_minecraft.png (PNG copy)>]
+<./resources//minecraft6.png, id=428, 882.29625pt x 787.94376pt>
+File: ./resources//minecraft6.png Graphic file (type png)
+<use ./resources//minecraft6.png>
+Package pdftex.def Info: ./resources//minecraft6.png  used on input line 935.
+(pdftex.def)             Requested size: 264.69092pt x 236.38495pt.
+ [37 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft6.png>]
+Chapter 5.
+(/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [38
+
+]) [39
 
 ] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
 Package rerunfilecheck Info: File `thesis.out' has not changed.
@@ -600,18 +632,18 @@ runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 13762 strings out of 478994
- 234773 string characters out of 5864751
- 569821 words of memory out of 5000000
- 30868 multiletter control sequences out of 15000+600000
+ 13815 strings out of 478994
+ 236503 string characters out of 5864751
+ 570794 words of memory out of 5000000
+ 30909 multiletter control sequences out of 15000+600000
  411508 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,15n,88p,760b,702s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (37 pages, 591079 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (40 pages, 837981 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
- 415 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
- 267 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 534 PDF objects out of 1000 (max. 8388607)
+ 437 compressed objects within 5 object streams
+ 114 named destinations out of 1000 (max. 500000)
+ 292 words of extra memory for PDF output out of 10000 (max. 10000000)
 
