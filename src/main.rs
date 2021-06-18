@@ -11,9 +11,9 @@ fn main() {
     // target[1][1][0] = 1;
 
     // simple example: tiny line
-    for i in 0..4 {
-        target[i][1][0] = 1;
-    }
+    // for i in 0..4 {
+        // target[i][1][0] = 1;
+    // }
 
     // simple example: line
     for i in 0..8 {
@@ -21,13 +21,13 @@ fn main() {
     }
 
     // medium example: cuboid
-    // for i in 4..12 {
-    //     for j in 6..8 {
-    //         for k in 2..4 {
-    //             target[i][j][k] = 1;
-    //         }
-    //     }
-    // }
+    for i in 4..12 {
+        for j in 6..8 {
+            for k in 2..4 {
+                target[i][j][k] = 1;
+            }
+        }
+    }
 
     let target = target;  // remove mutability
     let individuals = train_many_silent(&target, 30);
