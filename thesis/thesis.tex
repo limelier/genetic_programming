@@ -17,6 +17,8 @@
 % Change the spacing between lines to 1.5
 \onehalfspacing
 
+\pgfplotsset{compat=1.17} % disable plot backward-compatibility measures
+
 % todo put back
 \newenvironment{code}{\captionsetup{type=listing}}{}
 
@@ -862,31 +864,31 @@ The third example adds two more blocks, creating a short line of four. This case
 
 The best fitness-weighted selection combination obtains an average index of $0.616$, and the best tournament one, a weaker result of $0.582$.
 
-Given that test case 4 has its results greatly affected by a local maxima, and test case 5 performs very poorly regardless of parameters (both detailed below), case 3 is probably the best fit for analyzing the impact of each parameter on the performance of the algorithm. For this purpose, the output files for each case and selection method contain not just the best combination of parameters, but all possible combinations and their results. With a second python script, these results may be analyzed; the outputs of this script are \autoref{lst:case3_fit} and \autoref{lst:case3_tour}.
+Given that test case 4 has its results greatly affected by a local maxima, and test case 5 performs very poorly regardless of parameters (both detailed below), case 3 is probably the best fit for analyzing the impact of each parameter on the performance of the algorithm. For this purpose, the output files for each case and selection method contain not just the best combination of parameters, but all possible combinations and their results. With a second python script, these results may be analyzed; the outputs of this script, edited for readability, are \autoref{lst:case3_fit} and \autoref{lst:case3_tour}.
 
 \begin{code}
     \begin{minted}{markdown}
-depth_softener
+depth softener
      1.0: 0.4458, 1.4754
      6.0: 0.4713, 1.7945
     10.0: 0.4812, 1.9041
-mutation_chance
+subtree mutation chance
      0.0: 0.4560, 1.7173
    0.001: 0.4536, 1.6773
     0.01: 0.4580, 1.5988
     0.02: 0.4669, 1.6835
     0.05: 0.4960, 1.9467
-mutation_single_chance
+single-node mutation chance
      0.0: 0.4600, 1.7096
    0.001: 0.4646, 1.7560
     0.01: 0.4703, 1.6864
     0.05: 0.4713, 1.7526
      0.1: 0.4644, 1.7188
-crossover_size_proportion
+crossover size proportion
      0.5: 0.4715, 1.7661
     0.75: 0.4656, 1.7145
      0.9: 0.4612, 1.6935
-selection_pressure
+selection pressure
      0.2: 0.4340, 1.5099
      1.0: 0.4668, 1.8507
      5.0: 0.4975, 1.8135
@@ -897,31 +899,31 @@ selection_pressure
 
 \begin{code}
     \begin{minted}{markdown}
-depth_softener
+depth softener
      1.0: 0.4403, 1.3321
      6.0: 0.4539, 1.4961
     10.0: 0.4565, 1.5313
-mutation_chance
+subtree mutation chance
      0.0: 0.4466, 1.4711
    0.001: 0.4496, 1.4746
     0.01: 0.4514, 1.4401
     0.02: 0.4498, 1.4188
     0.05: 0.4536, 1.4614
-mutation_single_chance
+single-node mutation chance
      0.0: 0.4471, 1.4414
    0.001: 0.4482, 1.4274
     0.01: 0.4500, 1.4188
     0.05: 0.4573, 1.4970
      0.1: 0.4485, 1.4814
-crossover_size_proportion
+crossover size proportion
      0.5: 0.4491, 1.4307
     0.75: 0.4498, 1.4461
      0.9: 0.4519, 1.4827
-tournament_size
+tournament size
        2: 0.4437, 1.5727
        4: 0.4541, 1.4336
        7: 0.4529, 1.3533
-tournament_p
+tournament p
      0.8: 0.4483, 1.4585
      1.0: 0.4521, 1.4479
     \end{minted}

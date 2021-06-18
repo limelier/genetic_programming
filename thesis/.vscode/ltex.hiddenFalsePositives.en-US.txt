@@ -34,3 +34,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QCross % DS ST Mut.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% SN Mut.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% Sel.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qcompat=1.17\\E$"}
