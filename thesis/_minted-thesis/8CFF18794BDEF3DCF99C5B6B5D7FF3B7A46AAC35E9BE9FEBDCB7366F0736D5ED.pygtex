@@ -6,7 +6,8 @@
 \PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{k}{mut}\PYG{+w}{ }\PYG{n}{best\PYGZus{}overall}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{population}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{].}\PYG{n}{clone}\PYG{p}{();}
 \PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{\PYGZus{}gen}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{o}{..}\PYG{n}{GEN\PYGZus{}COUNT}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{        }\PYG{c+c1}{// store best individual of generation}
-\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{best\PYGZus{}individual}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{generation}\PYG{p}{.}\PYG{n}{population}\PYG{p}{[}\PYG{n}{generation}\PYG{p}{.}\PYG{n}{best\PYGZus{}index}\PYG{p}{.}\PYG{n}{unwrap}\PYG{p}{()];}
+\PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{best\PYGZus{}individual}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{            }\PYG{o}{\PYGZam{}}\PYG{n}{generation}\PYG{p}{.}\PYG{n}{population}\PYG{p}{[}\PYG{n}{generation}\PYG{p}{.}\PYG{n}{best\PYGZus{}index}\PYG{p}{.}\PYG{n}{unwrap}\PYG{p}{()];}
 \PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{best\PYGZus{}result}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{best\PYGZus{}individual}\PYG{p}{.}\PYG{n}{result}\PYG{p}{.}\PYG{n}{unwrap}\PYG{p}{();}
 \PYG{+w}{        }\PYG{c+c1}{// replace best\PYGZus{}overall if better individual found}
 \PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{best\PYGZus{}result}\PYG{p}{.}\PYG{n}{score}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{best\PYGZus{}overall}\PYG{p}{.}\PYG{n}{result}\PYG{p}{.}\PYG{n}{unwrap}\PYG{p}{().}\PYG{n}{score}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
@@ -14,11 +15,14 @@
 \PYG{+w}{        }\PYG{p}{\PYGZcb{}}
 \PYG{+w}{        }\PYG{c+c1}{// use either selection method to pick out individuals for the next gen}
 \PYG{+w}{        }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{kept\PYGZus{}over}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{parent\PYGZus{}pairs}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{match}\PYG{+w}{ }\PYG{n}{SELECTION\PYGZus{}METHOD}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{            }\PYG{n}{SelectionMethod}::\PYG{n}{FitnessWeighted}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{select\PYGZus{}weighted\PYGZus{}by\PYGZus{}fitness}\PYG{p}{(),}
-\PYG{+w}{            }\PYG{n}{SelectionMethod}::\PYG{n}{Tournament}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{select\PYGZus{}by\PYGZus{}tournament}\PYG{p}{(),}
+\PYG{+w}{            }\PYG{n}{SelectionMethod}::\PYG{n}{FitnessWeighted}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}
+\PYG{+w}{                }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{select\PYGZus{}weighted\PYGZus{}by\PYGZus{}fitness}\PYG{p}{(),}
+\PYG{+w}{            }\PYG{n}{SelectionMethod}::\PYG{n}{Tournament}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}
+\PYG{+w}{                }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{select\PYGZus{}by\PYGZus{}tournament}\PYG{p}{(),}
 \PYG{+w}{        }\PYG{p}{\PYGZcb{};}
 \PYG{+w}{        }\PYG{c+c1}{// create the new generation (through cloning and crossover)}
-\PYG{+w}{        }\PYG{n}{generation}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Generation}::\PYG{n}{from\PYGZus{}old}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{generation}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{kept\PYGZus{}over}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{parent\PYGZus{}pairs}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{generation}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{            }\PYG{n}{Generation}::\PYG{n}{from\PYGZus{}old}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{generation}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{kept\PYGZus{}over}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{parent\PYGZus{}pairs}\PYG{p}{);}
 \PYG{+w}{        }\PYG{c+c1}{// cause potentially useful mutations}
 \PYG{+w}{        }\PYG{n}{generation}\PYG{p}{.}\PYG{n}{mutate}\PYG{p}{();}
 \PYG{+w}{        }\PYG{c+c1}{// evaluate new generation}

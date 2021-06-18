@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {3.4.2}Evaluation}{23}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Selection}{24}{subsection.3.4.3}%
 \contentsline {subsection}{\numberline {3.4.4}Crossover}{25}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Mutation}{26}{subsection.3.4.5}%
+\contentsline {subsection}{\numberline {3.4.5}Mutation}{27}{subsection.3.4.5}%
 \contentsline {chapter}{\numberline {4}Experiments}{30}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Experimental setup}{30}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Test cases}{31}{section.4.2}%
@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {4.2.3}Third case: four blocks}{33}{subsection.4.2.3}%
 \contentsline {subsection}{\numberline {4.2.4}Fourth case: a line of eight blocks}{36}{subsection.4.2.4}%
 \contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{39}{subsection.4.2.5}%
-\contentsline {section}{\numberline {4.3}Overall analysis}{39}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions}{41}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{41}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Personal notes}{42}{section.5.2}%
+\contentsline {section}{\numberline {4.3}Overall analysis}{40}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions}{42}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{42}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Personal notes}{43}{section.5.2}%
