@@ -30,3 +30,7 @@
 {"rule":"DIE_DICE","sentence":"^\\QIt gets a Dice score of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, because it produces \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q true positives and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q false positives.\\E$"}
 {"rule":"DIE_DICE","sentence":"^\\QIt gets a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, because it produces \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q true positives and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q false positives.\\E$"}
 {"rule":"DIE_DICE","sentence":"^\\QThe results of this case are significantly weaker, with a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for the fitness-weighted combination, and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for the tournament one.\\E$"}
+{"rule":"DIE_DICE","sentence":"^\\QThe results of this case are significantly weaker, with a Dice index of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (and an average depth of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q) for the fitness-weighted combination, and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (with a depth of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q) for the tournament one.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QCross % DS ST Mut.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% SN Mut.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q% Sel.\\E$"}

@@ -7,6 +7,7 @@
 \usepackage{hyperref} % for references to labels
 \usepackage{graphicx} % for pictures
 \usepackage{amsmath} % for "align*" environment
+\usepackage{pgfplots} % bar charts
 
 \graphicspath{ {./resources/} }
 \setminted{fontsize=\small}
@@ -861,6 +862,75 @@ The third example adds two more blocks, creating a short line of four. This case
 
 The best fitness-weighted selection combination obtains an average index of $0.616$, and the best tournament one, a weaker result of $0.582$.
 
+Given that test case 4 has its results greatly affected by a local maxima, and test case 5 performs very poorly regardless of parameters (both detailed below), case 3 is probably the best fit for analyzing the impact of each parameter on the performance of the algorithm. For this purpose, the output files for each case and selection method contain not just the best combination of parameters, but all possible combinations and their results. With a second python script, these results may be analyzed; the outputs of this script are \autoref{lst:case3_fit} and \autoref{lst:case3_tour}.
+
+\begin{code}
+    \begin{minted}{markdown}
+depth_softener
+     1.0: 0.4458, 1.4754
+     6.0: 0.4713, 1.7945
+    10.0: 0.4812, 1.9041
+mutation_chance
+     0.0: 0.4560, 1.7173
+   0.001: 0.4536, 1.6773
+    0.01: 0.4580, 1.5988
+    0.02: 0.4669, 1.6835
+    0.05: 0.4960, 1.9467
+mutation_single_chance
+     0.0: 0.4600, 1.7096
+   0.001: 0.4646, 1.7560
+    0.01: 0.4703, 1.6864
+    0.05: 0.4713, 1.7526
+     0.1: 0.4644, 1.7188
+crossover_size_proportion
+     0.5: 0.4715, 1.7661
+    0.75: 0.4656, 1.7145
+     0.9: 0.4612, 1.6935
+selection_pressure
+     0.2: 0.4340, 1.5099
+     1.0: 0.4668, 1.8507
+     5.0: 0.4975, 1.8135
+    \end{minted}
+    \caption{Average Dice index and depth for each parameter of the fitness-weighted selection runs.}
+    \label{lst:case3_fit}
+\end{code}
+
+\begin{code}
+    \begin{minted}{markdown}
+depth_softener
+     1.0: 0.4403, 1.3321
+     6.0: 0.4539, 1.4961
+    10.0: 0.4565, 1.5313
+mutation_chance
+     0.0: 0.4466, 1.4711
+   0.001: 0.4496, 1.4746
+    0.01: 0.4514, 1.4401
+    0.02: 0.4498, 1.4188
+    0.05: 0.4536, 1.4614
+mutation_single_chance
+     0.0: 0.4471, 1.4414
+   0.001: 0.4482, 1.4274
+    0.01: 0.4500, 1.4188
+    0.05: 0.4573, 1.4970
+     0.1: 0.4485, 1.4814
+crossover_size_proportion
+     0.5: 0.4491, 1.4307
+    0.75: 0.4498, 1.4461
+     0.9: 0.4519, 1.4827
+tournament_size
+       2: 0.4437, 1.5727
+       4: 0.4541, 1.4336
+       7: 0.4529, 1.3533
+tournament_p
+     0.8: 0.4483, 1.4585
+     1.0: 0.4521, 1.4479
+    \end{minted}
+    \caption{Average Dice index and depth for each parameter of the tournament selection runs.}
+    \label{lst:case3_tour}
+\end{code}
+
+This analysis reveals that while differences in the performance of each parameter do exist, they are not very large. The parameters have a bigger impact in the fitness-weighted runs, but even there the biggest difference recorded is between \verb|selection_pressure| values $0.2$ (with an average index of $0.4340$) and $5.0$ ($0.4975$).
+
 \subsection{Fourth case: a line of eight blocks}
 
 Four more blocks are added, expanding the line to eight blocks. This means that looping is now almost mandatory for any decent results.
@@ -939,7 +1009,39 @@ As revealed thus far, the algorithm does not fare very well even on simple test 
 
 The results of this case are significantly weaker, with a Dice index of $0.005$ (and an average depth of $2.833$) for the fitness-weighted combination, and $0.002$ (with a depth of $2.800$) for the tournament one. This means that, even in the best cases, the algorithm only produced simple programs whose built structures just barely intersect the targets.
 
-\section{Analysis}
+\section{Overall analysis}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis} [ybar,
+            height = 12cm,
+            width = 12cm,
+            bar width = 24pt,
+            xtick = data,
+            ymin = 0,
+            ymax = 1,
+            enlarge y limits = {value = .025, upper},
+            xlabel = {test case \#},
+            ylabel = {Dice index},
+        ]
+         
+        \addplot coordinates {(1, 1.0) (2, 0.855) (3, 0.616) (4, 0.666) (5, 0.005)};
+        \addplot coordinates {(1, 1.0) (2, 0.8) (3, 0.582) (4, 0.645) (5, 0.002)};
+         
+        \legend {Fitness-weighted selection, Tournament selection};
+         
+        \end{axis}
+    \end{tikzpicture}
+    \caption{A graph showing the average Dice index for the best parameter combination in each case, for each selection method.}
+    \label{fig:dice_graph}
+\end{figure}
+
+\autoref{fig:dice_graph} follows the performance of each selection method for all five test cases. One thing that is apparent is that tournament selection is consistently worse-performing than fitness-weighted selection.
+
+Apart from this, case 5 also makes it immediately clear that the algorithm performs very poorly in realistic applications. Even with the more idealized cases 1 through 4, the algorithm could not perfectly replicate the target structure in any cases except for the simplest one.
+
+Lastly, one interesting thing to note, as previously mentioned, is that the algorithm performs better in test case 4 than it does in case 3. This is likely because of the aforementioned easy-to-reach local maxima (\autoref{fig:case4_comb_fit_tree}), which takes advantage of a loop to easily yield comparatively good results.
 
 \chapter{Conclusions}
 
