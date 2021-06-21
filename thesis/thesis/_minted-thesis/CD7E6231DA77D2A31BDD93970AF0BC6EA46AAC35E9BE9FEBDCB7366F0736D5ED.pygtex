@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{struct} \PYG{n+nc}{Simulator}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{blocks}: \PYG{n+nc}{BlockSpace}\PYG{p}{,}\PYG{+w}{ }\PYG{c+c1}{// 3D array of bytes}
+\PYG{+w}{    }\PYG{n}{turtle}: \PYG{n+nc}{Turtle}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

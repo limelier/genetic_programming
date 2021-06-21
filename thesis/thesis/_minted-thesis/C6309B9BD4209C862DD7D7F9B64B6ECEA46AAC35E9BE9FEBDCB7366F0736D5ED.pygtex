@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Instruction}::\PYG{n}{Compare}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{src}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{other}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}source}\PYG{p}{(}\PYG{n}{src}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{this}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{get\PYGZus{}reg}\PYG{p}{(}\PYG{n}{reg}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{set\PYGZus{}reg}\PYG{p}{(}\PYG{n}{COMPARE\PYGZus{}REGISTER}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{match}\PYG{+w}{ }\PYG{k+kt}{i8}::\PYG{n}{cmp}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{this}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{other}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Ordering}::\PYG{n}{Less}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n}{Ordering}::\PYG{n}{Equal}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{        }\PYG{n}{Ordering}::\PYG{n}{Greater}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{});}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

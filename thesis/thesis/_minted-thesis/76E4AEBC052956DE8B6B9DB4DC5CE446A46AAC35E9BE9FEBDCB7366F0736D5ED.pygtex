@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Node}::\PYG{n}{Turtle}\PYG{p}{(}\PYG{n}{operation}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nf+fm}{vec!}\PYG{p}{(}
+\PYG{+w}{        }\PYG{c+c1}{// do the operation, storing result in r[RESULT\PYGZus{}REGISTER]}
+\PYG{+w}{        }\PYG{n}{Instruction}::\PYG{n}{Turtle}\PYG{p}{(}\PYG{o}{*}\PYG{n}{operation}\PYG{p}{),}
+\PYG{+w}{        }\PYG{c+c1}{// copy r[RESULT\PYGZus{}REGISTER] into r[stack\PYGZus{}ptr] to move it up the tree}
+\PYG{+w}{        }\PYG{n}{Instruction}::\PYG{n}{Binary}\PYG{p}{(}\PYG{n}{stack\PYGZus{}ptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Source}::\PYG{n}{Register}\PYG{p}{(}\PYG{n}{RESULT\PYGZus{}REGISTER}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{Set}\PYG{p}{),}
+\PYG{+w}{    }\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

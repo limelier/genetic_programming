@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Instruction}::\PYG{n}{Turtle}\PYG{p}{(}\PYG{n}{op}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{match}\PYG{+w}{ }\PYG{n}{op}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{TurtleOperation}::\PYG{n}{Move}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{simulator}\PYG{p}{.}\PYG{n}{try\PYGZus{}move}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{k+kt}{i8}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{set\PYGZus{}reg}\PYG{p}{(}\PYG{n}{RESULT\PYGZus{}REGISTER}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{        }\PYG{n}{TurtleOperation}::\PYG{n}{Turn}\PYG{p}{(}\PYG{n}{side}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{simulator}\PYG{p}{.}\PYG{n}{turn}\PYG{p}{(}\PYG{n}{side}\PYG{p}{),}
+\PYG{+w}{        }\PYG{n}{TurtleOperation}::\PYG{n}{Place}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{simulator}\PYG{p}{.}\PYG{n}{try\PYGZus{}place}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{k+kt}{i8}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{set\PYGZus{}reg}\PYG{p}{(}\PYG{n}{RESULT\PYGZus{}REGISTER}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{        }\PYG{n}{TurtleOperation}::\PYG{n}{Dig}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{simulator}\PYG{p}{.}\PYG{n}{try\PYGZus{}dig}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{k+kt}{i8}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{set\PYGZus{}reg}\PYG{p}{(}\PYG{n}{RESULT\PYGZus{}REGISTER}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{        }\PYG{n}{TurtleOperation}::\PYG{n}{Detect}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k+kd}{let}\PYG{+w}{ }\PYG{n}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{simulator}\PYG{p}{.}\PYG{n}{detect}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{k+kt}{i8}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n+nb+bp}{self}\PYG{p}{.}\PYG{n}{set\PYGZus{}reg}\PYG{p}{(}\PYG{n}{RESULT\PYGZus{}REGISTER}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

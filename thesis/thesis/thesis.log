@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  21 JUN 2021 14:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.5.27)  21 JUN 2021 15:13
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/limelier/docs/college/genetic_programming/thesis/thesis.tex
-(/home/limelier/docs/college/genetic_programming/thesis/thesis.tex
+**/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.tex
+(/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/share/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2020/04/10 v1.4m Standard LaTeX document class
@@ -157,7 +157,7 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
 runsystem(uname -s > "thesis.w18")...executed.
 
- (/home/limelier/docs/college/genetic_programming/thesis/thesis.w18)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.w18)
 runsystem(rm -- "thesis.w18")...executed.
 
 ) (/usr/share/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
@@ -584,7 +584,7 @@ runsystem(rm thesis.aex)...executed.
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count337
 \l__pdf_internal_box=\box70
-) (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
+) (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.aux)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -622,7 +622,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 30.
 LaTeX Info: Redefining \pageref on input line 30.
 LaTeX Info: Redefining \nameref on input line 30.
- (/home/limelier/docs/college/genetic_programming/thesis/thesis.out) (/home/limelier/docs/college/genetic_programming/thesis/thesis.out)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.out) (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.out)
 \@outlinefile=\write6
 \openout6 = `thesis.out'.
 
@@ -649,10 +649,10 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/limelier/docs/college/genetic_programming/thesis/thesis.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...ne {4.3}Overall analysis}{40}{section.4.3}
+l.26 ...dest case: a cuboid}{40}{subsection.4.2.5}
                                                   % [1
 
 ])
@@ -663,221 +663,221 @@ l.26 ...ne {4.3}Overall analysis}{40}{section.4.3}
 Chapter 1.
 [3
 
-]
+] [4]
 Chapter 2.
-[4
+[5
 
 ]
-<./resources//minecraft1.png, id=190, 858.20625pt x 757.83125pt>
-File: ./resources//minecraft1.png Graphic file (type png)
-<use ./resources//minecraft1.png>
-Package pdftex.def Info: ./resources//minecraft1.png  used on input line 76.
+<../resources//minecraft1.png, id=203, 858.20625pt x 757.83125pt>
+File: ../resources//minecraft1.png Graphic file (type png)
+<use ../resources//minecraft1.png>
+Package pdftex.def Info: ../resources//minecraft1.png  used on input line 79.
 (pdftex.def)             Requested size: 343.27641pt x 303.12714pt.
- [5] [6 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft1.png>]
+ [6] [7 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft1.png>]
 Chapter 3.
-[7
+[8
 
 ]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/default-pyg-prefix.pygstyle) (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/default.pygstyle) (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/CD7E6231DA77D2A31BDD93970AF0BC6EA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/default-pyg-prefix.pygstyle) (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/default.pygstyle) (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/CD7E6231DA77D2A31BDD93970AF0BC6EA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
 )
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 108.
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 111.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/35434F250A18672E0FC7508BE70AC581A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/35434F250A18672E0FC7508BE70AC581A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/55971ED2E33FF57C0C7437E6A337AF86A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [8]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/55971ED2E33FF57C0C7437E6A337AF86A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [9]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/FB58F2F30FE52D419433B1138DD16293A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/FB58F2F30FE52D419433B1138DD16293A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/F13746D3F447AA7D8EBBB37C598EEFBFA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [9]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/F13746D3F447AA7D8EBBB37C598EEFBFA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [10]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/EAA95E571C278B299BC1E381CE1E3A1FA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/EAA95E571C278B299BC1E381CE1E3A1FA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/22455AF12914FBEB64FDF279594FD461A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [10]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/22455AF12914FBEB64FDF279594FD461A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [11]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/68FACC4F3DDF92B7DF2A6D2F7D646C00A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/68FACC4F3DDF92B7DF2A6D2F7D646C00A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/11CAE837DED785630A34A80D41DC8095A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/11CAE837DED785630A34A80D41DC8095A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/3066D245496E087DE60DCA285D895FF9A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [11])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/3066D245496E087DE60DCA285D895FF9A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [12])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/C6309B9BD4209C862DD7D7F9B64B6ECEA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/C6309B9BD4209C862DD7D7F9B64B6ECEA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/D46252C2678E2B85D952F052B3B8F563A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [12])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/D46252C2678E2B85D952F052B3B8F563A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [13])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/13128D9C303C037320C7B94CDEC87C72A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [13]
-<./resources//binary_mutation.png, id=254, 413.545pt x 162.6075pt>
-File: ./resources//binary_mutation.png Graphic file (type png)
-<use ./resources//binary_mutation.png>
-Package pdftex.def Info: ./resources//binary_mutation.png  used on input line 359.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/13128D9C303C037320C7B94CDEC87C72A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [14]
+<../resources//binary_mutation.png, id=267, 413.545pt x 162.6075pt>
+File: ../resources//binary_mutation.png Graphic file (type png)
+<use ../resources//binary_mutation.png>
+Package pdftex.def Info: ../resources//binary_mutation.png  used on input line 362.
 (pdftex.def)             Requested size: 310.15797pt x 121.95532pt.
- [14 </home/limelier/docs/college/genetic_programming/thesis/./resources//binary_mutation.png>]
+ [15 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//binary_mutation.png>]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/DDFE99D81B777AC43F66577C0B7DB920A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/DDFE99D81B777AC43F66577C0B7DB920A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/FEC042C5E176807E405BDAD5DE0E9418A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [15])
-<./resources//tree_1.png, id=274, 261.97874pt x 181.67876pt>
-File: ./resources//tree_1.png Graphic file (type png)
-<use ./resources//tree_1.png>
-Package pdftex.def Info: ./resources//tree_1.png  used on input line 416.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/FEC042C5E176807E405BDAD5DE0E9418A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [16])
+<../resources//tree_1.png, id=287, 261.97874pt x 181.67876pt>
+File: ../resources//tree_1.png Graphic file (type png)
+<use ../resources//tree_1.png>
+Package pdftex.def Info: ../resources//tree_1.png  used on input line 419.
 (pdftex.def)             Requested size: 196.48357pt x 136.25871pt.
- [16 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_1.png>]
-<./resources//tree_2.png, id=280, 282.05376pt x 201.75375pt>
-File: ./resources//tree_2.png Graphic file (type png)
-<use ./resources//tree_2.png>
-Package pdftex.def Info: ./resources//tree_2.png  used on input line 440.
+ [17 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//tree_1.png>]
+<../resources//tree_2.png, id=293, 282.05376pt x 201.75375pt>
+File: ../resources//tree_2.png Graphic file (type png)
+<use ../resources//tree_2.png>
+Package pdftex.def Info: ../resources//tree_2.png  used on input line 443.
 (pdftex.def)             Requested size: 211.53978pt x 151.31493pt.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/407716AD66288AC8B831FA3BEEF3E591A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [17 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_2.png>])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/407716AD66288AC8B831FA3BEEF3E591A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [18 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//tree_2.png>])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/08BF58CE15D447902C3616E22B83DEB5A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/08BF58CE15D447902C3616E22B83DEB5A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/7257F51FFDF92404E352668000C644C6A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [18])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/7257F51FFDF92404E352668000C644C6A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [19])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/2E9CF183BE1B4A34DB06BF002882285BA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/2E9CF183BE1B4A34DB06BF002882285BA46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/6FF2BE29FB76FDFDDCB2C073FA9744B6A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [19]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/6FF2BE29FB76FDFDDCB2C073FA9744B6A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [20]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/76E4AEBC052956DE8B6B9DB4DC5CE446A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
-<./resources//tree_3.png, id=308, 201.75375pt x 121.45375pt>
-File: ./resources//tree_3.png Graphic file (type png)
-<use ./resources//tree_3.png>
-Package pdftex.def Info: ./resources//tree_3.png  used on input line 575.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/76E4AEBC052956DE8B6B9DB4DC5CE446A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+<../resources//tree_3.png, id=321, 201.75375pt x 121.45375pt>
+File: ../resources//tree_3.png Graphic file (type png)
+<use ../resources//tree_3.png>
+Package pdftex.def Info: ../resources//tree_3.png  used on input line 578.
 (pdftex.def)             Requested size: 201.75325pt x 121.45343pt.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/CEADCD6D79770B90BEC6C63B323C63B8A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [20 </home/limelier/docs/college/genetic_programming/thesis/./resources//tree_3.png>]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/CEADCD6D79770B90BEC6C63B323C63B8A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex) [21 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//tree_3.png>]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/8CFF18794BDEF3DCF99C5B6B5D7FF3B7A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [21])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/8CFF18794BDEF3DCF99C5B6B5D7FF3B7A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [22])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/471D3E300F9824E96D86B49BC58339B7A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [22]) [23] [24] [25]
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/471D3E300F9824E96D86B49BC58339B7A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex [23]) [24] [25] [26]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/B40D1E05EDE0254916BB7B3DC10EE146A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
-<./resources//crossover.png, id=369, 573.14125pt x 553.06625pt>
-File: ./resources//crossover.png Graphic file (type png)
-<use ./resources//crossover.png>
-Package pdftex.def Info: ./resources//crossover.png  used on input line 783.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/B40D1E05EDE0254916BB7B3DC10EE146A46AAC35E9BE9FEBDCB7366F0736D5ED.pygtex)
+<../resources//crossover.png, id=382, 573.14125pt x 553.06625pt>
+File: ../resources//crossover.png Graphic file (type png)
+<use ../resources//crossover.png>
+Package pdftex.def Info: ../resources//crossover.png  used on input line 786.
 (pdftex.def)             Requested size: 343.8874pt x 331.8423pt.
- [26]
-<./resources//single_mutation.png, id=375, 423.5825pt x 382.42876pt>
-File: ./resources//single_mutation.png Graphic file (type png)
-<use ./resources//single_mutation.png>
-Package pdftex.def Info: ./resources//single_mutation.png  used on input line 795.
+ [27]
+<../resources//single_mutation.png, id=388, 423.5825pt x 382.42876pt>
+File: ../resources//single_mutation.png Graphic file (type png)
+<use ../resources//single_mutation.png>
+Package pdftex.def Info: ../resources//single_mutation.png  used on input line 798.
 (pdftex.def)             Requested size: 317.6861pt x 286.82085pt.
- [27 </home/limelier/docs/college/genetic_programming/thesis/./resources//crossover.png>]
-<./resources//subtree_mutation.png, id=383, 459.7175pt x 583.17876pt>
-File: ./resources//subtree_mutation.png Graphic file (type png)
-<use ./resources//subtree_mutation.png>
-Package pdftex.def Info: ./resources//subtree_mutation.png  used on input line 803.
+ [28 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//crossover.png>]
+<../resources//subtree_mutation.png, id=396, 459.7175pt x 583.17876pt>
+File: ../resources//subtree_mutation.png Graphic file (type png)
+<use ../resources//subtree_mutation.png>
+Package pdftex.def Info: ../resources//subtree_mutation.png  used on input line 806.
 (pdftex.def)             Requested size: 344.78728pt x 437.383pt.
- [28 </home/limelier/docs/college/genetic_programming/thesis/./resources//single_mutation.png>] [29 </home/limelier/docs/college/genetic_programming/thesis/./resources//subtree_mutation.png>]
+ [29 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//single_mutation.png>] [30 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//subtree_mutation.png>]
 Chapter 4.
-[30
+[31
 
 ]
-<./resources//minecraft2.png, id=403, 948.54375pt x 809.0225pt>
-File: ./resources//minecraft2.png Graphic file (type png)
-<use ./resources//minecraft2.png>
-Package pdftex.def Info: ./resources//minecraft2.png  used on input line 851.
+<../resources//minecraft2.png, id=416, 948.54375pt x 809.0225pt>
+File: ../resources//minecraft2.png Graphic file (type png)
+<use ../resources//minecraft2.png>
+Package pdftex.def Info: ../resources//minecraft2.png  used on input line 854.
 (pdftex.def)             Requested size: 284.56532pt x 242.70862pt.
- [31]
-<./resources//minecraft3.png, id=408, 1016.79875pt x 844.15375pt>
-File: ./resources//minecraft3.png Graphic file (type png)
-<use ./resources//minecraft3.png>
-Package pdftex.def Info: ./resources//minecraft3.png  used on input line 863.
+ [32]
+<../resources//minecraft3.png, id=421, 1016.79875pt x 844.15375pt>
+File: ../resources//minecraft3.png Graphic file (type png)
+<use ../resources//minecraft3.png>
+Package pdftex.def Info: ../resources//minecraft3.png  used on input line 866.
 (pdftex.def)             Requested size: 305.04198pt x 253.24808pt.
- [32 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft2.png>]
-<./resources//minecraft4.png, id=414, 776.9025pt x 708.6475pt>
-File: ./resources//minecraft4.png Graphic file (type png)
-<use ./resources//minecraft4.png>
-Package pdftex.def Info: ./resources//minecraft4.png  used on input line 875.
+ [33 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft2.png>]
+<../resources//minecraft4.png, id=427, 776.9025pt x 708.6475pt>
+File: ../resources//minecraft4.png Graphic file (type png)
+<use ../resources//minecraft4.png>
+Package pdftex.def Info: ../resources//minecraft4.png  used on input line 878.
 (pdftex.def)             Requested size: 233.07254pt x 212.59589pt.
- [33 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft3.png>]
+ [34 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft3.png>]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/03873A0215F0CEC50664DE71EAF2C7BD753589EFDDC5385B1F9E46B6FF3E9837.pygtex [34 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft4.png>])
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/03873A0215F0CEC50664DE71EAF2C7BD753589EFDDC5385B1F9E46B6FF3E9837.pygtex [35 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft4.png>])
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/415852C3EA0E91464CAE90B2F1E17E4E753589EFDDC5385B1F9E46B6FF3E9837.pygtex [35])
-<./resources//minecraft5.png, id=433, 1068.99374pt x 442.65375pt>
-File: ./resources//minecraft5.png Graphic file (type png)
-<use ./resources//minecraft5.png>
-Package pdftex.def Info: ./resources//minecraft5.png  used on input line 956.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/415852C3EA0E91464CAE90B2F1E17E4E753589EFDDC5385B1F9E46B6FF3E9837.pygtex [36])
+<../resources//minecraft5.png, id=448, 1068.99374pt x 442.65375pt>
+File: ../resources//minecraft5.png Graphic file (type png)
+<use ../resources//minecraft5.png>
+Package pdftex.def Info: ../resources//minecraft5.png  used on input line 959.
 (pdftex.def)             Requested size: 320.70059pt x 132.79713pt.
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/709ECEAF3A33F6042FB040F5B57ACB900102E502927AACB428B4F294F23E2359.pygtex [36 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft5.png>])
-<./resources//case4_fit_tree.png, id=444, 196.735pt x 121.45375pt>
-File: ./resources//case4_fit_tree.png Graphic file (type png)
-<use ./resources//case4_fit_tree.png>
-Package pdftex.def Info: ./resources//case4_fit_tree.png  used on input line 983.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/709ECEAF3A33F6042FB040F5B57ACB900102E502927AACB428B4F294F23E2359.pygtex [37 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft5.png>])
+<../resources//case4_fit_tree.png, id=457, 196.735pt x 121.45375pt>
+File: ../resources//case4_fit_tree.png Graphic file (type png)
+<use ../resources//case4_fit_tree.png>
+Package pdftex.def Info: ../resources//case4_fit_tree.png  used on input line 986.
 (pdftex.def)             Requested size: 147.55087pt x 91.09007pt.
-<./resources//case4_fit_minecraft.png, id=446, 661.72218pt x 392.96812pt>
-File: ./resources//case4_fit_minecraft.png Graphic file (type png)
-<use ./resources//case4_fit_minecraft.png>
-Package pdftex.def Info: ./resources//case4_fit_minecraft.png  used on input line 992.
+<../resources//case4_fit_minecraft.png, id=459, 661.72218pt x 392.96812pt>
+File: ../resources//case4_fit_minecraft.png Graphic file (type png)
+<use ../resources//case4_fit_minecraft.png>
+Package pdftex.def Info: ../resources//case4_fit_minecraft.png  used on input line 995.
 (pdftex.def)             Requested size: 330.86028pt x 196.48357pt.
- [37 </home/limelier/docs/college/genetic_programming/thesis/./resources//case4_fit_tree.png>]
+ [38 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//case4_fit_tree.png>]
 \openout3 = `thesis.pyg'.
 
- (/home/limelier/docs/college/genetic_programming/thesis/_minted-thesis/908F47306322D1769850040B642D86080102E502927AACB428B4F294F23E2359.pygtex) [38 </home/limelier/docs/college/genetic_programming/thesis/./resources//case4_fit_minecraft.png (PNG copy)>]
-<./resources//minecraft6.png, id=462, 882.29625pt x 787.94376pt>
-File: ./resources//minecraft6.png Graphic file (type png)
-<use ./resources//minecraft6.png>
-Package pdftex.def Info: ./resources//minecraft6.png  used on input line 1021.
+ (/home/limelier/docs/college/genetic_programming/thesis/thesis/_minted-thesis/908F47306322D1769850040B642D86080102E502927AACB428B4F294F23E2359.pygtex) [39 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//case4_fit_minecraft.png (PNG copy)>]
+<../resources//minecraft6.png, id=475, 882.29625pt x 787.94376pt>
+File: ../resources//minecraft6.png Graphic file (type png)
+<use ../resources//minecraft6.png>
+Package pdftex.def Info: ../resources//minecraft6.png  used on input line 1024.
 (pdftex.def)             Requested size: 264.69092pt x 236.38495pt.
 Missing character: There is no ; in font nullfont!
- [39 </home/limelier/docs/college/genetic_programming/thesis/./resources//minecraft6.png>] [40]
+ [40 </home/limelier/docs/college/genetic_programming/thesis/thesis/../resources//minecraft6.png>] [41]
 Chapter 5.
-[41
+[42
 
-] (/home/limelier/docs/college/genetic_programming/thesis/thesis.bbl [42]) [43
+] (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.bbl [43]) [44
 
-] (/home/limelier/docs/college/genetic_programming/thesis/thesis.aux)
+] (/home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.aux)
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 7B51869035CD998D0C3D9BB0789EC56A;4316.
+(rerunfilecheck)             Checksum: FE9D07932582F1BD5239CDA52BFF0DB9;4436.
 runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 34059 strings out of 478994
- 800403 string characters out of 5864751
+ 34064 strings out of 478994
+ 801110 string characters out of 5864751
  1250178 words of memory out of 5000000
- 50789 multiletter control sequences out of 15000+600000
+ 50791 multiletter control sequences out of 15000+600000
  411508 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,19n,103p,760b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,19n,103p,767b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis.pdf (44 pages, 850046 bytes).
+Output written on /home/limelier/docs/college/genetic_programming/thesis/thesis/thesis.pdf (45 pages, 851304 bytes).
 PDF statistics:
- 587 PDF objects out of 1000 (max. 8388607)
- 486 compressed objects within 5 object streams
- 127 named destinations out of 1000 (max. 500000)
- 320 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 602 PDF objects out of 1000 (max. 8388607)
+ 500 compressed objects within 5 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 328 words of extra memory for PDF output out of 10000 (max. 10000000)
 

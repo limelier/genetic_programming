@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{enum} \PYG{n+nc}{TurtleOperation}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{Move}\PYG{p}{(}\PYG{n}{Direction}\PYG{p}{),}
+\PYG{+w}{    }\PYG{n}{Turn}\PYG{p}{(}\PYG{n}{Side}\PYG{p}{),}
+\PYG{+w}{    }\PYG{n}{Place}\PYG{p}{(}\PYG{n}{Direction}\PYG{p}{),}
+\PYG{+w}{    }\PYG{n}{Dig}\PYG{p}{(}\PYG{n}{Direction}\PYG{p}{),}
+\PYG{+w}{    }\PYG{n}{Detect}\PYG{p}{(}\PYG{n}{Direction}\PYG{p}{),}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

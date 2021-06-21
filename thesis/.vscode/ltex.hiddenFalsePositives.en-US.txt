@@ -37,3 +37,9 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qcompat=1.17\\E$"}
 {"rule":"TO_TOO","sentence":"^\\QIf this is a factor, it's possible that lowering the number of registers and shrinking the set of possible instructions, perhaps specializing the approach to a certain kind of structure, would lead to much better results.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QMojang\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qthe idea, constructed collaboratively with my guiding professor, Assist.\\E$"}
+{"rule":"MASS_AGREEMENT","sentence":"^\\Qthe idea, constructed collaboratively with my guiding professor, Assist.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QCroitoru Eugen.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qdr.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qthe source code for the training environment the source code for the two helper scripts the test results the analysis of the test results\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QDiagrams are made by me using draw.io.\\E$"}

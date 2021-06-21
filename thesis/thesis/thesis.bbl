@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{cctweaked}
+Jonathan Coates.
+\newblock {CC: Tweaked}.
+\newblock URL: \url{https://tweaked.cc/}.
+
 \bibitem{koza}
 John~R. Koza.
 \newblock {\em Genetic Programming: On the Programming of Computers by Means of
@@ -24,7 +29,7 @@ Riccardo Poli, William~B Langdon, Nicholas~F McPhee, and John~R Koza.
 
 \bibitem{computercraft}
 Daniel Ratcliffe.
-\newblock Computercraft.
+\newblock {ComputerCraft}.
 \newblock URL: \url{http://www.computercraft.info/}.
 
 \bibitem{ccwiki:turtle}

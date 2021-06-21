@@ -9,7 +9,7 @@
 \usepackage{amsmath} % for "align*" environment
 \usepackage{pgfplots} % bar charts
 
-\graphicspath{ {./resources/} }
+\graphicspath{ {../resources/} }
 \setminted{fontsize=\small}
 \setminted{frame=leftline}
 \setminted{framesep=2mm}
@@ -42,6 +42,9 @@ This project initially took form based on an existing concept: a modification fo
 The idea that the thesis is built around is using genetic programming\cite{genetic_prog} to create, given a target voxel structure, a program that can construct it. When run by a turtle with sufficient materials, this program should allow it to reproduce the initial target as accurately as possible.
 
 Over the course of this thesis, I will be exploring exactly what my training and testing environment consists of. I will be using this environment to run several tests, and analyzing their results. I will  also explain why I think the performance of the algorithm is unsatisfactory, and why it isn't too useful in practice.
+
+\section{Contributions}
+The idea behind the thesis was constructed collaboratively with my guiding professor, Assist. dr. Croitoru Eugen. The Rust source code for the training environment and the Python code for the two helper scripts were written by me. Screenshots are taken by me in Minecraft\cite{minecraft} using CC: Tweaked\cite{cctweaked}, a fork of ComputerCraft\cite{computercraft}. Diagrams are made by me using {draw.io}. Test running, result collection and analysis are all my own work as well.
 
 \chapter{Practical context}
 In this chapter, I will outline the precise problem that needs to be solved, as well as the constraints of the work environment.
@@ -1079,6 +1082,6 @@ Even though this project may not have yielded many useful results, I found it ve
 On the other hand, it also gave me a great opportunity to work with Rust, a language which I'd been meaning to explore for a while, but couldn't due to time constraints and college work. I'm thankful for the chance to try and mix my passion for programming with my favorite video game.
 
 \bibliographystyle{plainurl}
-\bibliography{bibliography}
+\bibliography{../bibliography.bib}
 
 \end{document}

@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{pub}\PYG{+w}{ }\PYG{k}{enum} \PYG{n+nc}{Instruction}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Do operation on register alone}
+\PYG{+w}{    }\PYG{n}{Unary}\PYG{p}{(}\PYG{n}{Reg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{UnaryOperation}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Do operation on register using source}
+\PYG{+w}{    }\PYG{n}{Binary}\PYG{p}{(}\PYG{n}{Reg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Source}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{BinaryOperation}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Jump to the given instruction if it exists, and if the condition is met}
+\PYG{+w}{    }\PYG{n}{Jump}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Label}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{JumpCondition}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Compare register with source, store value in comparison register}
+\PYG{+w}{    }\PYG{n}{Compare}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Reg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Source}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Print the source value}
+\PYG{+w}{    }\PYG{n}{Print}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Source}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Execute turtle operations in the simulator}
+\PYG{+w}{    }\PYG{n}{Turtle}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{TurtleOperation}\PYG{p}{),}
+\PYG{+w}{    }\PYG{l+s+sd}{/// Label for jumping}
+\PYG{+w}{    }\PYG{n}{Label}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Label}\PYG{p}{),}
+\end{Verbatim}
