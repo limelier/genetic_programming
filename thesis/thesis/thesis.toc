@@ -1,30 +1,31 @@
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Contributions}{4}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Practical context}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}The turtle}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}The training space}{6}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Technical details}{8}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The simulator}{9}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Linear programs and the virtual machine}{10}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Tree-based programs}{15}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Motivation}{15}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Structure}{16}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Translation}{18}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Genetic algorithm}{22}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{23}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Evaluation}{24}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Selection}{25}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Crossover}{26}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Mutation}{28}{subsection.3.4.5}%
-\contentsline {chapter}{\numberline {4}Experiments}{31}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Experimental setup}{31}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Test cases}{32}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Elementary case: a single block}{32}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Second case: two blocks}{33}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Third case: four blocks}{34}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Fourth case: a line of eight blocks}{37}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{40}{subsection.4.2.5}%
-\contentsline {section}{\numberline {4.3}Overall analysis}{41}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions}{42}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{42}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Personal notes}{43}{section.5.2}%
+\contentsline {chapter}{Introduction}{2}{chapter*.1}%
+\contentsline {section}{Contributions}{3}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Practical context}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The turtle}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The training space}{6}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Technical details}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The simulator}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Linear programs and the virtual machine}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Tree-based programs}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Motivation}{15}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Structure}{16}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Translation}{18}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Genetic algorithm}{22}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Creating the first generation}{23}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Evaluation}{24}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Selection}{25}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Crossover}{26}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}Mutation}{28}{subsection.2.4.5}%
+\contentsline {chapter}{\numberline {3}Experiments}{31}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Experimental setup}{31}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Test cases}{32}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Elementary case: a single block}{32}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Second case: two blocks}{33}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Third case: four blocks}{34}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Fourth case: a line of eight blocks}{37}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}The hardest case: a cuboid}{40}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Overall analysis}{41}{section.3.3}%
+\contentsline {chapter}{Conclusions}{41}{figure.caption.46}%
+\contentsline {section}{Possible improvements and alternatives}{42}{chapter*.47}%
+\contentsline {section}{Personal notes}{43}{section*.48}%
+\contentsline {chapter}{Bibliography}{44}{chapter*.50}%

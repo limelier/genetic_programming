@@ -8,6 +8,7 @@
 \usepackage{graphicx} % for pictures
 \usepackage{amsmath} % for "align*" environment
 \usepackage{pgfplots} % bar charts
+\usepackage[nottoc]{tocbibind} % to include bibliography in toc
 
 \graphicspath{ {../resources/} }
 \setminted{fontsize=\small}
@@ -34,7 +35,8 @@
 
 \tableofcontents
 
-\chapter{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{Introduction}
 This thesis will explore the construction of three-dimensional voxel structures using a “turtle”-type virtual robot. This robot is programmable, with the ability to interact with its surroundings by means of a set of elementary functions. These functions allow it to move, place and destroy blocks, and detect adjacent blocks for the purpose of making decisions.
 
 This project initially took form based on an existing concept: a modification for Minecraft\cite{minecraft} that adds such a robot to the game, which is programmable using Lua. Minecraft is a sandbox video game where players can build structures using 3D blocks aligned to a grid. The modification, \emph{ComputerCraft}\cite{computercraft}, adds simple Lua-programmable computers to the game. Among them is a mobile computer, called a \emph{turtle}, that can use a special library to interact with its environment.
@@ -43,7 +45,8 @@ The idea that the thesis is built around is using genetic programming\cite{genet
 
 Over the course of this thesis, I will be exploring exactly what my training and testing environment consists of. I will be using this environment to run several tests, and analyzing their results. I will  also explain why I think the performance of the algorithm is unsatisfactory, and why it isn't too useful in practice.
 
-\section{Contributions}
+\addcontentsline{toc}{section}{Contributions}
+\section*{Contributions}
 The idea behind the thesis was constructed collaboratively with my guiding professor, Assist. dr. Croitoru Eugen. The Rust source code for the training environment and the Python code for the two helper scripts were written by me. Screenshots are taken by me in Minecraft\cite{minecraft} using CC: Tweaked\cite{cctweaked}, a fork of ComputerCraft\cite{computercraft}. Diagrams are made by me using {draw.io}. Test running, result collection and analysis are all my own work as well.
 
 \chapter{Practical context}
@@ -1061,9 +1064,11 @@ Apart from this, case 5 also makes it immediately clear that the algorithm perfo
 
 Lastly, one interesting thing to note, as previously mentioned, is that the algorithm performs better in test case 4 than it does in case 3. This is likely because of the aforementioned easy-to-reach local maxima (\autoref{fig:case4_comb_fit_tree}), which takes advantage of a loop to easily yield comparatively good results.
 
-\chapter{Conclusions}
+\addcontentsline{toc}{chapter}{Conclusions}
+\chapter*{Conclusions}
 
-\section{Possible improvements and alternatives}
+\addcontentsline{toc}{section}{Possible improvements and alternatives}
+\section*{Possible improvements and alternatives}
 
 The results of the tests are pretty clear: the algorithm yields unsatisfactory results for basic test cases, and does not even come close to replicating the target structure for more complex ones. While I cannot exclude programming errors in the code I have written as causes for this poor performance, I can give some other possible causes. 
 
@@ -1075,7 +1080,8 @@ A more complex structure, perhaps even using multiple kinds of voxels, would als
 
 If a complex structure needs to be replicated multiple times, it may be practical to instead build it once by hand, and use a ``scanner'' program to destroy it layer by layer, storing the location of each block in the structure into a 3D array, and then another ``printer'' program to re-build it in a way similar to the operation of a 3D printer.
 
-\section{Personal notes}
+\addcontentsline{toc}{section}{Personal notes}
+\section*{Personal notes}
 
 Even though this project may not have yielded many useful results, I found it very interesting to work on. Firstly, it provided me an opportunity to expand on my knowledge of genetic algorithms from the courses and seminars I'd done previously. Even though this particular challenge may not be a very good fit for this kind of algorithm, there are still many other applications where it often beats other search strategies, such as function optimization or fields where the nature of the problem and the search space isn't entirely understood.
 
