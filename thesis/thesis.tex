@@ -717,7 +717,7 @@ Selection is the process of picking individuals from the current generation to u
 
 \emph{Tournament selection} involves running a number ``tournaments'' and picking the winner as a parent for the next generation. A tournament involves randomly selecting a handful of individuals from the population, and sorting them by their results. Then, the best individual in this set is chosen with probability \label{tournament_p}$p$, the second with probability $(1-p)p$, etc. If no other individual is chosen, the worst one will be.
 
-\emph{Fitness-weighted selection}, on the other hand, is done on the whole population at once. First, each individual's score $s$ is mapped into a fitness $f$ using the following formula:
+\emph{Fitness proportionate selection} (referred to in code as ``fitness-weighted''), on the other hand, is done on the whole population at once. First, each individual's score $s$ is mapped into a fitness $f$ using the following formula:
 
 $$f = \left(\frac{s - s_{min}}{s_{max} - s_{min}}\right)^{SP}$$
 \begin{align*}\quad
@@ -830,10 +830,10 @@ Additionally, each selection method has certain parameters which will also vary:
 
 \begin{itemize}
     \item tournament selection has a tournament size parameter (in $\{2, 4, 7\}$) and a probability $p$ described in \autoref{tournament_p} (in $\{0.8, 1.0\}$)
-    \item fitness-weighted selection has a selection pressure parameter with values in $\{0.2, 1.0, 5.0\}$
+    \item fitness proportionate selection has a selection pressure parameter with values in $\{0.2, 1.0, 5.0\}$
 \end{itemize}
 
-Given all parameters that can vary, the total number of combinations that must be tried is $675$ for fitness-weighted selection, and $1350$ for tournament selection.
+Given all parameters that can vary, the total number of combinations that must be tried is $675$ for fitness proportionate selection, and $1350$ for tournament selection.
 
 \section{Test cases}
 
@@ -858,7 +858,7 @@ The second example is slightly more complicated, with a second block added in fr
     \caption{A screenshot showing the second case. There is another block to be placed in front of the first one.}
 \end{figure}
 
-The effect of the added complexity is visible immediately: the best fitness-weighted selection combination gets an average Dice index of $0.855$, while the best tournament one gets an even weaker result, of $0.8$.
+The effect of the added complexity is visible immediately: the best fitness proportionate selection combination gets an average Dice index of $0.855$, while the best tournament one gets an even weaker result, of $0.8$.
 
 \subsection{Third case: four blocks}
 
@@ -870,7 +870,7 @@ The third example adds two more blocks, creating a short line of four. This case
     \caption{A screenshot showing the third case. Two more blocks are present compared to the previous case.}
 \end{figure}
 
-The best fitness-weighted selection combination obtains an average index of $0.616$, and the best tournament one, a weaker result of $0.582$.
+The best fitness proportionate selection combination obtains an average index of $0.616$, and the best tournament one, a weaker result of $0.582$.
 
 Given that test case 4 has its results greatly affected by a local maxima, and test case 5 performs very poorly regardless of parameters (both detailed below), case 3 is probably the best fit for analyzing the impact of each parameter on the performance of the algorithm. For this purpose, the output files for each case and selection method contain not just the best combination of parameters, but all possible combinations and their results. With a second python script, these results may be analyzed; the outputs of this script, edited for readability, are \autoref{lst:case3_fit} and \autoref{lst:case3_tour}.
 
@@ -901,7 +901,7 @@ selection pressure
      1.0: 0.4668, 1.8507
      5.0: 0.4975, 1.8135
     \end{minted}
-    \caption{Average Dice index and depth for each parameter of the fitness-weighted selection runs.}
+    \caption{Average Dice index and depth for each parameter of the fitness proportionate selection runs.}
     \label{lst:case3_fit}
 \end{code}
 
@@ -939,7 +939,7 @@ tournament p
     \label{lst:case3_tour}
 \end{code}
 
-This analysis reveals that while differences in the performance of each parameter do exist, they are not very large. The parameters have a bigger impact in the fitness-weighted runs, but even there the biggest difference recorded is between \verb|selection_pressure| values $0.2$ (with an average index of $0.4340$) and $5.0$ ($0.4975$).
+This analysis reveals that while differences in the performance of each parameter do exist, they are not very large. The parameters have a bigger impact in the fitness proportionate runs, but even there the biggest difference recorded is between \verb|selection_pressure| values $0.2$ (with an average index of $0.4340$) and $5.0$ ($0.4975$).
 
 \subsection{Fourth case: a line of eight blocks}
 
@@ -951,9 +951,9 @@ Four more blocks are added, expanding the line to eight blocks. This means that 
     \caption{A screenshot of the fourth case, with eight blocks in total.}
 \end{figure}
 
-The results are, in fact, better than the case before. The best fitness-weighted combination yields an average index of $0.666$ with an average depth of $2.000$. The best tournament one is slightly weaker, with an average Dice index of $0.645$ and a depth of $2.366$. To analyze the reason for the better results, I ran 30 more tries with each combination.
+The results are, in fact, better than the case before. The best fitness proportionate combination yields an average index of $0.666$ with an average depth of $2.000$. The best tournament one is slightly weaker, with an average Dice index of $0.645$ and a depth of $2.366$. To analyze the reason for the better results, I ran 30 more tries with each combination.
 
-The first combination, using fitness-weighted selection, was \autoref{lst:case4_comb_fit}.
+The first combination, using fitness proportionate selection, was \autoref{lst:case4_comb_fit}.
 
 \begin{code}
     \begin{minted}{python}
@@ -988,7 +988,7 @@ This tree is very simple, and what it does in practice is fill in an entire line
     \label{fig:case4_comb_fit_minecraft}
 \end{figure}
 
-The tournament combination, whose parameters are listed in \autoref{lst:case4_comb_tour}, was less consistent than its fitness-weighted counterpart, but the trees it produced that had the highest Dice index were the same ones, pictured in \autoref{fig:case4_comb_fit_tree}.
+The tournament combination, whose parameters are listed in \autoref{lst:case4_comb_tour}, was less consistent than its fitness proportionate counterpart, but the trees it produced that had the highest Dice index were the same ones, pictured in \autoref{fig:case4_comb_fit_tree}.
 
 \begin{code}
     \begin{minted}{python}
@@ -1017,7 +1017,7 @@ As revealed thus far, the algorithm does not fare very well even on simple test 
     \label{fig:case5_minecraft}
 \end{figure}
 
-The results of this case are significantly weaker, with a Dice index of $0.005$ (and an average depth of $2.833$) for the fitness-weighted combination, and $0.002$ (with a depth of $2.800$) for the tournament one. This means that, even in the best cases, the algorithm only produced simple programs whose built structures just barely intersect the targets.
+The results of this case are significantly weaker, with a Dice index of $0.005$ (and an average depth of $2.833$) for the fitness proportionate combination, and $0.002$ (with a depth of $2.800$) for the tournament one. This means that, even in the best cases, the algorithm only produced simple programs whose built structures just barely intersect the targets.
 
 \section{Overall analysis}
 
@@ -1039,7 +1039,7 @@ The results of this case are significantly weaker, with a Dice index of $0.005$ 
         \addplot coordinates {(1, 1.0) (2, 0.855) (3, 0.616) (4, 0.666) (5, 0.005)};
         \addplot coordinates {(1, 1.0) (2, 0.8) (3, 0.582) (4, 0.645) (5, 0.002)};
          
-        \legend {Fitness-weighted selection, Tournament selection};
+        \legend {Fitness proportionate selection, Tournament selection};
          
         \end{axis}
     \end{tikzpicture}
@@ -1047,7 +1047,7 @@ The results of this case are significantly weaker, with a Dice index of $0.005$ 
     \label{fig:dice_graph}
 \end{figure}
 
-\autoref{fig:dice_graph} follows the performance of each selection method for all five test cases. One thing that is apparent is that tournament selection is consistently worse-performing than fitness-weighted selection.
+\autoref{fig:dice_graph} follows the performance of each selection method for all five test cases. One thing that is apparent is that tournament selection is consistently worse-performing than fitness proportionate selection.
 
 Apart from this, case 5 also makes it immediately clear that the algorithm performs very poorly in realistic applications. Even with the more idealized cases 1 through 4, the algorithm could not perfectly replicate the target structure in any cases except for the simplest one.
 
