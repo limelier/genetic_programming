@@ -37,9 +37,9 @@
 \chapter{Introduction}
 This thesis will explore the construction of three-dimensional voxel structures using a “turtle”-type virtual robot. This robot is programmable, with the ability to interact with its surroundings by means of a set of elementary functions. These functions allow it to move, place and destroy blocks, and detect adjacent blocks for the purpose of making decisions.
 
-This project initially took form based on an existing concept: a modification for Minecraft that adds such a robot to the game, which is programmable using Lua. Minecraft is a sandbox video game where players can build structures using 3D blocks aligned to a grid. The modification, \emph{ComputerCraft}\cite{ccwiki}, adds simple Lua-programmable computers to the game. Among them is a mobile computer, called a \emph{turtle}, that can use a special library to interact with its environment.
+This project initially took form based on an existing concept: a modification for Minecraft\cite{minecraft} that adds such a robot to the game, which is programmable using Lua. Minecraft is a sandbox video game where players can build structures using 3D blocks aligned to a grid. The modification, \emph{ComputerCraft}\cite{computercraft}, adds simple Lua-programmable computers to the game. Among them is a mobile computer, called a \emph{turtle}, that can use a special library to interact with its environment.
 
-The idea that the thesis is built around is using genetic programming to create, given a target voxel structure, a program that can construct it. When run by a turtle with sufficient materials, this program should allow it to reproduce the initial target as accurately as possible.
+The idea that the thesis is built around is using genetic programming\cite{genetic_prog} to create, given a target voxel structure, a program that can construct it. When run by a turtle with sufficient materials, this program should allow it to reproduce the initial target as accurately as possible.
 
 Over the course of this thesis, I will be exploring exactly what my training and testing environment consists of. I will be using this environment to run several tests, and analyzing their results. I will  also explain why I think the performance of the algorithm is unsatisfactory, and why it isn't too useful in practice.
 
@@ -51,7 +51,7 @@ In this chapter, I will outline the precise problem that needs to be solved, as 
 
 The turtle is a robot that takes up one space in the voxel grid. Its state is described using a triplet of integer coordinates, as well as a direction aligned to one of the horizontal axes.
 
-For the precise abilities of the robot, I will take inspiration from ComputerCraft, the previously mentioned modification. From the library of commands available for turtle control in ComputerCraft, I will utilize only the following:
+For the precise abilities of the robot, I will take inspiration from ComputerCraft, the previously mentioned modification. From the library of commands available for turtle control in ComputerCraft\cite{ccwiki:turtle}, I will utilize only the following:
 
 \begin{itemize}
     \item The commands \texttt{forward}, \texttt{back}, \texttt{up} and \texttt{down} allow the robot to move to an adjacent space. If said space is taken up by a block, the robot will remain in place. These commands will return a boolean value, equal to the success of the movement.
@@ -588,7 +588,7 @@ Label(1)
 
 \section{Genetic algorithm}
 
-For a brief summary, a genetic algorithm is an algorithm taking inspiration from the real-life processes of natural selection and evolution. It involves taking an entire ``population'' of ``individuals'', in this case tree-structured programs, and evaluating them. The next generation is created from the current one, with individuals that performed better having a higher chance of ``reproducing''. To make helpful changes, individuals are mixed together and randomly modified individually. Here is a short glossary to help with the following section:
+For a brief summary, a genetic algorithm\cite{genetic_alg} is an algorithm taking inspiration from the real-life processes of natural selection and evolution. It involves taking an entire ``population'' of ``individuals'', in this case tree-structured programs, and evaluating them. The next generation is created from the current one, with individuals that performed better having a higher chance of ``reproducing''. To make helpful changes, individuals are mixed together and randomly modified individually. Here is a short glossary to help with the following section:
 
 \begin{itemize}
     \item \emph{population} or \emph{generation}: a group of individuals evaluated, modified and propagated in a single iteration of the genetic algorithm

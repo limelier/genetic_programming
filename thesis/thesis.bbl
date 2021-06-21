@@ -12,11 +12,31 @@ John~R. Koza.
 \newblock MIT Press, Cambridge, MA, USA, 1992.
 \newblock URL: \url{http://mitpress.mit.edu/books/genetic-programming}.
 
-\bibitem{ccwiki}
+\bibitem{genetic_alg}
+Melanie Mitchell.
+\newblock {\em An introduction to genetic algorithms}.
+\newblock MIT press, 1998.
+
+\bibitem{minecraft}
+Mojang.
+\newblock Minecraft, 2011.
+\newblock URL: \url{https://www.minecraft.net}.
+
+\bibitem{genetic_prog}
+Riccardo Poli, William~B Langdon, Nicholas~F McPhee, and John~R Koza.
+\newblock {\em A field guide to genetic programming}.
+\newblock Lulu. com, 2008.
+
+\bibitem{computercraft}
+Daniel Ratcliffe.
+\newblock Computercraft.
+\newblock URL: \url{http://www.computercraft.info/}.
+
+\bibitem{ccwiki:turtle}
 \relax ComputerCraft~community.
-\newblock {\em ComputerCraft Wiki}, September 2012.
+\newblock {\em Turtle (API) --- ComputerCraft Wiki}, September 2012.
 \newblock Accessed: 14 jun 2021.
-\newblock URL: \url{http://www.computercraft.info/wiki}.
+\newblock URL: \url{http://www.computercraft.info/wiki/Turtle_(API)}.
 
 \bibitem{sorensen}
 Thorvald~Julius S{\o}rensen.
