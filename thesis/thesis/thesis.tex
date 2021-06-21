@@ -1070,7 +1070,7 @@ Lastly, one interesting thing to note, as previously mentioned, is that the algo
 \addcontentsline{toc}{section}{Possible improvements and alternatives}
 \section*{Possible improvements and alternatives}
 
-The results of the tests are pretty clear: the algorithm yields unsatisfactory results for basic test cases, and does not even come close to replicating the target structure for more complex ones. While I cannot exclude programming errors in the code I have written as causes for this poor performance, I can give some other possible causes. 
+The results of the tests are pretty clear: my implementation yields unsatisfactory results for basic test cases, and does not even come close to replicating the target structure for more complex ones. While I cannot exclude programming errors in the code I have written as causes for this poor performance, I can give some other possible causes. 
 
 It appears likely that the search space is too large: 256 registers and a large, flexible set of instructions lead to a very large number of possible trees that can be reached by the genetic algorithm. If this is a factor, it's possible that lowering the number of registers and shrinking the set of possible instructions would help; perhaps specializing the approach for only generating a certain kind of structure would lead to better results.
 
@@ -1078,7 +1078,7 @@ I believe it is also impractical to use genetic programming for simple structure
 
 A more complex structure, perhaps even using multiple kinds of voxels, would also be a bad match for this algorithm. A complex structure would be difficult to input into the algorithm, probably more so than constructing it by hand. More voxels would also greatly increase the search space, making it impractical to find the right solution. 
 
-If a complex structure needs to be replicated multiple times, it may be practical to instead build it once by hand, and use a ``scanner'' program to destroy it layer by layer, storing the location of each block in the structure into a 3D array, and then another ``printer'' program to re-build it in a way similar to the operation of a 3D printer.
+If a complex structure needs to be replicated multiple times, it may be practical to instead build it once by hand, and use a ``scanner'' program to destroy it layer by layer, storing the location of each block in the structure into a 3D array, and then another ``printer'' program to re-build it in a way similar to the operation of a 3D printer. However, a successful implementation of a genetic programming algorithm may yield improvements in the runtime of the ``printer'' program by generating a more efficient route than one iterating through every position.
 
 \addcontentsline{toc}{section}{Personal notes}
 \section*{Personal notes}
