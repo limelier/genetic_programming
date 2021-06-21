@@ -176,6 +176,9 @@ pub struct Program {
     registers: [Val; 256],
     instruction_pointer: Ins,
     halted: bool,
+    \end{minted}
+    \pagebreak  % prevents caption from being separate from listing
+    \begin{minted}{rust}
     simulator: Simulator,
 }
     \end{minted}
@@ -211,6 +214,9 @@ pub enum Instruction {
     Turtle (TurtleOperation),
     /// Label for jumping
     Label (Label),
+    \end{minted}
+    \pagebreak  % prevents caption from being separate from listing
+    \begin{minted}{rust}
     /// Do nothing
     Pass
 }
@@ -1025,13 +1031,12 @@ The results of this case are significantly weaker, with a Dice index of $0.005$ 
     \centering
     \begin{tikzpicture}
         \begin{axis} [ybar,
-            height = 12cm,
+            height = 10cm,
             width = 12cm,
             bar width = 24pt,
             xtick = data,
             ymin = 0,
             ymax = 1,
-            enlarge y limits = {value = .025, upper},
             xlabel = {test case \#},
             ylabel = {Dice index},
         ]

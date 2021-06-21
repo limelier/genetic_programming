@@ -14,7 +14,4 @@
 \PYG{+w}{    }\PYG{n}{Turtle}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{TurtleOperation}\PYG{p}{),}
 \PYG{+w}{    }\PYG{l+s+sd}{/// Label for jumping}
 \PYG{+w}{    }\PYG{n}{Label}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Label}\PYG{p}{),}
-\PYG{+w}{    }\PYG{l+s+sd}{/// Do nothing}
-\PYG{+w}{    }\PYG{n}{Pass}
-\PYG{p}{\PYGZcb{}}
 \end{Verbatim}

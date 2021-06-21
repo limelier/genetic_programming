@@ -1,10 +1,5 @@
 \begin{thebibliography}{1}
 
-\bibitem{dice}
-Lee~R Dice.
-\newblock Measures of the amount of ecologic association between species.
-\newblock {\em Ecology}, 26(3):297--302, 1945.
-
 \bibitem{koza}
 John~R. Koza.
 \newblock {\em Genetic Programming: On the Programming of Computers by Means of
@@ -37,6 +32,11 @@ Daniel Ratcliffe.
 \newblock {\em Turtle (API) --- ComputerCraft Wiki}, September 2012.
 \newblock Accessed: 14 jun 2021.
 \newblock URL: \url{http://www.computercraft.info/wiki/Turtle_(API)}.
+
+\bibitem{dice}
+Lee~Raymond Rice.
+\newblock Measures of the amount of ecologic association between species.
+\newblock {\em Ecology}, 26(3):297--302, 1945.
 
 \bibitem{sorensen}
 Thorvald~Julius S{\o}rensen.

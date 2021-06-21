@@ -5,11 +5,11 @@
 \contentsline {chapter}{\numberline {3}Technical details}{7}{chapter.3}%
 \contentsline {section}{\numberline {3.1}The simulator}{8}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Linear programs and the virtual machine}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Tree-based programs}{13}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Motivation}{13}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Structure}{14}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.3}Tree-based programs}{14}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Motivation}{14}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Structure}{15}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Translation}{17}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Genetic algorithm}{20}{section.3.4}%
+\contentsline {section}{\numberline {3.4}Genetic algorithm}{21}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Creating the first generation}{22}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Evaluation}{23}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Selection}{24}{subsection.3.4.3}%
@@ -24,6 +24,6 @@
 \contentsline {subsection}{\numberline {4.2.4}Fourth case: a line of eight blocks}{36}{subsection.4.2.4}%
 \contentsline {subsection}{\numberline {4.2.5}The hardest case: a cuboid}{39}{subsection.4.2.5}%
 \contentsline {section}{\numberline {4.3}Overall analysis}{40}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions}{42}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{42}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Personal notes}{43}{section.5.2}%
+\contentsline {chapter}{\numberline {5}Conclusions}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Possible improvements and alternatives}{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Personal notes}{42}{section.5.2}%
